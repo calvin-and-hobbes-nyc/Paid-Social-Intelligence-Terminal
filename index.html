@@ -116,6 +116,9 @@ a.inline:hover,.brief a:hover,.feed a:hover{text-decoration:underline}
 .mobile-mini-bar select,.mobile-mini-bar input{width:100%;min-width:0}
 }
 @media (max-width:720px){.wrap{padding:8px}.masthead,.lead,.side-rail,.section,.footer-note{padding-left:16px;padding-right:16px}.lead h2{font-size:38px}.banner-content{padding:26px 18px}}
+
+#frontPrev,#frontNext,#frontDots{display:none !important;}
+
 </style>
 </head>
 <body>
@@ -318,7 +321,7 @@ function makeCarousel(trackId, dotsId, prevId, nextId, options={}) {
   return { rebuild, stop, start };
 }
 
-const frontCarousel = makeCarousel('frontPageGrid', 'frontDots', 'frontPrev', 'frontNext');
+const frontCarousel = makeCarousel('frontPageGrid', 'frontDots', 'frontPrev', 'frontNext', {auto:false});
 const briefCarousel = makeCarousel('briefingsGrid', 'briefDots', 'briefPrev', 'briefNext');
 const ledgerCarousel = makeCarousel('signalsGrid', 'ledgerDots', 'ledgerPrev', 'ledgerNext', {auto:false});
 const trendCarousel = makeCarousel('trendGrid', 'trendDots', 'trendPrev', 'trendNext', {auto:false});
@@ -386,7 +389,8 @@ function render(selectedKey) {
 
   const frontPageGrid = document.getElementById('frontPageGrid');
   frontPageGrid.innerHTML = '';
-  front.forEach(a => {
+  front = front.slice(0,1);
+front.forEach(a => {
     const slide = document.createElement('div');
     slide.className = 'carousel-slide';
     slide.innerHTML = `
@@ -410,7 +414,16 @@ function render(selectedKey) {
 
   const briefingsGrid = document.getElementById('briefingsGrid');
   briefingsGrid.innerHTML = '';
-  const chunkSize = window.innerWidth > 1200 ? 3 : 1;
+  
+let chunkSize = 1;
+if (window.innerWidth > 1200) {
+  chunkSize = 3;
+} else if (window.innerWidth > 700) {
+  chunkSize = 2;
+} else {
+  chunkSize = 1;
+}
+
   for (let i = 0; i < briefings.length; i += chunkSize) {
     const group = briefings.slice(i, i + chunkSize);
     const slide = document.createElement('div');
