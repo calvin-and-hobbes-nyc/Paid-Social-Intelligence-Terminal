@@ -362,7 +362,16 @@ function render(selectedKey) {
     `<div class="signal"><div class="n">High urgency</div><div class="v">${selected.stats.highUrgency}</div><div class="t">Changes most likely to alter workflows, measurement framing, or client conversations.</div></div>`,
     `<div class="signal"><div class="n">Source hubs</div><div class="v">${selected.stats.sources}</div><div class="t">Official blogs and update hubs for deeper reading.</div></div>`
   ];
-  const ledgerChunk = window.innerWidth > 1200 ? 3 : 1;
+  
+let ledgerChunk = 1;
+if (window.innerWidth > 1200) {
+  ledgerChunk = 3;
+} else if (window.innerWidth > 700) {
+  ledgerChunk = 2;
+} else {
+  ledgerChunk = 1;
+}
+
   for (let i = 0; i < signalCards.length; i += ledgerChunk) {
     const slide = document.createElement('div');
     slide.className = 'carousel-slide';
@@ -373,7 +382,16 @@ function render(selectedKey) {
 
   const trendGrid = document.getElementById('trendGrid');
   trendGrid.innerHTML = '';
-  const trendChunk = window.innerWidth > 1200 ? 3 : 1;
+  
+let trendChunk = 1;
+if (window.innerWidth > 1200) {
+  trendChunk = 3;
+} else if (window.innerWidth > 700) {
+  trendChunk = 2;
+} else {
+  trendChunk = 1;
+}
+
   for (let i = 0; i < selected.trend_scores.length; i += trendChunk) {
     const group = selected.trend_scores.slice(i, i + trendChunk);
     const slide = document.createElement('div');
@@ -384,13 +402,12 @@ function render(selectedKey) {
   trendCarousel.rebuild();
 
   const articles = selected.articles.filter(a => !query || JSON.stringify(a).toLowerCase().includes(query));
-  const front = articles.filter(a => a.section === 'Lead story').slice(0,2);
+  const front = articles.filter(a => a.section === 'Lead story').slice(0,1);
   const briefings = articles.filter(a => a.section !== 'Lead story');
 
   const frontPageGrid = document.getElementById('frontPageGrid');
   frontPageGrid.innerHTML = '';
-  front = front.slice(0,1);
-front.forEach(a => {
+  front.forEach(a => {
     const slide = document.createElement('div');
     slide.className = 'carousel-slide';
     slide.innerHTML = `
@@ -448,7 +465,16 @@ if (window.innerWidth > 1200) {
 
   const feedList = document.getElementById('feedList');
   feedList.innerHTML = '';
-  const feedChunk = window.innerWidth > 1200 ? 3 : 1;
+  
+let feedChunk = 1;
+if (window.innerWidth > 1200) {
+  feedChunk = 3;
+} else if (window.innerWidth > 700) {
+  feedChunk = 2;
+} else {
+  feedChunk = 1;
+}
+
   for (let i = 0; i < selected.feeds.length; i += feedChunk) {
     const group = selected.feeds.slice(i, i + feedChunk);
     const slide = document.createElement('div');
