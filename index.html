@@ -103,7 +103,7 @@ a.inline:hover,.brief a:hover,.feed a:hover{text-decoration:underline}
 .briefing-slide-grid,.ledger-slide-grid,.trend-slide-grid,.feed-slide-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 
 @media (max-width:1200px){.top-grid,.cols,.grid3,.feed-list,.signals,.trend-grid,.briefing-slide-grid,.ledger-slide-grid,.trend-slide-grid,.feed-slide-grid{grid-template-columns:1fr}.lead{border-right:none;border-bottom:1px solid var(--rule)}}
-@media (max-width:820px){.topbar{position:static !important;top:auto !important;}
+@media (max-width:820px){
 .topbar{top:0;flex-direction:column;align-items:flex-start;padding:10px 14px}
 .topbar .brand,.topbar .navlinks{display:none}
 .topbar .controls{width:100%}
@@ -111,9 +111,10 @@ a.inline:hover,.brief a:hover,.feed a:hover{text-decoration:underline}
 .banner{position:relative;height:320px}
 .banner:before{width:100%;background:linear-gradient(to bottom, rgba(0,0,0,.82), rgba(0,0,0,.45), rgba(0,0,0,.1))}
 .banner img{width:100%;height:100%;object-fit:cover}
-.mobile-mini-bar{display:block;position:sticky;top:0;z-index:45;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule);padding:10px 14px}
+.mobile-mini-bar{display:none !important}
 .mobile-mini-bar .controls{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .mobile-mini-bar select,.mobile-mini-bar input{width:100%;min-width:0}
+.topbar{position:static !important;top:auto !important}
 }
 @media (max-width:720px){.wrap{padding:8px}.masthead,.lead,.side-rail,.section,.footer-note{padding-left:16px;padding-right:16px}.lead h2{font-size:38px}.banner-content{padding:26px 18px}}
 
@@ -137,7 +138,7 @@ a.inline:hover,.brief a:hover,.feed a:hover{text-decoration:underline}
   text-decoration:none;
   padding:8px 0;
 }
-@media (max-width:820px){.topbar{position:static !important;top:auto !important;}
+@media (max-width:820px){
   .dateline{
     flex-direction:column;
     align-items:flex-start;
@@ -169,6 +170,38 @@ a.inline:hover,.brief a:hover,.feed a:hover{text-decoration:underline}
     letter-spacing:.12em;
     color:var(--muted);
     text-decoration:none;
+  }
+}
+
+
+.read-more{display:none}
+.collapsible.expanded{-webkit-line-clamp:unset !important;line-clamp:unset !important;display:block !important;overflow:visible !important}
+@media (max-width:820px){
+  .item,.mini{padding:12px}
+  .front-card .story-art{height:220px}
+  .briefing-card .story-art{height:160px}
+  .front-card h4{font-size:clamp(22px,7vw,34px);line-height:1.08}
+  .briefing-card h5{font-size:20px;line-height:1.12}
+  .front-card p,.briefing-card p{font-size:13px;line-height:1.5}
+  .front-card .action,.briefing-card .action{padding:10px}
+  .collapsible{
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:4;
+    overflow:hidden;
+  }
+  .read-more{
+    display:inline-block;
+    margin:6px 0 12px;
+    padding:0;
+    border:none;
+    background:none;
+    color:var(--accent);
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    cursor:pointer;
   }
 }
 
@@ -380,6 +413,18 @@ const ledgerCarousel = makeCarousel('signalsGrid', 'ledgerDots', 'ledgerPrev', '
 const trendCarousel = makeCarousel('trendGrid', 'trendDots', 'trendPrev', 'trendNext', {auto:false});
 const feedCarousel = makeCarousel('feedList', 'feedDots', 'feedPrev', 'feedNext', {auto:false});
 
+
+function wireExpanders(){
+  document.querySelectorAll('.read-more').forEach(btn => {
+    btn.onclick = () => {
+      const target = btn.previousElementSibling;
+      if (!target) return;
+      target.classList.toggle('expanded');
+      btn.textContent = target.classList.contains('expanded') ? 'Show less' : 'Read more';
+    };
+  });
+}
+
 function render(selectedKey) {
   const selected = snapshots[selectedKey];
   const query = document.getElementById('searchInput').value.trim().toLowerCase();
@@ -464,7 +509,7 @@ if (window.innerWidth > 1200) {
     const slide = document.createElement('div');
     slide.className = 'carousel-slide';
     slide.innerHTML = `
-      <article class="item">
+      <article class="item front-card">
         <div class="platform-header">
           <div class="logo">${logos[a.platform] || ''}</div>
           <div class="platform-name">${a.platform}</div>
@@ -472,8 +517,11 @@ if (window.innerWidth > 1200) {
         <div class="story-art"><img src="${a.image}" alt="${a.platform} article image"></div>
         <div class="tag">${a.platform}</div>
         <h4>${a.headline}</h4>
-        <p>${a.summary}</p>
-        <p>${a.impact}</p>
+        <div class="collapsible">
+          <p>${a.summary}</p>
+          <p>${a.impact}</p>
+        </div>
+        <button class="read-more" type="button">Read more</button>
         <div class="action"><strong>Recommended strategy</strong>${a.action}</div>
         <p style="margin-top:10px;"><a class="inline" href="${a.url}" target="_blank" rel="noopener">Open official source ↗</a></p>
       </article>
@@ -499,14 +547,17 @@ if (window.innerWidth > 1200) {
     const slide = document.createElement('div');
     slide.className = 'carousel-slide';
     const items = group.map(a => `
-      <div class="mini">
+      <div class="mini briefing-card">
         <div class="platform-header">
           <div class="logo">${logos[a.platform] || ''}</div>
           <div class="platform-name">${a.platform}</div>
         </div>
         <div class="story-art"><img src="${a.image}" alt="${a.platform} article image"></div>
         <h5>${a.headline}</h5>
-        <p>${a.summary}</p>
+        <div class="collapsible">
+          <p>${a.summary}</p>
+        </div>
+        <button class="read-more" type="button">Read more</button>
         <p><strong style="font-family:Arial,Helvetica,sans-serif; text-transform:uppercase; font-size:11px; letter-spacing:.12em; color:#5f6b76;">Recommended move</strong><br>${a.action}</p>
         <p style="margin-top:10px;"><a class="inline" href="${a.url}" target="_blank" rel="noopener">Open official source ↗</a></p>
       </div>
