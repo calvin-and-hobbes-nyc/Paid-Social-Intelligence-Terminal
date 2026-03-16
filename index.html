@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paid Social Intelligence Terminal</title>
+<style>
+  :root{
+    --paper:#ffffff;
+    --ink:#151515;
+    --muted:#5f5a54;
+    --rule:#d7d0c5;
+    --accent:#1b4d7a;
+    --accent2:#7a1b1b;
+    --panel:#ffffff;
+    --shadow:0 12px 30px rgba(0,0,0,.08);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:#f4f6f8;
+    color:var(--ink);
+    font-family: Georgia, "Times New Roman", Times, serif;
+  }
+  .wrap{
+    max-width:1440px;
+    margin:0 auto;
+    padding:18px 14px 40px;
+  }
+  .paper{
+    background:var(--paper);
+    border:1px solid #d2cabf;
+    box-shadow:var(--shadow);
+  }
+  .masthead{
+    padding:20px 28px 12px;
+    border-bottom:2px solid var(--ink);
+  }
+  .kicker{
+    text-align:center;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.18em;
+    font-size:11px;
+    color:var(--muted);
+    margin-bottom:10px;
+  }
+  .nameplate{
+    text-align:center;
+    font-size:clamp(34px,5vw,62px);
+    font-weight:700;
+    line-height:1;
+    margin:0;
+  }
+  .subdeck{
+    text-align:center;
+    max-width:980px;
+    margin:12px auto 0;
+    color:var(--muted);
+    font-size:15px;
+    line-height:1.6;
+  }
+  .dateline{
+    margin-top:16px;
+    padding-top:10px;
+    border-top:1px solid var(--rule);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--muted);
+  }
+  .top-grid{
+    display:grid;
+    grid-template-columns: 1.4fr .9fr;
+    gap:0;
+    border-bottom:1px solid var(--rule);
+  }
+  .lead{
+    padding:24px 28px 26px;
+    border-right:1px solid var(--rule);
+  }
+  .side-rail{
+    padding:22px 24px 26px;
+  }
+  .eyebrow{
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    font-size:11px;
+    color:var(--accent);
+    font-weight:700;
+  }
+  .lead h2{
+    font-size:clamp(30px,4vw,54px);
+    line-height:1.02;
+    margin:8px 0 14px;
+    font-weight:700;
+  }
+  .lead p{
+    margin:0 0 16px;
+    font-size:19px;
+    line-height:1.55;
+    color:#332f2c;
+  }
+  .meta-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:12px;
+    color:var(--muted);
+  }
+  .chip{
+    border:1px solid var(--rule);
+    padding:6px 8px;
+    background:#ffffff;
+  }
+  .hero-art{
+    margin-top:18px;
+    border:1px solid var(--rule);
+    background:#f7f9fb;
+    aspect-ratio: 16 / 8.8;
+    overflow:hidden;
+  }
+  .hero-art svg, .story-art svg{display:block; width:100%; height:100%}
+  .side-title{
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    font-size:11px;
+    color:var(--muted);
+    margin-bottom:12px;
+  }
+  .brief{
+    padding:0 0 14px;
+    margin:0 0 14px;
+    border-bottom:1px solid var(--rule);
+  }
+  .brief:last-child{border-bottom:none; margin-bottom:0; padding-bottom:0}
+  .brief h4{
+    margin:0 0 8px;
+    font-size:24px;
+    line-height:1.15;
+  }
+  .brief p{
+    margin:0;
+    color:#393531;
+    line-height:1.5;
+    font-size:15px;
+  }
+  .brief a{color:var(--accent); text-decoration:none}
+  .brief a:hover{text-decoration:underline}
+  .section{
+    padding:18px 28px 24px;
+    border-bottom:1px solid var(--rule);
+  }
+  .section-head{
+    display:flex;
+    align-items:end;
+    justify-content:space-between;
+    gap:16px;
+    margin-bottom:16px;
+    border-bottom:1px solid var(--rule);
+    padding-bottom:10px;
+  }
+  .section-head h3{
+    margin:0;
+    font-size:30px;
+    line-height:1.1;
+  }
+  .section-head p{
+    margin:0;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.5;
+    max-width:820px;
+  }
+  .signals{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:14px;
+  }
+  .signal{
+    border:1px solid var(--rule);
+    background:#ffffff;
+    padding:14px;
+  }
+  .signal .n{
+    font-family: Arial, Helvetica, sans-serif;
+    color:var(--accent);
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    margin-bottom:8px;
+  }
+  .signal .v{
+    font-size:34px;
+    line-height:1;
+    margin-bottom:8px;
+  }
+  .signal .t{
+    color:#3e3935;
+    line-height:1.5;
+    font-size:14px;
+  }
+  .cols{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+  }
+  .item{
+    border:1px solid var(--rule);
+    background:#ffffff;
+    padding:16px;
+  }
+  .item h4{
+    margin:8px 0 8px;
+    font-size:28px;
+    line-height:1.12;
+  }
+  .item p{
+    margin:0 0 10px;
+    font-size:15px;
+    line-height:1.6;
+    color:#36322e;
+  }
+  .story-art{
+    margin:0 0 14px;
+    height:180px;
+    border:1px solid var(--rule);
+    background:#f7f9fb;
+    overflow:hidden;
+  }
+  .tag{
+    display:inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    color:var(--accent2);
+    font-weight:700;
+  }
+  .action{
+    margin-top:10px;
+    padding:10px 12px;
+    border:1px solid var(--rule);
+    background:#ffffff;
+  }
+  .action strong{
+    display:block;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    font-size:11px;
+    margin-bottom:6px;
+    color:var(--muted);
+  }
+  .grid3{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:14px;
+  }
+  .mini{
+    border:1px solid var(--rule);
+    background:#ffffff;
+    padding:14px;
+  }
+  .mini h5{
+    margin:6px 0 8px;
+    font-size:22px;
+    line-height:1.15;
+  }
+  .mini p{
+    margin:0;
+    font-size:14px;
+    line-height:1.55;
+    color:#3d3935;
+  }
+  .feed-list{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:12px;
+  }
+  .feed{
+    border:1px solid var(--rule);
+    background:#ffffff;
+    padding:14px;
+  }
+  .feed .platform{
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    font-size:11px;
+    color:var(--accent);
+    font-weight:700;
+  }
+  .feed .title{
+    margin:8px 0 6px;
+    font-size:20px;
+    line-height:1.2;
+  }
+  .feed .date{
+    color:var(--muted);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:12px;
+  }
+  .feed a{
+    display:inline-block;
+    margin-top:10px;
+    color:var(--accent);
+    text-decoration:none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:13px;
+    font-weight:700;
+  }
+  .footer-note{
+    padding:14px 28px 24px;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.6;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .platform-header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:8px;
+  }
+  .logo{
+    width:34px;height:34px;display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--rule); background:#f6f1e8;
+  }
+  .logo svg{width:22px;height:22px}
+  .platform-name{
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    font-size:12px;
+    color:var(--muted);
+    font-weight:700;
+  }
+  .trend-grid{
+    display:grid;
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    gap:12px;
+  }
+  .trend{
+    border:1px solid var(--rule);
+    background:#ffffff;
+    padding:14px;
+  }
+  .trend .name{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:12px;
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:.1em;
+  }
+  .bar{
+    margin-top:12px;
+    height:10px;
+    background:#ebe3d7;
+    border:1px solid #ddd4c7;
+  }
+  .bar span{
+    display:block;
+    height:100%;
+    background:linear-gradient(90deg,#1b4d7a,#8aa8c0);
+  }
+  .score{
+    margin-top:10px;
+    font-size:28px;
+  }
+  a.inline{
+    color:var(--accent);
+    text-decoration:none;
+  }
+  a.inline:hover{text-decoration:underline}
+  @media (max-width:1200px){
+    .top-grid,.cols,.grid3,.feed-list,.signals,.trend-grid{grid-template-columns:1fr}
+    .lead{border-right:none; border-bottom:1px solid var(--rule)}
+  }
+  @media (max-width:720px){
+    .wrap{padding:8px}
+    .masthead,.lead,.side-rail,.section,.footer-note{padding-left:16px; padding-right:16px}
+    .lead h2{font-size:38px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="paper">
+    <header class="masthead">
+      <div class="kicker">Paid Social Morning Brief</div>
+      <h1 class="nameplate">Calvin's Paid Social Intelligence Terminal</h1>
+      <div class="subdeck">
+        A newspaper-inspired daily briefing for operators, strategists, and VP-level leaders tracking platform change, buying implications, measurement shifts, and what teams should do next.
+      </div>
+      <div class="dateline">
+        <div id="todayDate">Today</div>
+        <div>Edition automatically loads for the current day</div>
+      </div>
+    </header>
+
+    <section class="top-grid">
+      <div class="lead">
+        <div class="eyebrow">Lead story</div>
+        <h2>Automation is rewriting paid social operations — and creative plus signal quality are becoming the real levers.</h2>
+        <p>
+          Across Meta, TikTok, Reddit, Pinterest, Snap, X, and YouTube / Google Ads, the trend is clear: less manual campaign architecture, more model-led delivery, more blended commerce and creator workflows, and more pressure on leadership teams to explain measurement shifts clearly.
+        </p>
+        <div class="meta-row">
+          <div class="chip">8 platforms tracked</div>
+          <div class="chip">16 key updates</div>
+          <div class="chip">VP weekly briefing included</div>
+          <div class="chip">Current edition only</div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <svg viewBox="0 0 1200 660" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#f3eee4"/>
+                <stop offset="100%" stop-color="#e5ddd0"/>
+              </linearGradient>
+            </defs>
+            <rect width="1200" height="660" fill="url(#g1)"/>
+            <rect x="70" y="70" width="1060" height="520" fill="#ffffff" stroke="#d4ccbf" stroke-width="2"/>
+            <rect x="110" y="120" width="290" height="190" fill="#dce7ef"/>
+            <rect x="430" y="120" width="300" height="190" fill="#e8d8d8"/>
+            <rect x="760" y="120" width="260" height="190" fill="#dde6d8"/>
+            <g stroke="#b5aa9a" stroke-width="2">
+              <line x1="110" y1="350" x2="1020" y2="350"/>
+              <line x1="110" y1="390" x2="1020" y2="390"/>
+              <line x1="110" y1="430" x2="1020" y2="430"/>
+              <line x1="110" y1="470" x2="1020" y2="470"/>
+              <line x1="110" y1="510" x2="1020" y2="510"/>
+            </g>
+            <g>
+              <rect x="150" y="165" width="210" height="20" fill="#2f4f6e"/>
+              <rect x="150" y="200" width="210" height="12" fill="#b8c9d8"/>
+              <rect x="470" y="165" width="220" height="20" fill="#7a3a3a"/>
+              <rect x="470" y="200" width="220" height="12" fill="#d8bbbb"/>
+              <rect x="800" y="165" width="180" height="20" fill="#4a6541"/>
+              <rect x="800" y="200" width="180" height="12" fill="#c5d6be"/>
+            </g>
+            <polyline points="145,560 245,500 350,525 460,430 575,455 690,360 815,395 930,300 1035,325" fill="none" stroke="#1b4d7a" stroke-width="8"/>
+            <circle cx="1035" cy="325" r="8" fill="#1b4d7a"/>
+          </svg>
+        </div>
+      </div>
+
+      <aside class="side-rail">
+        <div class="side-title">What VPs should tell their teams this week</div>
+        <div class="brief">
+          <h4>Re-baseline Meta reporting before clients overreact.</h4>
+          <p>Meta’s click-through attribution definition now centers on actual link clicks. Reset benchmarks and reporting narratives before performance appears to “drop” for reasons that are mostly definitional. <a href="https://www.facebook.com/business/news/click-attribution" target="_blank" rel="noopener">Source ↗</a></p>
+        </div>
+        <div class="brief">
+          <h4>TikTok profile operations now affect media readiness.</h4>
+          <p>As verified profile-based ads become more important, ownership, governance, and creator coordination become operational prerequisites, not side tasks. <a href="https://ads.tiktok.com/business/en/blog/custom-identity-transition" target="_blank" rel="noopener">Source ↗</a></p>
+        </div>
+        <div class="brief">
+          <h4>Demand Gen belongs in social and video planning discussions.</h4>
+          <p>YouTube and Google Demand Gen are increasingly visual, commerce-oriented, and social-like. Planning teams should treat them as part of a broader paid social ecosystem. <a href="https://blog.google/products/ads-commerce/demand-gen-drop-january-2026/" target="_blank" rel="noopener">Source ↗</a></p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h3>The Daily Ledger</h3>
+          <p>High-level signals and pulse checks for the current edition.</p>
+        </div>
+      </div>
+      <div class="signals">
+        <div class="signal">
+          <div class="n">Platforms tracked</div>
+          <div class="v">8</div>
+          <div class="t">Meta, TikTok, LinkedIn, Pinterest, Reddit, X, Snapchat, and YouTube / Google Ads.</div>
+        </div>
+        <div class="signal">
+          <div class="n">Key updates</div>
+          <div class="v">16</div>
+          <div class="t">Only the highest-signal platform changes relevant to operators and strategic leaders.</div>
+        </div>
+        <div class="signal">
+          <div class="n">High urgency</div>
+          <div class="v">4</div>
+          <div class="t">Changes most likely to alter team workflows, measurement framing, or client conversations.</div>
+        </div>
+        <div class="signal">
+          <div class="n">Edition type</div>
+          <div class="v" style="font-size:24px">Today</div>
+          <div class="t">This version automatically displays the current day instead of using a visible date dropdown.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h3>Trend Pulse</h3>
+          <p>Editorial scoring for what matters most right now across the paid social landscape.</p>
+        </div>
+      </div>
+      <div class="trend-grid" id="trendGrid"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h3>Front Page Stories</h3>
+          <p>Selected major platform stories presented in a more visual, newspaper-like layout.</p>
+        </div>
+      </div>
+      <div class="cols">
+        <article class="item">
+          <div class="platform-header">
+            <div class="logo" id="logo-meta"></div>
+            <div class="platform-name">Meta</div>
+          </div>
+          <div class="story-art" aria-hidden="true">
+            <svg viewBox="0 0 800 360" preserveAspectRatio="none">
+              <rect width="800" height="360" fill="#e7eef4"/>
+              <rect x="50" y="48" width="700" height="265" fill="#f8fbfd" stroke="#c7d3de"/>
+              <rect x="85" y="78" width="250" height="120" fill="#d9e6f2"/>
+              <rect x="365" y="78" width="290" height="18" fill="#2f4f6e"/>
+              <rect x="365" y="110" width="240" height="12" fill="#9cb8d2"/>
+              <rect x="365" y="136" width="210" height="12" fill="#9cb8d2"/>
+              <rect x="365" y="174" width="210" height="88" fill="#edf4fa" stroke="#d5dfe8"/>
+              <polyline points="100,282 190,232 280,252 370,210 460,220 550,170 640,182" fill="none" stroke="#1b4d7a" stroke-width="6"/>
+              <circle cx="640" cy="182" r="6" fill="#1b4d7a"/>
+            </svg>
+          </div>
+          <div class="tag">Measurement change</div>
+          <h4>Meta narrows click-through attribution and forces teams to reset the story they tell.</h4>
+          <p>Meta is redefining click-through attribution for website and in-store conversions around actual link clicks, while moving social interactions like likes, shares, and saves into engage-through views.</p>
+          <p>This is a reporting and client-education story as much as a platform story. Historical comparisons may look weaker even when underlying performance is stable.</p>
+          <div class="action">
+            <strong>Recommended strategy</strong>
+            Re-baseline benchmarks, distinguish click and engagement narratives clearly, and pair platform reporting with stronger business framing when needed.
+          </div>
+          <p style="margin-top:10px;"><a class="inline" href="https://www.facebook.com/business/news/click-attribution" target="_blank" rel="noopener">Open official source ↗</a></p>
+        </article>
+
+        <article class="item">
+          <div class="platform-header">
+            <div class="logo" id="logo-tiktok"></div>
+            <div class="platform-name">TikTok</div>
+          </div>
+          <div class="story-art" aria-hidden="true">
+            <svg viewBox="0 0 800 360" preserveAspectRatio="none">
+              <rect width="800" height="360" fill="#f3e8ea"/>
+              <rect x="58" y="46" width="684" height="270" fill="#fffafb" stroke="#dbc8cc"/>
+              <rect x="92" y="80" width="160" height="200" fill="#2a2a34"/>
+              <circle cx="172" cy="148" r="44" fill="#0ea5e9" opacity=".75"/>
+              <circle cx="192" cy="168" r="44" fill="#ef4444" opacity=".7"/>
+              <rect x="286" y="82" width="330" height="20" fill="#2a2a34"/>
+              <rect x="286" y="116" width="240" height="12" fill="#d1b7bf"/>
+              <rect x="286" y="142" width="210" height="12" fill="#d1b7bf"/>
+              <rect x="286" y="182" width="290" height="98" fill="#fbf1f3" stroke="#e3d1d5"/>
+              <rect x="602" y="182" width="92" height="98" fill="#fde4e7"/>
+            </svg>
+          </div>
+          <div class="tag">Commerce + automation</div>
+          <h4>TikTok is becoming more operationally integrated across paid, creator, commerce, and profile governance.</h4>
+          <p>Its recent product roadmap expands Smart+, Market Scope, and creator workflows, while profile-based identity changes make owned presence and verification more important to campaign readiness.</p>
+          <p>The implication is bigger than a feature launch: teams now need tighter alignment between paid social, organic social, creator management, and brand governance.</p>
+          <div class="action">
+            <strong>Recommended strategy</strong>
+            Keep an automation testing lane, but treat profile health, verification, and content operations as part of your media infrastructure.
+          </div>
+          <p style="margin-top:10px;"><a class="inline" href="https://ads.tiktok.com/business/en/blog/tiktok-product-preview" target="_blank" rel="noopener">Open official source ↗</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h3>Platform Briefings</h3>
+          <p>Additional platform notes, headlines, and recommended moves.</p>
+        </div>
+      </div>
+      <div class="grid3">
+        <div class="mini">
+          <div class="platform-header"><div class="logo" id="logo-linkedin"></div><div class="platform-name">LinkedIn</div></div>
+          <h5>Company-level attribution strengthens the B2B story.</h5>
+          <p>LinkedIn’s Company Intelligence API gives marketers a better way to discuss account-level influence and buying-group engagement, rather than relying only on lead counts.</p>
+        </div>
+        <div class="mini">
+          <div class="platform-header"><div class="logo" id="logo-pinterest"></div><div class="platform-name">Pinterest</div></div>
+          <h5>Top of Search pushes Pinterest further into demand capture.</h5>
+          <p>The platform is getting more useful for lower-funnel, high-intent moments, especially when paired with clean shopping feeds and better catalog readiness.</p>
+        </div>
+        <div class="mini">
+          <div class="platform-header"><div class="logo" id="logo-reddit"></div><div class="platform-name">Reddit</div></div>
+          <h5>Reddit automation expands, but community context still matters.</h5>
+          <p>Max campaigns make scaling easier, but operators should still test whether community-native planning outperforms automation in nuanced categories.</p>
+        </div>
+        <div class="mini">
+          <div class="platform-header"><div class="logo" id="logo-x"></div><div class="platform-name">X</div></div>
+          <h5>Vertical video continues to define X’s ad story.</h5>
+          <p>X is easier to position as a fast-moving contextual video extension, especially when creative can be reused from other vertical video ecosystems.</p>
+        </div>
+        <div class="mini">
+          <div class="platform-header"><div class="logo" id="logo-snapchat"></div><div class="platform-name">Snapchat</div></div>
+          <h5>Sponsored Snaps make Snap more defensible in performance planning.</h5>
+          <p>Snap’s more direct-response positioning means it belongs in more app and commerce testing plans than it did a few years ago.</p>
+        </div>
+        <div class="mini">
+          <div class="platform-header"><div class="logo" id="logo-youtube"></div><div class="platform-name">YouTube / Google Ads</div></div>
+          <h5>Demand Gen and Shorts keep looking more like paid social.</h5>
+          <p>As the surfaces become more visual, native, and commerce-oriented, planning teams should integrate them more tightly with broader social and creator strategy.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h3>Source Desk</h3>
+          <p>Official blogs and hubs to monitor each morning.</p>
+        </div>
+      </div>
+      <div class="feed-list">
+        <div class="feed"><div class="platform">Meta</div><div class="title">Meta Business News</div><div class="date">Official source hub</div><a href="https://www.facebook.com/business/news" target="_blank" rel="noopener">Open ↗</a></div>
+        <div class="feed"><div class="platform">TikTok</div><div class="title">TikTok Business Blog</div><div class="date">Official source hub</div><a href="https://ads.tiktok.com/business/en/blog" target="_blank" rel="noopener">Open ↗</a></div>
+        <div class="feed"><div class="platform">LinkedIn</div><div class="title">LinkedIn Marketing Blog</div><div class="date">Official source hub</div><a href="https://www.linkedin.com/business/marketing/blog" target="_blank" rel="noopener">Open ↗</a></div>
+        <div class="feed"><div class="platform">Pinterest</div><div class="title">Pinterest Business Blog</div><div class="date">Official source hub</div><a href="https://business.pinterest.com/blog/" target="_blank" rel="noopener">Open ↗</a></div>
+        <div class="feed"><div class="platform">Reddit</div><div class="title">Reddit for Business Blog</div><div class="date">Official source hub</div><a href="https://www.business.reddit.com/blog" target="_blank" rel="noopener">Open ↗</a></div>
+        <div class="feed"><div class="platform">Snapchat</div><div class="title">Snap for Business Blog</div><div class="date">Official source hub</div><a href="https://forbusiness.snapchat.com/blog" target="_blank" rel="noopener">Open ↗</a></div>
+        <div class="feed"><div class="platform">X</div><div class="title">X Business Blog</div><div class="date">Official source hub</div><a href="https://business.x.com/en/blog" target="_blank" rel="noopener">Open ↗</a></div>
+        <div class="feed"><div class="platform">YouTube / Google Ads</div><div class="title">Google Ads & Commerce Blog</div><div class="date">Official source hub</div><a href="https://blog.google/products/ads-commerce/" target="_blank" rel="noopener">Open ↗</a></div>
+      </div>
+    </section>
+
+    <div class="footer-note">
+      This version removes Wix-specific wording, hides the date selector, automatically labels the edition as the current day, and uses self-contained visuals inspired by a newspaper front page.
+    </div>
+  </div>
+</div>
+
+<script>
+  const logos = {
+    meta: '<svg viewBox="0 0 64 64" fill="none"><path d="M14 43c0-12 4-22 10-22 5 0 9 8 13 17 3-7 7-17 13-17 6 0 10 10 10 22" stroke="#151515" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    tiktok: '<svg viewBox="0 0 64 64" fill="none"><path d="M39 14v22.5a10.5 10.5 0 1 1-8-10.2" stroke="#151515" stroke-width="8" stroke-linecap="round"/><path d="M39 14c2 6 7 10 13 11" stroke="#151515" stroke-width="8" stroke-linecap="round"/></svg>',
+    linkedin: '<svg viewBox="0 0 64 64" fill="#151515"><circle cx="16" cy="19" r="5"/><rect x="11" y="27" width="10" height="26" rx="2"/><path d="M29 27h10v4c2-3 5-5 10-5 8 0 11 5 11 14v13H50V41c0-4-1-7-5-7s-6 3-6 7v12H29V27z"/></svg>',
+    pinterest: '<svg viewBox="0 0 64 64" fill="none"><path d="M32 10c10 0 18 7 18 17 0 11-8 18-18 18-3 0-5-1-7-2l-4 11" stroke="#151515" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M28 49l5-20" stroke="#151515" stroke-width="8" stroke-linecap="round"/><path d="M28 27c0-5 4-9 9-9 4 0 7 3 7 7 0 5-3 9-9 9-4 0-7-3-7-7z" stroke="#151515" stroke-width="8"/></svg>',
+    reddit: '<svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="35" r="16" stroke="#151515" stroke-width="6"/><circle cx="25" cy="34" r="2.5" fill="#151515"/><circle cx="39" cy="34" r="2.5" fill="#151515"/><path d="M25 42c4 3 10 3 14 0" stroke="#151515" stroke-width="4" stroke-linecap="round"/><circle cx="49" cy="28" r="4" stroke="#151515" stroke-width="4"/><path d="M39 22l8 4" stroke="#151515" stroke-width="4" stroke-linecap="round"/><path d="M28 17l12 2" stroke="#151515" stroke-width="4" stroke-linecap="round"/></svg>',
+    x: '<svg viewBox="0 0 64 64" fill="#151515"><path d="M14 14h10l12 16 14-16h0L38 37l12 17H40L28 37 14 54H4l18-20L14 14z"/></svg>',
+    snapchat: '<svg viewBox="0 0 64 64" fill="none"><path d="M32 14c7 0 12 5 12 12v5c0 3 2 6 5 7-2 3-5 4-8 4-1 4-5 8-9 8s-8-4-9-8c-3 0-6-1-8-4 3-1 5-4 5-7v-5c0-7 5-12 12-12z" stroke="#151515" stroke-width="6" stroke-linejoin="round"/></svg>',
+    youtube: '<svg viewBox="0 0 64 64" fill="none"><rect x="10" y="18" width="44" height="28" rx="8" stroke="#151515" stroke-width="6"/><path d="M28 26l12 6-12 6V26z" fill="#151515"/></svg>'
+  };
+  document.getElementById('logo-meta').innerHTML = logos.meta;
+  document.getElementById('logo-tiktok').innerHTML = logos.tiktok;
+  document.getElementById('logo-linkedin').innerHTML = logos.linkedin;
+  document.getElementById('logo-pinterest').innerHTML = logos.pinterest;
+  document.getElementById('logo-reddit').innerHTML = logos.reddit;
+  document.getElementById('logo-x').innerHTML = logos.x;
+  document.getElementById('logo-snapchat').innerHTML = logos.snapchat;
+  document.getElementById('logo-youtube').innerHTML = logos.youtube;
+
+  const trends = [
+    {name:'AI-led buying', score:92},
+    {name:'Measurement changes', score:84},
+    {name:'Creative importance', score:88},
+    {name:'Commerce integration', score:76},
+    {name:'UI / workflow change', score:61}
+  ];
+  const trendGrid = document.getElementById('trendGrid');
+  trends.forEach(t => {
+    const el = document.createElement('div');
+    el.className = 'trend';
+    el.innerHTML = `<div class="name">${t.name}</div><div class="score">${t.score}</div><div class="bar"><span style="width:${t.score}%"></span></div>`;
+    trendGrid.appendChild(el);
+  });
+
+  const today = new Date();
+  const formatted = today.toLocaleDateString(undefined, { weekday:'long', month:'long', day:'numeric', year:'numeric' });
+  document.getElementById('todayDate').textContent = formatted;
+</script>
+</body>
+</html>
