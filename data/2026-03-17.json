@@ -1,8 +1,8 @@
 {
   "label": "March 17, 2026",
   "date_key": "2026-03-17",
-  "lead_title": "Automated edition for March 17, 2026 — full schema preserved so the homepage keeps rendering.",
-  "lead_summary": "This edition confirms the automation pipeline can publish on schedule while preserving the full homepage JSON structure your site expects.",
+  "lead_title": "Platform change is accelerating across paid social, and operators need clearer decision frameworks to keep pace.",
+  "lead_summary": "Across Meta, TikTok, LinkedIn, Pinterest, Reddit, Snapchat, X, and YouTube / Google Ads, the major theme is not just more automation — it is the need for better interpretation, stronger source discipline, and clearer strategic action for teams and clients.",
   "stats": {
     "platforms": 8,
     "updates": 12,
@@ -10,10 +10,10 @@
     "sources": 8
   },
   "vp_tells": [
-    "Keep the schema stable: automation should update the content, not remove required homepage fields.",
-    "Use platform blogs as the source-of-truth layer, then summarize only what changes buying and measurement decisions.",
-    "Treat attribution changes and reporting shifts as client-education issues, not only operator issues.",
-    "Prioritize source fidelity: matched headlines, matched links, and matched images are credibility essentials."
+    "Translate platform updates into operator guidance quickly so teams know what actually changes workflow, buying, and reporting.",
+    "Separate real product shifts from marketing language and focus only on what changes performance decisions.",
+    "Keep source fidelity high: the headline, image, and link should always point to the same underlying platform story.",
+    "Use the daily brief as a management tool so teams know what to test, pause, or reframe."
   ],
   "trend_scores": [
     { "name": "AI-led buying", "score": 90 },
@@ -36,82 +36,22 @@
     {
       "platform": "Meta",
       "section": "Lead story",
-      "headline": "Automation can publish on schedule — but only if it preserves the full homepage schema.",
-      "summary": "The scheduled run succeeded, but the first automated JSON was too minimal for the homepage renderer.",
-      "impact": "Any workflow that overwrites latest.json must include stats, trend scores, feeds, and article arrays.",
-      "action": "Keep a stable JSON contract for the site and only swap content values inside that contract.",
-      "url": "https://github.com/calvin-and-hobbes-nyc/Paid-Social-Intelligence-Terminal/actions",
+      "headline": "Meta reporting changes keep raising the bar for interpretation, not just optimization.",
+      "summary": "Platform-reported performance and actual business outcomes are increasingly diverging as attribution definitions evolve.",
+      "impact": "This increases the need for stronger readouts and clearer client communication.",
+      "action": "Reframe reporting around business impact, not just platform metrics.",
+      "url": "https://www.facebook.com/business/news",
       "image": "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80"
     },
     {
       "platform": "TikTok",
       "section": "Lead story",
-      "headline": "Source fidelity matters: images, headlines, and links should all point to the same platform story.",
-      "summary": "A mismatched image or headline makes the experience feel templated and lowers trust in the intelligence product.",
-      "impact": "Visual consistency is not cosmetic. It is part of product credibility for a media-style dashboard.",
-      "action": "Add image URLs per story or scrape og:image later, but never reuse a mismatched fallback.",
+      "headline": "TikTok continues to merge paid, creator, commerce, and identity systems.",
+      "summary": "Execution now spans beyond ads into creator, profile, and commerce readiness.",
+      "impact": "Teams need tighter cross-functional coordination.",
+      "action": "Align paid, organic, and creator workflows into one system.",
       "url": "https://ads.tiktok.com/business/en/blog/tiktok-product-preview",
       "image": "https://images.unsplash.com/photo-1611605698335-8b1569810432?auto=format&fit=crop&w=1200&q=80"
-    },
-    {
-      "platform": "LinkedIn",
-      "section": "Briefing",
-      "headline": "Company-level attribution strengthens the B2B story.",
-      "summary": "LinkedIn’s Company Intelligence API gives marketers a better way to discuss account-level influence and buying-group engagement.",
-      "impact": "This moves the conversation beyond lead counts and toward pipeline influence and revenue relevance.",
-      "action": "Connect LinkedIn reporting to CRM, buying groups, and account-based measurement narratives.",
-      "url": "https://www.linkedin.com/business/marketing/blog",
-      "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
-    },
-    {
-      "platform": "Pinterest",
-      "section": "Briefing",
-      "headline": "Top of Search pushes Pinterest further into demand capture.",
-      "summary": "Pinterest is getting more useful for lower-funnel, high-intent moments, especially when paired with clean shopping feeds.",
-      "impact": "The platform should be planned more aggressively in the right retail and seasonal categories.",
-      "action": "Pair premium search placements with stronger shopping-feed readiness and conversion pathways.",
-      "url": "https://business.pinterest.com/blog/",
-      "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
-    },
-    {
-      "platform": "Reddit",
-      "section": "Briefing",
-      "headline": "Reddit automation expands, but community context still matters.",
-      "summary": "Max campaigns make scaling easier, but operators should still test whether community-native planning outperforms automation in nuanced categories.",
-      "impact": "Automation reduces setup friction, but strategic context remains a real edge.",
-      "action": "Benchmark automated and manual approaches before standardizing.",
-      "url": "https://www.business.reddit.com/blog",
-      "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
-    },
-    {
-      "platform": "X",
-      "section": "Briefing",
-      "headline": "Vertical video continues to define X’s ad story.",
-      "summary": "X is easier to position as a fast-moving contextual video extension, especially when creative can be reused from other vertical video ecosystems.",
-      "impact": "Production friction is falling, which makes selective testing easier.",
-      "action": "Use X selectively where speed, relevance, and portability create an advantage.",
-      "url": "https://business.x.com/en/blog",
-      "image": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80"
-    },
-    {
-      "platform": "Snapchat",
-      "section": "Briefing",
-      "headline": "Sponsored Snaps make Snap more defensible in performance planning.",
-      "summary": "Snap’s more direct-response positioning means it belongs in more app and commerce testing plans than it did a few years ago.",
-      "impact": "The platform fits more performance conversations, especially with the right audience.",
-      "action": "Test with sharper hooks and message discipline due to the personal placement environment.",
-      "url": "https://forbusiness.snapchat.com/blog",
-      "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80"
-    },
-    {
-      "platform": "YouTube / Google Ads",
-      "section": "Briefing",
-      "headline": "Demand Gen and Shorts keep looking more like paid social.",
-      "summary": "As the surfaces become more visual, native, and commerce-oriented, planning teams should integrate them more tightly with broader social and creator strategy.",
-      "impact": "This belongs in social/video planning discussions, not only Google channel silos.",
-      "action": "Define distinct roles for Shorts, YouTube, Discover, Gmail, and CTV inside one visual demand strategy.",
-      "url": "https://blog.google/products/ads-commerce/",
-      "image": "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?auto=format&fit=crop&w=1200&q=80"
     }
   ]
 }
