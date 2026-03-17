@@ -422,28 +422,6 @@
     .masthead, .lead, .side-rail, .section, .footer-note { padding-left:16px; padding-right:16px; }
     .lead h2 { font-size:38px; }
   }
-
-input[type="date"] {
-  appearance: none;
-  -webkit-appearance: none;
-  border: 1px solid #cfd6df;
-  border-radius: 12px;
-  background: #fff;
-  padding: 12px 14px;
-  font: inherit;
-  min-width: 170px;
-  color: #111;
-}
-input[type="date"]::-webkit-calendar-picker-indicator {
-  cursor: pointer;
-  opacity: 0.8;
-}
-input[type="date"]:focus {
-  outline: none;
-  border-color: #9aa8b8;
-  box-shadow: 0 0 0 2px rgba(0,0,0,0.04);
-}
-
 </style>
 </head>
 <body>
@@ -585,19 +563,19 @@ function articleGraphic(theme) {
 }
 
 const dateSelect = document.getElementById('dateSelect');
-const dates = Object.keys(snapshots).sort().reverse();
-dates.forEach(key => {
-  const opt = document.createElement('option');
-  opt.value = key;
-  opt.textContent = snapshots[key].label;
-  dateSelect.appendChild(opt);
-});
-dateSelect.value = dates[0];
+const dates = Object.keys(snapshots).sort();
+const latestDate = [...dates].sort().reverse()[0];
+
+if (dates.length) {
+  dateSelect.min = dates[0];
+  dateSelect.max = dates[dates.length - 1];
+  dateSelect.value = latestDate;
+}
 
 const searchInput = document.getElementById('searchInput');
 
 function render() {
-  const selected = snapshots[dateSelect.value];
+  const selected = snapshots[dateSelect.value] || snapshots[latestDate];
   const query = searchInput.value.trim().toLowerCase();
 
   document.getElementById('leadTitle').textContent = selected.lead_title;
@@ -614,7 +592,7 @@ function render() {
     <div class="chip">Archive dropdown enabled</div>
   `;
 
-  document.getElementById('heroArt').innerHTML = articleGraphic('blue');
+  document.getElementById('heroArt').innerHTML = articleGraphic(frontStories?.[0]?.imageTheme || selected.articles?.[0]?.imageTheme || 'blue');
 
   const vpRail = document.getElementById('vpRail');
   vpRail.innerHTML = '';
@@ -701,7 +679,13 @@ function render() {
   });
 }
 
-dateSelect.addEventListener('change', render);
+dateSelect.addEventListener('change', () => {
+  if (!snapshots[dateSelect.value]) {
+    alert('No edition available for that date yet.');
+    dateSelect.value = latestDate;
+  }
+  render();
+});
 searchInput.addEventListener('input', render);
 render();
 </script>
