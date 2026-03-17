@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hobbes' Paid Social Intelligence Terminal</title>
+<style>
+:root{--bg:#eef2f5;--paper:#fff;--ink:#111;--muted:#5f6b76;--rule:#d9e0e6;--soft:#f7f9fb;--accent:#1d4f80;--shadow:0 10px 30px rgba(18,38,63,.08)}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,"Times New Roman",Times,serif}
+.wrap{max-width:1460px;margin:0 auto;padding:18px 14px 44px}.paper{background:var(--paper);border:1px solid var(--rule);box-shadow:var(--shadow)}
+.topbar{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule);padding:10px 20px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.brand{font-family:Arial,Helvetica,sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:700}
+.controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+select,input{border:1px solid var(--rule);background:#fff;color:var(--ink);border-radius:10px;padding:10px 12px;font-size:14px;outline:none;font-family:Arial,Helvetica,sans-serif}
+input{min-width:260px}
+.masthead{padding:22px 28px 12px;border-bottom:2px solid var(--ink)}
+.kicker{text-align:center;font-family:Arial,Helvetica,sans-serif;text-transform:uppercase;letter-spacing:.18em;font-size:11px;color:var(--muted);margin-bottom:10px}
+.nameplate{text-align:center;font-size:clamp(30px,4.5vw,52px);font-weight:700;line-height:1;margin:0}
+.subdeck{text-align:center;max-width:980px;margin:12px auto 0;color:var(--muted);font-size:15px;line-height:1.6}
+.dateline{margin-top:16px;padding-top:10px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:Arial,Helvetica,sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.navlinks{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.navlinks a{font-family:Arial,Helvetica,sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);text-decoration:none;padding:8px 0}
+.banner{position:relative;height:260px;overflow:hidden;background:#000;border-bottom:1px solid var(--rule)}
+.banner::before{content:"";position:absolute;left:0;top:0;height:100%;width:68%;background:linear-gradient(to right, rgba(0,0,0,.92), rgba(0,0,0,.66), rgba(0,0,0,0));z-index:2}
+.banner img{position:absolute;right:0;top:0;height:100%;width:auto}.banner-content{position:relative;z-index:3;color:#fff;padding:46px 50px;max-width:860px}
+.banner-kicker{font-family:Arial,Helvetica,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:.16em;opacity:.8;margin-bottom:10px}
+.banner h1{font-size:clamp(34px,5vw,56px);line-height:1.02;margin:0 0 10px 0}.banner p{font-size:18px;line-height:1.55;opacity:.92;margin:0}
+.section{padding:18px 28px 24px;border-bottom:1px solid var(--rule)}
+.section-head{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:16px;border-bottom:1px solid var(--rule);padding-bottom:10px}
+.section-head h3{margin:0;font-size:30px;line-height:1.1}.section-head p{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:820px}
+.top-grid{display:grid;grid-template-columns:1.4fr .9fr;border-bottom:1px solid var(--rule)}
+.lead{padding:24px 28px 26px;border-right:1px solid var(--rule)}.side-rail{padding:22px 24px 26px}
+.eyebrow,.side-title,.platform-name,.platform-label,.signal .n,.tag{font-family:Arial,Helvetica,sans-serif;text-transform:uppercase;letter-spacing:.12em;font-size:11px;color:var(--muted);font-weight:700}
+.eyebrow{color:var(--accent);letter-spacing:.14em}
+.lead h2{font-size:clamp(30px,4vw,54px);line-height:1.02;margin:8px 0 14px;font-weight:700}
+.lead p,.brief p,.item p,.mini p{color:#374047;line-height:1.55}
+.meta-row{display:flex;flex-wrap:wrap;gap:10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:var(--muted)} .chip{border:1px solid var(--rule);padding:6px 8px;background:#fff}
+.hero-art,.story-art{border:1px solid var(--rule);overflow:hidden;background:var(--soft)} .hero-art{margin-top:18px;height:420px}
+.hero-art img,.story-art img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+.brief{padding:0 0 14px;margin:0 0 14px;border-bottom:1px solid var(--rule)} .brief:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0} .brief h4{margin:0 0 8px;font-size:24px;line-height:1.15}
+.signals,.trend-grid,.feed-list,.grid3,.cols{display:grid;gap:14px}.signal,.item,.mini,.feed,.trend{border:1px solid var(--rule);background:#fff}
+.signal{padding:14px}.signal .v,.trend .score{font-size:34px;line-height:1;margin:8px 0}.signal .t{font-size:14px;color:#39424a}
+.bar{margin-top:12px;height:10px;background:#eef2f5;border:1px solid #dbe2e8}.bar span{display:block;height:100%;background:linear-gradient(90deg,#1d4f80,#8eb3d0)}
+.carousel-wrap{position:relative}.carousel-viewport{overflow:hidden}.carousel-track{display:flex;transition:transform .45s ease;will-change:transform}.carousel-slide{min-width:100%}
+.carousel-dots{display:flex;justify-content:center;gap:10px;margin-top:14px}.carousel-dot{width:10px;height:10px;border-radius:999px;border:1px solid var(--rule);background:#fff;cursor:pointer}.carousel-dot.active{background:var(--accent);border-color:var(--accent)}
+.carousel-arrows{display:flex;justify-content:space-between;position:absolute;top:45%;left:0;right:0;pointer-events:none}.carousel-arrow{pointer-events:auto;background:rgba(255,255,255,.92);border:1px solid var(--rule);width:38px;height:38px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-family:Arial,Helvetica,sans-serif;cursor:pointer;box-shadow:var(--shadow)}
+.carousel-arrow.left{transform:translateX(-18px)}.carousel-arrow.right{transform:translateX(18px)}
+.ledger-slide-grid,.trend-slide-grid,.feed-slide-grid,.briefing-slide-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.item,.mini{padding:16px}.item h4{margin:8px 0 8px;font-size:28px;line-height:1.12}.mini h5{margin:6px 0 8px;font-size:22px;line-height:1.15}
+.story-art{margin:0 0 14px;height:220px}.action{margin-top:10px;padding:10px 12px;border:1px solid var(--rule);background:var(--soft)} .action strong{display:block;font-family:Arial,Helvetica,sans-serif;text-transform:uppercase;letter-spacing:.12em;font-size:11px;margin-bottom:6px;color:var(--muted)}
+a.inline,.brief a,.feed a,.item a,.mini a{color:var(--accent);text-decoration:none}
+.footer-note{padding:14px 28px 24px;color:var(--muted);font-size:13px;line-height:1.6;font-family:Arial,Helvetica,sans-serif}
+.mobile-section-nav,.mobile-mini-bar{display:none}.read-more{display:none}
+@media (max-width:1200px){.top-grid,.ledger-slide-grid,.trend-slide-grid,.feed-slide-grid,.briefing-slide-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.lead{border-right:none;border-bottom:1px solid var(--rule)}}
+@media (max-width:820px){
+  .topbar{position:static !important;top:auto !important;flex-direction:column;align-items:flex-start;padding:10px 14px}
+  .topbar .brand,.topbar .navlinks{display:none}.topbar .controls{width:100%}.topbar select,.topbar input{width:100%;min-width:0}
+  .banner{position:relative;height:320px}.banner::before{width:100%;background:linear-gradient(to bottom, rgba(0,0,0,.82), rgba(0,0,0,.45), rgba(0,0,0,.1))}.banner img{width:100%;height:100%;object-fit:cover}
+  .dateline{flex-direction:column;align-items:flex-start;gap:10px}.navlinks{display:none}
+  .mobile-section-nav{display:flex;gap:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;padding:0 0 2px 0;width:100%}
+  .mobile-section-nav a{flex:0 0 auto;scroll-snap-align:start;white-space:nowrap;border:1px solid var(--rule);background:#fff;border-radius:999px;padding:10px 12px;font-family:Arial,Helvetica,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);text-decoration:none}
+  .item,.mini{padding:12px}.front-card .story-art{height:220px}.briefing-card .story-art{height:160px}
+  .front-card h4{font-size:clamp(22px,7vw,34px);line-height:1.08}.briefing-card h5{font-size:20px;line-height:1.12}
+  .front-card p,.briefing-card p{font-size:13px;line-height:1.5}.collapsible{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden}
+  .read-more{display:inline-block;margin:6px 0 12px;padding:0;border:none;background:none;color:var(--accent);font-family:Arial,Helvetica,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:.12em;cursor:pointer}
+  .ledger-slide-grid,.trend-slide-grid,.feed-slide-grid,.briefing-slide-grid{grid-template-columns:1fr}
+}
+.collapsible.expanded{-webkit-line-clamp:unset !important;display:block !important;overflow:visible !important}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="paper">
+    <div class="banner">
+      <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1600&q=80" alt="Banner image">
+      <div class="banner-content">
+        <div class="banner-kicker">Paid Social Morning Brief</div>
+        <h1>Hobbes' Paid Social Intelligence Terminal</h1>
+        <p>Daily intelligence on platform changes across Meta, TikTok, LinkedIn, Pinterest, Reddit, Snapchat, X, and YouTube Ads — and what paid social leaders should do about them.</p>
+      </div>
+    </div>
+
+    <div class="topbar">
+      <div class="brand">Hobbes' Paid Social Intelligence Terminal</div>
+      <div class="controls">
+        <select id="dateSelect"></select>
+        <input id="searchInput" type="text" placeholder="Search platform, headline, impact, strategy..." />
+      </div>
+    </div>
+
+    <header class="masthead">
+      <div class="kicker">Editorial Edition</div>
+      <h1 class="nameplate">Daily Platform Intelligence and Strategic Readouts</h1>
+      <div class="subdeck">A newspaper-inspired daily briefing for operators, strategists, and VP-level leaders tracking platform change, buying implications, measurement shifts, and what teams should do next.</div>
+      <div class="dateline">
+        <div id="editionDate">Today</div>
+        <div class="navlinks">
+          <a href="#frontPage">Front Page</a>
+          <a href="#platformBriefings">Platform Briefings</a>
+          <a href="#dailyLedger">Daily Ledger</a>
+          <a href="#trendPulse">Trend Pulse</a>
+          <a href="#sourceDesk">Source Desk</a>
+        </div>
+        <div class="mobile-section-nav">
+          <a href="#frontPage">Front Page</a>
+          <a href="#platformBriefings">Platform Briefings</a>
+          <a href="#dailyLedger">Daily Ledger</a>
+          <a href="#trendPulse">Trend Pulse</a>
+          <a href="#sourceDesk">Source Desk</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="top-grid">
+      <div class="lead">
+        <div class="eyebrow">Lead story</div>
+        <h2 id="leadTitle"></h2>
+        <p id="leadSummary"></p>
+        <div class="meta-row" id="metaRow"></div>
+        <div class="hero-art" id="heroArt"></div>
+      </div>
+      <aside class="side-rail">
+        <div class="side-title">What VPs should tell their teams this week</div>
+        <div id="vpRail"></div>
+      </aside>
+    </section>
+
+    <section class="section" id="frontPage">
+      <div class="section-head"><div><h3>Front Page Stories</h3><p>Selected major platform stories presented in a more visual, newspaper-like layout.</p></div></div>
+      <div class="carousel-wrap"><div class="carousel-viewport"><div class="carousel-track" id="frontPageGrid"></div></div><div class="carousel-arrows"><button class="carousel-arrow left" id="frontPrev">‹</button><button class="carousel-arrow right" id="frontNext">›</button></div><div class="carousel-dots" id="frontDots"></div></div>
+    </section>
+
+    <section class="section" id="platformBriefings">
+      <div class="section-head"><div><h3>Platform Briefings</h3><p>Additional platform notes, headlines, and recommended moves.</p></div></div>
+      <div class="carousel-wrap"><div class="carousel-viewport"><div class="carousel-track" id="briefingsGrid"></div></div><div class="carousel-arrows"><button class="carousel-arrow left" id="briefPrev">‹</button><button class="carousel-arrow right" id="briefNext">›</button></div><div class="carousel-dots" id="briefDots"></div></div>
+    </section>
+
+    <section class="section" id="dailyLedger">
+      <div class="section-head"><div><h3>The Daily Ledger</h3><p>High-level signals and pulse checks for the selected edition.</p></div></div>
+      <div class="carousel-wrap"><div class="carousel-viewport"><div class="carousel-track" id="signalsGrid"></div></div><div class="carousel-arrows"><button class="carousel-arrow left" id="ledgerPrev">‹</button><button class="carousel-arrow right" id="ledgerNext">›</button></div><div class="carousel-dots" id="ledgerDots"></div></div>
+    </section>
+
+    <section class="section" id="trendPulse">
+      <div class="section-head"><div><h3>Trend Pulse</h3><p>Editorial scoring for what matters most right now across the paid social landscape.</p></div></div>
+      <div class="carousel-wrap"><div class="carousel-viewport"><div class="carousel-track" id="trendGrid"></div></div><div class="carousel-arrows"><button class="carousel-arrow left" id="trendPrev">‹</button><button class="carousel-arrow right" id="trendNext">›</button></div><div class="carousel-dots" id="trendDots"></div></div>
+    </section>
+
+    <section class="section" id="sourceDesk">
+      <div class="section-head"><div><h3>Source Desk</h3><p>Official blogs and hubs to monitor each morning.</p></div></div>
+      <div class="carousel-wrap"><div class="carousel-viewport"><div class="carousel-track" id="feedList"></div></div><div class="carousel-arrows"><button class="carousel-arrow left" id="feedPrev">‹</button><button class="carousel-arrow right" id="feedNext">›</button></div><div class="carousel-dots" id="feedDots"></div></div>
+    </section>
+
+    <div class="footer-note">Step 1: this site now reads from JSON files instead of hard-coded content in the HTML. Next we can automate updating those JSON files daily.</div>
+  </div>
+</div>
+
+<script>
+const logos = {
+  "Meta": '<svg viewBox="0 0 64 64" fill="none"><path d="M14 43c0-12 4-22 10-22 5 0 9 8 13 17 3-7 7-17 13-17 6 0 10 10 10 22" stroke="#111111" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  "TikTok": '<svg viewBox="0 0 64 64" fill="none"><path d="M39 14v22.5a10.5 10.5 0 1 1-8-10.2" stroke="#111111" stroke-width="8" stroke-linecap="round"/><path d="M39 14c2 6 7 10 13 11" stroke="#111111" stroke-width="8" stroke-linecap="round"/></svg>',
+  "LinkedIn": '<svg viewBox="0 0 64 64" fill="#111111"><circle cx="16" cy="19" r="5"/><rect x="11" y="27" width="10" height="26" rx="2"/><path d="M29 27h10v4c2-3 5-5 10-5 8 0 11 5 11 14v13H50V41c0-4-1-7-5-7s-6 3-6 7v12H29V27z"/></svg>',
+  "Pinterest": '<svg viewBox="0 0 64 64" fill="none"><path d="M32 10c10 0 18 7 18 17 0 11-8 18-18 18-3 0-5-1-7-2l-4 11" stroke="#111111" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M28 49l5-20" stroke="#111111" stroke-width="8" stroke-linecap="round"/><path d="M28 27c0-5 4-9 9-9 4 0 7 3 7 7 0 5-3 9-9 9-4 0-7-3-7-7z" stroke="#111111" stroke-width="8"/></svg>',
+  "Reddit": '<svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="35" r="16" stroke="#111111" stroke-width="6"/><circle cx="25" cy="34" r="2.5" fill="#111111"/><circle cx="39" cy="34" r="2.5" fill="#111111"/><path d="M25 42c4 3 10 3 14 0" stroke="#111111" stroke-width="4" stroke-linecap="round"/><circle cx="49" cy="28" r="4" stroke="#111111" stroke-width="4"/><path d="M39 22l8 4" stroke="#111111" stroke-width="4" stroke-linecap="round"/><path d="M28 17l12 2" stroke="#111111" stroke-width="4" stroke-linecap="round"/></svg>',
+  "X": '<svg viewBox="0 0 64 64" fill="#111111"><path d="M14 14h10l12 16 14-16h0L38 37l12 17H40L28 37 14 54H4l18-20L14 14z"/></svg>',
+  "Snapchat": '<svg viewBox="0 0 64 64" fill="none"><path d="M32 14c7 0 12 5 12 12v5c0 3 2 6 5 7-2 3-5 4-8 4-1 4-5 8-9 8s-8-4-9-8c-3 0-6-1-8-4 3-1 5-4 5-7v-5c0-7 5-12 12-12z" stroke="#111111" stroke-width="6" stroke-linejoin="round"/></svg>',
+  "YouTube / Google Ads": '<svg viewBox="0 0 64 64" fill="none"><rect x="10" y="18" width="44" height="28" rx="8" stroke="#111111" stroke-width="6"/><path d="M28 26l12 6-12 6V26z" fill="#111111"/></svg>'
+};
+
+function makeCarousel(trackId, dotsId, prevId, nextId, options={}) {
+  const track = document.getElementById(trackId);
+  const dots = document.getElementById(dotsId);
+  const prev = document.getElementById(prevId);
+  const next = document.getElementById(nextId);
+  let index = 0, timer = null, count = 0, touchStartX = null;
+  const auto = options.auto !== false;
+
+  function paint() {
+    track.style.transform = `translateX(-${index * 100}%)`;
+    [...dots.children].forEach((d, i) => d.classList.toggle('active', i === index));
+  }
+  function go(i) {
+    if (!count) return;
+    index = (i + count) % count;
+    paint();
+  }
+  function start() {
+    stop();
+    if (auto && window.innerWidth > 820 && count > 1) timer = setInterval(() => go(index + 1), 5000);
+  }
+  function stop() { if (timer) clearInterval(timer); timer = null; }
+  function rebuild() {
+    count = track.children.length; index = 0; dots.innerHTML = '';
+    for (let i = 0; i < count; i++) {
+      const b = document.createElement('button');
+      b.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      b.onclick = () => { go(i); start(); };
+      dots.appendChild(b);
+    }
+    paint(); start();
+  }
+  prev.onclick = () => { go(index - 1); start(); };
+  next.onclick = () => { go(index + 1); start(); };
+  track.addEventListener('mouseenter', stop);
+  track.addEventListener('mouseleave', start);
+  track.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].clientX; stop(); }, {passive:true});
+  track.addEventListener('touchend', e => {
+    if (touchStartX == null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) dx < 0 ? go(index + 1) : go(index - 1);
+    touchStartX = null; start();
+  }, {passive:true});
+  window.addEventListener('resize', start);
+  return { rebuild, start, stop };
+}
+
+const frontCarousel = makeCarousel('frontPageGrid', 'frontDots', 'frontPrev', 'frontNext');
+const briefCarousel = makeCarousel('briefingsGrid', 'briefDots', 'briefPrev', 'briefNext');
+const ledgerCarousel = makeCarousel('signalsGrid', 'ledgerDots', 'ledgerPrev', 'ledgerNext', {auto:false});
+const trendCarousel = makeCarousel('trendGrid', 'trendDots', 'trendPrev', 'trendNext', {auto:false});
+const feedCarousel = makeCarousel('feedList', 'feedDots', 'feedPrev', 'feedNext', {auto:false});
+
+function wireExpanders(){
+  document.querySelectorAll('.read-more').forEach(btn => {
+    btn.onclick = () => {
+      const target = btn.previousElementSibling;
+      if (!target) return;
+      target.classList.toggle('expanded');
+      btn.textContent = target.classList.contains('expanded') ? 'Show less' : 'Read more';
+    };
+  });
+}
+
+async function loadJSON(path) {
+  const res = await fetch(path);
+  if (!res.ok) throw new Error(`Failed to load ${path}`);
+  return await res.json();
+}
+
+async function init() {
+  const archive = await loadJSON('data/archive.json');
+  const latest = await loadJSON('data/latest.json');
+
+  const dateSelect = document.getElementById('dateSelect');
+  archive.forEach(item => {
+    const opt = document.createElement('option');
+    opt.value = item.file;
+    opt.textContent = item.label;
+    dateSelect.appendChild(opt);
+  });
+  dateSelect.value = "latest.json";
+
+  function render(selected) {
+    const query = document.getElementById('searchInput').value.trim().toLowerCase();
+    document.getElementById('editionDate').textContent = selected.label;
+    document.getElementById('leadTitle').textContent = selected.lead_title;
+    document.getElementById('leadSummary').textContent = selected.lead_summary;
+    document.getElementById('metaRow').innerHTML = `
+      <div class="chip">${selected.stats.platforms} platforms tracked</div>
+      <div class="chip">${selected.stats.updates} key updates</div>
+      <div class="chip">${selected.stats.highUrgency} high urgency items</div>
+      <div class="chip">JSON-powered edition</div>`;
+    const hero = selected.articles.find(a => a.section === 'Lead story') || selected.articles[0];
+    document.getElementById('heroArt').innerHTML = `<img src="${hero.image}" alt="${hero.platform} article image">`;
+
+    const vpRail = document.getElementById('vpRail');
+    vpRail.innerHTML = '';
+    selected.vp_tells.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'brief';
+      div.innerHTML = `<h4>${item}</h4><p>Leadership guidance for the selected edition.</p>`;
+      vpRail.appendChild(div);
+    });
+
+    const articles = selected.articles.filter(a => !query || JSON.stringify(a).toLowerCase().includes(query));
+    const front = articles.filter(a => a.section === 'Lead story').slice(0,2);
+    const briefings = articles.filter(a => a.section !== 'Lead story');
+
+    const frontGrid = document.getElementById('frontPageGrid');
+    frontGrid.innerHTML = '';
+    front.forEach(a => {
+      const slide = document.createElement('div');
+      slide.className = 'carousel-slide';
+      slide.innerHTML = `<article class="item front-card">
+        <div class="platform-header"><div class="logo">${logos[a.platform] || ''}</div><div class="platform-name">${a.platform}</div></div>
+        <div class="story-art"><img src="${a.image}" alt="${a.platform} article image"></div>
+        <div class="tag">${a.platform}</div>
+        <h4>${a.headline}</h4>
+        <div class="collapsible"><p>${a.summary}</p><p>${a.impact}</p></div>
+        <button class="read-more" type="button">Read more</button>
+        <div class="action"><strong>Recommended strategy</strong>${a.action}</div>
+        <p style="margin-top:10px;"><a class="inline" href="${a.url}" target="_blank" rel="noopener">Open official source ↗</a></p>
+      </article>`;
+      frontGrid.appendChild(slide);
+    });
+    frontCarousel.rebuild();
+
+    const briefGrid = document.getElementById('briefingsGrid');
+    briefGrid.innerHTML = '';
+    let chunkSize = 1;
+    if (window.innerWidth > 1200) chunkSize = 3;
+    else if (window.innerWidth > 700) chunkSize = 2;
+    for (let i=0; i < briefings.length; i += chunkSize) {
+      const group = briefings.slice(i, i + chunkSize);
+      const slide = document.createElement('div');
+      slide.className = 'carousel-slide';
+      slide.innerHTML = `<div class="briefing-slide-grid">${group.map(a => `
+        <div class="mini briefing-card">
+          <div class="platform-header"><div class="logo">${logos[a.platform] || ''}</div><div class="platform-name">${a.platform}</div></div>
+          <div class="story-art"><img src="${a.image}" alt="${a.platform} article image"></div>
+          <h5>${a.headline}</h5>
+          <div class="collapsible"><p>${a.summary}</p></div>
+          <button class="read-more" type="button">Read more</button>
+          <p><strong style="font-family:Arial,Helvetica,sans-serif; text-transform:uppercase; font-size:11px; letter-spacing:.12em; color:#5f6b76;">Recommended move</strong><br>${a.action}</p>
+          <p style="margin-top:10px;"><a class="inline" href="${a.url}" target="_blank" rel="noopener">Open official source ↗</a></p>
+        </div>`).join('')}</div>`;
+      briefGrid.appendChild(slide);
+    }
+    briefCarousel.rebuild();
+
+    const signalsGrid = document.getElementById('signalsGrid');
+    signalsGrid.innerHTML = '';
+    const signalCards = [
+      `<div class="signal"><div class="n">Platforms tracked</div><div class="v">${selected.stats.platforms}</div><div class="t">Major paid social ecosystems monitored in this edition.</div></div>`,
+      `<div class="signal"><div class="n">Key updates</div><div class="v">${selected.stats.updates}</div><div class="t">Only the highest-signal changes relevant to operators and strategic leaders.</div></div>`,
+      `<div class="signal"><div class="n">High urgency</div><div class="v">${selected.stats.highUrgency}</div><div class="t">Changes most likely to alter workflows, measurement framing, or client conversations.</div></div>`,
+      `<div class="signal"><div class="n">Source hubs</div><div class="v">${selected.stats.sources}</div><div class="t">Official blogs and update hubs for deeper reading.</div></div>`
+    ];
+    let ledgerChunk = 1;
+    if (window.innerWidth > 1200) ledgerChunk = 3;
+    else if (window.innerWidth > 700) ledgerChunk = 2;
+    for (let i=0; i < signalCards.length; i += ledgerChunk) {
+      const slide = document.createElement('div');
+      slide.className = 'carousel-slide';
+      slide.innerHTML = `<div class="ledger-slide-grid">${signalCards.slice(i, i+ledgerChunk).join('')}</div>`;
+      signalsGrid.appendChild(slide);
+    }
+    ledgerCarousel.rebuild();
+
+    const trendGrid = document.getElementById('trendGrid');
+    trendGrid.innerHTML = '';
+    let trendChunk = 1;
+    if (window.innerWidth > 1200) trendChunk = 3;
+    else if (window.innerWidth > 700) trendChunk = 2;
+    for (let i=0; i < selected.trend_scores.length; i += trendChunk) {
+      const group = selected.trend_scores.slice(i, i + trendChunk);
+      const slide = document.createElement('div');
+      slide.className = 'carousel-slide';
+      slide.innerHTML = `<div class="trend-slide-grid">${group.map(t => `<div class="trend"><div class="name">${t.name}</div><div class="score">${t.score}</div><div class="bar"><span style="width:${t.score}%"></span></div></div>`).join('')}</div>`;
+      trendGrid.appendChild(slide);
+    }
+    trendCarousel.rebuild();
+
+    const feedList = document.getElementById('feedList');
+    feedList.innerHTML = '';
+    let feedChunk = 1;
+    if (window.innerWidth > 1200) feedChunk = 3;
+    else if (window.innerWidth > 700) feedChunk = 2;
+    for (let i=0; i < selected.feeds.length; i += feedChunk) {
+      const group = selected.feeds.slice(i, i + feedChunk);
+      const slide = document.createElement('div');
+      slide.className = 'carousel-slide';
+      slide.innerHTML = `<div class="feed-slide-grid">${group.map(f => `<div class="feed"><div class="platform-label">${f.platform}</div><div class="title">${f.title}</div><div class="date">${f.note}</div><a href="${f.url}" target="_blank" rel="noopener">Open ↗</a></div>`).join('')}</div>`;
+      feedList.appendChild(slide);
+    }
+    feedCarousel.rebuild();
+
+    wireExpanders();
+  }
+
+  render(latest);
+
+  dateSelect.addEventListener('change', async (e) => {
+    const selected = await loadJSON('data/' + e.target.value);
+    render(selected);
+  });
+  document.getElementById('searchInput').addEventListener('input', async () => {
+    const selected = await loadJSON('data/' + dateSelect.value);
+    render(selected);
+  });
+}
+
+init().catch(err => {
+  document.body.innerHTML = '<pre style="padding:20px;font-family:monospace;">' + err.message + '</pre>';
+});
+</script>
+</body>
+</html>
