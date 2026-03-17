@@ -3,6 +3,31 @@ from pathlib import Path
 from datetime import datetime
 
 
+DEFAULT_IMAGES = {
+    "Meta": "https://static.xx.fbcdn.net/mci_ab/public/cms/?ab_b=e&ab_page=CMS&ab_entry=797459857892055&version=1773680588&transcode_extension=webp",
+    "TikTok": "https://lf-tt4b.tiktokcdn.com/obj/i18nblog/tt4b_cms/en-US/tipdilz7wysq-63reVQqHHHiOCcKFWtVWbC.png",
+    "LinkedIn": "https://media.licdn.com/dms/image/v2/D4D08AQHvd0T61n0CdQ/croft-frontend-shrinkToFit1024/0/1631557065472",
+    "Pinterest": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
+    "Reddit": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80",
+    "Snapchat": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80",
+    "X": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80",
+    "YouTube / Google Ads": "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?auto=format&fit=crop&w=1200&q=80",
+    "default": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+}
+
+
+def safe_image(platform: str, image: str) -> str:
+    if not image or not image.strip():
+        return DEFAULT_IMAGES.get(platform, DEFAULT_IMAGES["default"])
+
+    image = image.strip()
+
+    if image.startswith("data:image"):
+        return DEFAULT_IMAGES.get(platform, DEFAULT_IMAGES["default"])
+
+    return image
+
+
 def main():
     root = Path(".")
     preview_path = root / "data" / "source_preview.json"
@@ -59,22 +84,24 @@ def main():
     }
 
     for i, item in enumerate(articles_in):
+        platform = item.get("platform", "Unknown")
+        image = safe_image(platform, item.get("image", ""))
+
         section = "Lead story" if i < 2 else "Briefing"
         edition["articles"].append({
-            "platform": item.get("platform", "Unknown"),
+            "platform": platform,
             "section": section,
             "headline": item.get("headline", "Untitled source"),
             "summary": item.get("summary", ""),
-            "impact": f"{item.get('platform', 'This platform')} has a live source update worth reviewing for operators and planners.",
-            "action": f"Review the latest {item.get('platform', 'platform')} source update and decide whether it changes workflow, reporting, or testing priorities.",
+            "impact": f"{platform} has a live source update worth reviewing for operators and planners.",
+            "action": f"Review the latest {platform} source update and decide whether it changes workflow, reporting, or testing priorities.",
             "url": item.get("url", ""),
-            "image": item.get("image", "")
+            "image": image
         })
 
     latest_path.write_text(json.dumps(edition, indent=2), encoding="utf-8")
     dated_path.write_text(json.dumps(edition, indent=2), encoding="utf-8")
 
-    # rebuild archive.json with latest first, then dated files
     archive = [{
         "date_key": today_key,
         "label": today_label,
