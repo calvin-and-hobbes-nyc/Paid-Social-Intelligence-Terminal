@@ -1,0 +1,19 @@
+{
+  "sources": [
+    {
+      "platform": "TikTok",
+      "section": "Lead story",
+      "url": "https://ads.tiktok.com/business/en/blog/tiktok-product-preview"
+    },
+    {
+      "platform": "Meta",
+      "section": "Lead story",
+      "url": "https://www.facebook.com/business/news"
+    },
+    {
+      "platform": "LinkedIn",
+      "section": "Briefing",
+      "url": "https://www.linkedin.com/business/marketing/blog"
+    }
+  ]
+}
