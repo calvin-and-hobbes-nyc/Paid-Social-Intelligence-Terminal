@@ -1,39 +1,94 @@
-name: Source Preview Extractor
+import json
+import re
+from html import unescape
+from pathlib import Path
+from urllib.parse import urljoin
 
-on:
-  workflow_dispatch:
+import requests
 
-permissions:
-  contents: write
 
-jobs:
-  extract:
-    runs-on: ubuntu-latest
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (compatible; PaidSocialIntelBot/1.0; +https://github.com/)"
+}
 
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+def extract_meta(html: str, base_url: str) -> dict:
+    def find_meta(prop_names):
+        for name in prop_names:
+            patterns = [
+                rf'<meta[^>]+property=["\']{re.escape(name)}["\'][^>]+content=["\']([^"\']+)["\']',
+                rf'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']{re.escape(name)}["\']',
+                rf'<meta[^>]+name=["\']{re.escape(name)}["\'][^>]+content=["\']([^"\']+)["\']',
+                rf'<meta[^>]+content=["\']([^"\']+)["\'][^>]+name=["\']{re.escape(name)}["\']',
+            ]
+            for pattern in patterns:
+                m = re.search(pattern, html, flags=re.I)
+                if m:
+                    return unescape(m.group(1).strip())
+        return None
 
-      - name: Install packages
-        run: pip install requests openai
+    title = find_meta(["og:title", "twitter:title"])
+    if not title:
+        m = re.search(r"<title>(.*?)</title>", html, flags=re.I | re.S)
+        title = unescape(m.group(1).strip()) if m else "Untitled source"
 
-      - name: Run source extractor
-        run: python scripts/extract_sources.py
+    description = find_meta(["og:description", "twitter:description", "description"]) or ""
+    image = find_meta(["og:image", "twitter:image"]) or ""
 
-      - name: Build homepage edition from preview with AI editorial layer
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python scripts/build_edition.py
+    if image:
+        image = urljoin(base_url, image)
 
-      - name: Commit preview output
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/source_preview.json data/latest.json data/archive.json data/*.json
-          git commit -m "Generate source preview and AI edition" || echo "No changes to commit"
-          git push
+    return {
+        "title": title,
+        "description": description,
+        "image": image,
+    }
+
+
+def fetch_source(url: str) -> dict:
+    response = requests.get(url, headers=HEADERS, timeout=20)
+    response.raise_for_status()
+    html = response.text
+    return extract_meta(html, url)
+
+
+def main():
+    repo_root = Path(".")
+    source_file = repo_root / "data" / "source_urls.json"
+    out_file = repo_root / "data" / "source_preview.json"
+
+    payload = json.loads(source_file.read_text(encoding="utf-8"))
+    results = []
+
+    for item in payload["sources"]:
+        url = item["url"]
+        try:
+            meta = fetch_source(url)
+            results.append({
+                "platform": item["platform"],
+                "section": item["section"],
+                "url": url,
+                "headline": meta["title"],
+                "summary": meta["description"],
+                "image": meta["image"],
+                "status": "ok"
+            })
+            print(f"Fetched: {url}")
+        except Exception as e:
+            results.append({
+                "platform": item["platform"],
+                "section": item["section"],
+                "url": url,
+                "headline": "",
+                "summary": "",
+                "image": "",
+                "status": f"error: {e}"
+            })
+            print(f"Failed: {url} -> {e}")
+
+    out_file.write_text(json.dumps({"articles": results}, indent=2), encoding="utf-8")
+    print(f"Wrote {out_file}")
+
+
+if __name__ == "__main__":
+    main()
