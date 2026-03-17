@@ -2,6 +2,9 @@ name: Daily Edition Builder
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '5 12 * * *'
+    - cron: '5 13 * * *'
 
 permissions:
   contents: write
@@ -14,38 +17,46 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Set today date in Eastern Time
-        id: today
-        run: echo "today=$(TZ=America/New_York date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+      - name: Set New York date and hour
+        id: now
+        run: |
+          echo "today=$(TZ=America/New_York date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+          echo "hour=$(TZ=America/New_York date +'%H')" >> $GITHUB_OUTPUT
+
+      - name: Stop unless it is 8 AM New York time
+        if: github.event_name == 'schedule' && steps.now.outputs.hour != '08'
+        run: |
+          echo "Not 8 AM in New York. Exiting."
+          exit 0
 
       - name: Create dated edition file
         run: |
-          cat > data/${{ steps.today.outputs.today }}.json <<EOF
+          cat > data/${{ steps.now.outputs.today }}.json <<EOF
           {
-            "label": "${{ steps.today.outputs.today }}",
-            "date_key": "${{ steps.today.outputs.today }}",
-            "lead_title": "Automated test edition for ${{ steps.today.outputs.today }}",
+            "label": "${{ steps.now.outputs.today }}",
+            "date_key": "${{ steps.now.outputs.today }}",
+            "lead_title": "Automated test edition for ${{ steps.now.outputs.today }}",
             "lead_summary": "This is a test daily edition created by GitHub Actions."
           }
           EOF
 
       - name: Update latest.json
         run: |
-          cp data/${{ steps.today.outputs.today }}.json data/latest.json
+          cp data/${{ steps.now.outputs.today }}.json data/latest.json
 
       - name: Update archive.json
         run: |
           cat > data/archive.json <<EOF
           [
             {
-              "date_key": "${{ steps.today.outputs.today }}",
-              "label": "${{ steps.today.outputs.today }}",
+              "date_key": "${{ steps.now.outputs.today }}",
+              "label": "${{ steps.now.outputs.today }}",
               "file": "latest.json"
             },
             {
-              "date_key": "${{ steps.today.outputs.today }}",
-              "label": "${{ steps.today.outputs.today }}",
-              "file": "${{ steps.today.outputs.today }}.json"
+              "date_key": "${{ steps.now.outputs.today }}",
+              "label": "${{ steps.now.outputs.today }}",
+              "file": "${{ steps.now.outputs.today }}.json"
             }
           ]
           EOF
@@ -54,6 +65,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/latest.json data/archive.json data/${{ steps.today.outputs.today }}.json
-          git commit -m "Build test daily edition" || echo "No changes to commit"
+          git add data/latest.json data/archive.json data/${{ steps.now.outputs.today }}.json
+          git commit -m "Build daily edition" || echo "No changes to commit"
           git push
