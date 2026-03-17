@@ -1,8 +1,8 @@
 {
   "label": "March 17, 2026",
   "date_key": "2026-03-17",
-  "lead_title": "Platform change is accelerating across paid social, and operators need clearer decision frameworks to keep pace.",
-  "lead_summary": "Across Meta, TikTok, LinkedIn, Pinterest, Reddit, Snapchat, X, and YouTube / Google Ads, the major theme is not just more automation — it is the need for better interpretation, stronger source discipline, and clearer strategic action for teams and clients.",
+  "lead_title": "Daily paid social platform changes require stronger interpretation, clearer operator guidance, and tighter decision discipline.",
+  "lead_summary": "This automated edition preserves the full homepage schema so the site keeps rendering correctly while summarizing platform movement in a cleaner editorial format.",
   "stats": {
     "platforms": 8,
     "updates": 12,
@@ -13,7 +13,7 @@
     "Translate platform updates into operator guidance quickly so teams know what actually changes workflow, buying, and reporting.",
     "Separate real product shifts from marketing language and focus only on what changes performance decisions.",
     "Keep source fidelity high: the headline, image, and link should always point to the same underlying platform story.",
-    "Use the daily brief as a management tool so teams know what to test, pause, or reframe."
+    "Use the daily brief as a management tool, not just a reading list, so teams know what to test, pause, or reframe."
   ],
   "trend_scores": [
     { "name": "AI-led buying", "score": 90 },
@@ -37,21 +37,81 @@
       "platform": "Meta",
       "section": "Lead story",
       "headline": "Meta reporting changes keep raising the bar for interpretation, not just optimization.",
-      "summary": "Platform-reported performance and actual business outcomes are increasingly diverging as attribution definitions evolve.",
-      "impact": "This increases the need for stronger readouts and clearer client communication.",
-      "action": "Reframe reporting around business impact, not just platform metrics.",
+      "summary": "More teams are finding that platform-reported movement and true business movement do not always move in lockstep, especially as attribution definitions evolve.",
+      "impact": "This increases the need for benchmark resets, stronger readouts, and better communication between operators and senior stakeholders.",
+      "action": "Reframe reporting decks around business context and explain methodology changes before they distort decision-making.",
       "url": "https://www.facebook.com/business/news",
       "image": "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80"
     },
     {
       "platform": "TikTok",
       "section": "Lead story",
-      "headline": "TikTok continues to merge paid, creator, commerce, and identity systems.",
-      "summary": "Execution now spans beyond ads into creator, profile, and commerce readiness.",
-      "impact": "Teams need tighter cross-functional coordination.",
-      "action": "Align paid, organic, and creator workflows into one system.",
+      "headline": "TikTok remains one of the clearest examples of paid, creator, commerce, and identity systems converging.",
+      "summary": "Its latest product direction continues to blur the boundaries between media buying, creator activation, profile governance, and commerce readiness.",
+      "impact": "Operators need more cross-functional coordination because platform readiness now extends beyond campaign settings.",
+      "action": "Audit how paid social, organic social, creators, and commerce teams share ownership of TikTok execution.",
       "url": "https://ads.tiktok.com/business/en/blog/tiktok-product-preview",
       "image": "https://images.unsplash.com/photo-1611605698335-8b1569810432?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "platform": "LinkedIn",
+      "section": "Briefing",
+      "headline": "Company-level attribution keeps strengthening LinkedIn’s enterprise value proposition.",
+      "summary": "The platform is increasingly useful when teams want to discuss account-level influence instead of only lead volume.",
+      "impact": "That makes LinkedIn easier to defend in B2B planning conversations tied to buying groups and sales alignment.",
+      "action": "Tie LinkedIn outputs more directly to CRM narratives, pipeline stages, and account-based reporting.",
+      "url": "https://www.linkedin.com/business/marketing/blog",
+      "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "platform": "Pinterest",
+      "section": "Briefing",
+      "headline": "Pinterest keeps becoming more useful when intent and discovery happen in the same journey.",
+      "summary": "Its shopping and search surfaces continue to make the platform more relevant in categories where inspiration leads quickly to action.",
+      "impact": "Pinterest deserves more consideration in lower-funnel planning than many teams still give it.",
+      "action": "Pair premium placements with stronger feed health and more intentional conversion pathways.",
+      "url": "https://business.pinterest.com/blog/",
+      "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "platform": "Reddit",
+      "section": "Briefing",
+      "headline": "Reddit remains strongest when automation is balanced with actual community context.",
+      "summary": "Automation can simplify scaling, but relevance still depends heavily on where and how the message shows up.",
+      "impact": "Category nuance and community fit remain competitive advantages, even as tools become more automated.",
+      "action": "Benchmark community-native planning against automated setups before standardizing one approach.",
+      "url": "https://www.business.reddit.com/blog",
+      "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "platform": "X",
+      "section": "Briefing",
+      "headline": "X continues to make the most sense as a selective contextual and video extension layer.",
+      "summary": "It is easiest to use when creative portability, speed, and relevance matter more than deep channel complexity.",
+      "impact": "This can still be useful, but only in narrower roles than broader paid social platforms.",
+      "action": "Use X where fast-turn content and context are strategic strengths rather than treating it as a default line item.",
+      "url": "https://business.x.com/en/blog",
+      "image": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "platform": "Snapchat",
+      "section": "Briefing",
+      "headline": "Snap’s performance story is stronger when messaging and environment are tightly matched.",
+      "summary": "The platform is increasingly viable in more direct-response conversations, especially for the right audiences and offers.",
+      "impact": "That gives teams another testing lane in app, commerce, and younger-audience planning.",
+      "action": "Use sharper hooks and a clearer message hierarchy to fit the more personal placement experience.",
+      "url": "https://forbusiness.snapchat.com/blog",
+      "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "platform": "YouTube / Google Ads",
+      "section": "Briefing",
+      "headline": "Demand Gen and Shorts still look more like social placements than traditional search-era media constructs.",
+      "summary": "Their visual, native, and creator-adjacent behavior means they should often be planned alongside paid social and creator work.",
+      "impact": "This changes who should be in the room when strategy and measurement decisions are made.",
+      "action": "Plan YouTube, Shorts, Discover, and adjacent surfaces inside one broader visual demand framework.",
+      "url": "https://blog.google/products/ads-commerce/",
+      "image": "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?auto=format&fit=crop&w=1200&q=80"
     }
   ]
 }
