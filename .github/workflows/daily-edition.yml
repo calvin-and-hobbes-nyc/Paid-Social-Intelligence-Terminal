@@ -1,4 +1,4 @@
-name: Daily Edition Test
+name: Daily Edition Builder
 
 on:
   workflow_dispatch:
@@ -7,20 +7,133 @@ permissions:
   contents: write
 
 jobs:
-  test:
+  build-edition:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Create test file
-        run: echo "Automation working" > automation-test.txt
+      - name: Set today date
+        id: today
+        run: echo "today=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
 
-      - name: Commit test file
+      - name: Archive current latest.json if it exists
+        run: |
+          if [ -f data/latest.json ]; then
+            cp data/latest.json data/${{ steps.today.outputs.today }}.json
+          fi
+
+      - name: Build new latest.json
+        run: |
+          cat > data/latest.json <<'EOF'
+          {
+            "label": "${{ steps.today.outputs.today }}",
+            "date_key": "${{ steps.today.outputs.today }}",
+            "lead_title": "Daily edition placeholder title",
+            "lead_summary": "This is the automatically generated placeholder summary for today's edition.",
+            "stats": {
+              "platforms": 8,
+              "updates": 5,
+              "highUrgency": 1,
+              "sources": 8
+            },
+            "vp_tells": [
+              "Placeholder VP guidance item one.",
+              "Placeholder VP guidance item two.",
+              "Placeholder VP guidance item three.",
+              "Placeholder VP guidance item four."
+            ],
+            "trend_scores": [
+              { "name": "AI-led buying", "score": 80 },
+              { "name": "Measurement changes", "score": 75 },
+              { "name": "Creative importance", "score": 82 },
+              { "name": "Commerce integration", "score": 70 },
+              { "name": "UI / workflow change", "score": 68 }
+            ],
+            "feeds": [
+              { "platform": "Meta", "title": "Meta Business News", "url": "https://www.facebook.com/business/news", "note": "Official source hub" },
+              { "platform": "TikTok", "title": "TikTok Business Blog", "url": "https://ads.tiktok.com/business/en/blog", "note": "Official source hub" },
+              { "platform": "LinkedIn", "title": "LinkedIn Marketing Blog", "url": "https://www.linkedin.com/business/marketing/blog", "note": "Official source hub" },
+              { "platform": "Pinterest", "title": "Pinterest Business Blog", "url": "https://business.pinterest.com/blog/", "note": "Official source hub" },
+              { "platform": "Reddit", "title": "Reddit for Business Blog", "url": "https://www.business.reddit.com/blog", "note": "Official source hub" },
+              { "platform": "Snapchat", "title": "Snap for Business Blog", "url": "https://forbusiness.snapchat.com/blog", "note": "Official source hub" },
+              { "platform": "X", "title": "X Business Blog", "url": "https://business.x.com/en/blog", "note": "Official source hub" },
+              { "platform": "YouTube / Google Ads", "title": "Google Ads & Commerce Blog", "url": "https://blog.google/products/ads-commerce/", "note": "Official source hub" }
+            ],
+            "articles": [
+              {
+                "platform": "Meta",
+                "section": "Lead story",
+                "headline": "Placeholder headline for today's lead story.",
+                "summary": "Placeholder summary for today's lead story.",
+                "impact": "Placeholder impact for today's lead story.",
+                "action": "Placeholder action for today's lead story.",
+                "url": "https://www.facebook.com/business/news",
+                "image": "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80"
+              },
+              {
+                "platform": "TikTok",
+                "section": "Lead story",
+                "headline": "Second placeholder lead story headline.",
+                "summary": "Second placeholder lead story summary.",
+                "impact": "Second placeholder lead story impact.",
+                "action": "Second placeholder lead story action.",
+                "url": "https://ads.tiktok.com/business/en/blog",
+                "image": "https://images.unsplash.com/photo-1611605698335-8b1569810432?auto=format&fit=crop&w=1200&q=80"
+              },
+              {
+                "platform": "LinkedIn",
+                "section": "Briefing",
+                "headline": "Placeholder briefing headline.",
+                "summary": "Placeholder briefing summary.",
+                "impact": "Placeholder briefing impact.",
+                "action": "Placeholder briefing action.",
+                "url": "https://www.linkedin.com/business/marketing/blog",
+                "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+              }
+            ]
+          }
+          EOF
+
+      - name: Rebuild archive.json
+        run: |
+          python <<'PY'
+          import json
+          import os
+          from glob import glob
+
+          archive = []
+
+          if os.path.exists("data/latest.json"):
+              with open("data/latest.json", "r") as f:
+                  latest = json.load(f)
+              archive.append({
+                  "date_key": latest["date_key"],
+                  "label": latest["label"],
+                  "file": "latest.json"
+              })
+
+          for path in sorted(glob("data/*.json"), reverse=True):
+              name = os.path.basename(path)
+              if name in ("latest.json", "archive.json"):
+                  continue
+              with open(path, "r") as f:
+                  data = json.load(f)
+              archive.append({
+                  "date_key": data["date_key"],
+                  "label": data["label"],
+                  "file": name
+              })
+
+          with open("data/archive.json", "w") as f:
+              json.dump(archive, f, indent=2)
+          PY
+
+      - name: Commit edition files
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add automation-test.txt
-          git commit -m "Automation test commit" || echo "No changes to commit"
+          git add data/latest.json data/archive.json data/*.json
+          git commit -m "Build daily edition" || echo "No changes to commit"
           git push
