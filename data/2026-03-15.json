@@ -1,0 +1,171 @@
+{
+  "label": "March 15, 2026",
+  "lead_title": "Measurement clarity is becoming a leadership function, not just an analyst task.",
+  "lead_summary": "As platforms evolve attribution definitions and blend upper-funnel, creator, and commerce surfaces, senior paid social leaders increasingly need to interpret variance and guide clients before confusion spreads.",
+  "stats": {
+    "platforms": 8,
+    "updates": 14,
+    "highUrgency": 3,
+    "sources": 8
+  },
+  "vp_tells": [
+    "Revisit KPI definitions across clients before comparing platform-reported trends year over year.",
+    "Push media teams to explain what changed structurally versus what changed operationally.",
+    "Tie creative systems more tightly to automation as manual controls continue shrinking.",
+    "Use platform blogs as source-of-truth hubs and summarize only the changes that affect buying decisions."
+  ],
+  "trend_scores": [
+    {
+      "name": "AI-led buying",
+      "score": 89
+    },
+    {
+      "name": "Measurement changes",
+      "score": 87
+    },
+    {
+      "name": "Creative importance",
+      "score": 85
+    },
+    {
+      "name": "Commerce integration",
+      "score": 72
+    },
+    {
+      "name": "UI / workflow change",
+      "score": 59
+    }
+  ],
+  "feeds": [
+    {
+      "platform": "Meta",
+      "title": "Meta Business News",
+      "url": "https://www.facebook.com/business/news",
+      "note": "Official source hub"
+    },
+    {
+      "platform": "TikTok",
+      "title": "TikTok Business Blog",
+      "url": "https://ads.tiktok.com/business/en/blog",
+      "note": "Official source hub"
+    },
+    {
+      "platform": "LinkedIn",
+      "title": "LinkedIn Marketing Blog",
+      "url": "https://www.linkedin.com/business/marketing/blog",
+      "note": "Official source hub"
+    },
+    {
+      "platform": "Pinterest",
+      "title": "Pinterest Business Blog",
+      "url": "https://business.pinterest.com/blog/",
+      "note": "Official source hub"
+    },
+    {
+      "platform": "Reddit",
+      "title": "Reddit for Business Blog",
+      "url": "https://www.business.reddit.com/blog",
+      "note": "Official source hub"
+    },
+    {
+      "platform": "Snapchat",
+      "title": "Snap for Business Blog",
+      "url": "https://forbusiness.snapchat.com/blog",
+      "note": "Official source hub"
+    },
+    {
+      "platform": "X",
+      "title": "X Business Blog",
+      "url": "https://business.x.com/en/blog",
+      "note": "Official source hub"
+    },
+    {
+      "platform": "YouTube / Google Ads",
+      "title": "Google Ads & Commerce Blog",
+      "url": "https://blog.google/products/ads-commerce/",
+      "note": "Official source hub"
+    }
+  ],
+  "articles": [
+    {
+      "platform": "Meta",
+      "section": "Lead story",
+      "headline": "Measurement resets are now part of Meta leadership briefings.",
+      "summary": "Attribution and reporting changes keep shifting the language teams use to evaluate performance.",
+      "impact": "Executives need consistency in how variance is explained.",
+      "action": "Standardize a KPI translation layer between platform reporting and client-facing dashboards.",
+      "url": "https://www.facebook.com/business/news/click-attribution",
+      "image": "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "platform": "TikTok",
+      "section": "Lead story",
+      "headline": "TikTok\u2019s automation roadmap keeps expanding while identity and governance tighten.",
+      "summary": "Automation and profile-readiness trends are converging into one operating model.",
+      "impact": "Paid social teams cannot stay disconnected from profile and content operations.",
+      "action": "Create a cross-functional owner map before launch bottlenecks emerge.",
+      "url": "https://ads.tiktok.com/business/en/blog/tiktok-product-preview",
+      "image": "https://images.unsplash.com/photo-1611605698335-8b1569810432?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "platform": "LinkedIn",
+      "section": "Briefing",
+      "headline": "LinkedIn keeps making account-level B2B planning easier to defend.",
+      "summary": "Measurement improvements support a more strategic, less lead-form-only discussion.",
+      "impact": "This strengthens LinkedIn in enterprise planning conversations.",
+      "action": "Anchor reporting to account movement, not just form fill volume.",
+      "url": "https://www.linkedin.com/business/marketing/blog/measurement/linkedin-introduces-b2b-attribution-and-analytics-with-marketing-partners",
+      "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "platform": "Pinterest",
+      "section": "Briefing",
+      "headline": "Pinterest continues moving down-funnel.",
+      "summary": "Search and shopping changes keep improving purchase-intent relevance.",
+      "impact": "Retail media and paid social planning overlap more here.",
+      "action": "Use Pinterest more intentionally in seasonal commerce strategies.",
+      "url": "https://business.pinterest.com/blog/show-up-first-with-pinterest-top-of-search-ads/",
+      "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "platform": "Reddit",
+      "section": "Briefing",
+      "headline": "Reddit\u2019s operator learning curve is shifting from setup to judgment.",
+      "summary": "As workflows simplify, contextual planning and testing decisions matter more.",
+      "impact": "Manual skill remains useful, but the edge is evolving.",
+      "action": "Train teams on decisioning, not just mechanics.",
+      "url": "https://www.business.reddit.com/blog/max-campaigns",
+      "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "platform": "X",
+      "section": "Briefing",
+      "headline": "X remains a selective video and real-time relevance play.",
+      "summary": "Creative portability lowers testing friction.",
+      "impact": "A smaller but potentially useful role remains in the mix.",
+      "action": "Apply only where contextual adjacency matters.",
+      "url": "https://business.x.com/en/blog/introducing-vertical-video-ads",
+      "image": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "platform": "Snapchat",
+      "section": "Briefing",
+      "headline": "Snap continues reframing itself as performance-capable.",
+      "summary": "Sponsored placements and measurement claims make the case easier.",
+      "impact": "Snap is more likely to earn testing dollars than before.",
+      "action": "Evaluate with incrementality framing, not just last-click bias.",
+      "url": "https://forbusiness.snapchat.com/blog/snapchat-2025-performance-advertising",
+      "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "platform": "YouTube / Google Ads",
+      "section": "Briefing",
+      "headline": "Demand Gen keeps collapsing old channel boundaries.",
+      "summary": "Visual demand capture increasingly overlaps with social video planning.",
+      "impact": "Silos between social, video, and Google teams create blind spots.",
+      "action": "Align planning language across teams before budget cycles.",
+      "url": "https://blog.google/products/ads-commerce/demand-gen-drop-january-2026/",
+      "image": "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?auto=format&fit=crop&w=1200&q=80"
+    }
+  ]
+}
