@@ -1,0 +1,31 @@
+{
+  "articles": [
+    {
+      "platform": "TikTok",
+      "section": "Lead story",
+      "url": "https://ads.tiktok.com/business/en/blog/tiktok-product-preview",
+      "headline": "What's New On TikTok For Brands: Q1 2026 Product Preview | TikTok For Business Blog",
+      "summary": "Check out our quarterly look at the latest product innovations designed to help brands and agencies drive business impact on TikTok.",
+      "image": "https://lf-tt4b.tiktokcdn.com/obj/i18nblog/tt4b_cms/en-US/tipdilz7wysq-63reVQqHHHiOCcKFWtVWbC.png",
+      "status": "ok"
+    },
+    {
+      "platform": "Meta",
+      "section": "Lead story",
+      "url": "https://www.facebook.com/business/news",
+      "headline": "Business News from Facebook, Instagram and Messenger",
+      "summary": "Get the latest updates, marketing trends and advertising tips in your inbox.",
+      "image": "https://static.xx.fbcdn.net/mci_ab/public/cms/?ab_b=e&ab_page=CMS&ab_entry=797459857892055&version=1773680588&transcode_extension=webp",
+      "status": "ok"
+    },
+    {
+      "platform": "LinkedIn",
+      "section": "Briefing",
+      "url": "https://www.linkedin.com/business/marketing/blog",
+      "headline": "Data-driven insights for the B2B marketer",
+      "summary": "Get the latest tips and best practices right in your inbox. Learn more >",
+      "image": "https://media.licdn.com/dms/image/v2/D4D08AQHvd0T61n0CdQ/croft-frontend-shrinkToFit1024/croft-frontend-shrinkToFit1024/0/1631557065472?e=2147483647&v=beta&t=AZMM9f_OM7eJLmse-v4Iruu6vAJDf-_POFggxuKQm_A",
+      "status": "ok"
+    }
+  ]
+}
