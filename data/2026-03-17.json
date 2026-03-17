@@ -1,7 +1,7 @@
 {
   "label": "March 17, 2026",
   "date_key": "2026-03-17",
-  "lead_title": "Automated edition for March 17, 2026 \u2014 full schema preserved so the homepage keeps rendering.",
+  "lead_title": "Automated edition for March 17, 2026 — full schema preserved so the homepage keeps rendering.",
   "lead_summary": "This edition confirms the automation pipeline can publish on schedule while preserving the full homepage JSON structure your site expects.",
   "stats": {
     "platforms": 8,
@@ -16,82 +16,27 @@
     "Prioritize source fidelity: matched headlines, matched links, and matched images are credibility essentials."
   ],
   "trend_scores": [
-    {
-      "name": "AI-led buying",
-      "score": 90
-    },
-    {
-      "name": "Measurement changes",
-      "score": 86
-    },
-    {
-      "name": "Creative importance",
-      "score": 88
-    },
-    {
-      "name": "Commerce integration",
-      "score": 77
-    },
-    {
-      "name": "UI / workflow change",
-      "score": 64
-    }
+    { "name": "AI-led buying", "score": 90 },
+    { "name": "Measurement changes", "score": 86 },
+    { "name": "Creative importance", "score": 88 },
+    { "name": "Commerce integration", "score": 77 },
+    { "name": "UI / workflow change", "score": 64 }
   ],
   "feeds": [
-    {
-      "platform": "Meta",
-      "title": "Meta Business News",
-      "url": "https://www.facebook.com/business/news",
-      "note": "Official source hub"
-    },
-    {
-      "platform": "TikTok",
-      "title": "TikTok Business Blog",
-      "url": "https://ads.tiktok.com/business/en/blog",
-      "note": "Official source hub"
-    },
-    {
-      "platform": "LinkedIn",
-      "title": "LinkedIn Marketing Blog",
-      "url": "https://www.linkedin.com/business/marketing/blog",
-      "note": "Official source hub"
-    },
-    {
-      "platform": "Pinterest",
-      "title": "Pinterest Business Blog",
-      "url": "https://business.pinterest.com/blog/",
-      "note": "Official source hub"
-    },
-    {
-      "platform": "Reddit",
-      "title": "Reddit for Business Blog",
-      "url": "https://www.business.reddit.com/blog",
-      "note": "Official source hub"
-    },
-    {
-      "platform": "Snapchat",
-      "title": "Snap for Business Blog",
-      "url": "https://forbusiness.snapchat.com/blog",
-      "note": "Official source hub"
-    },
-    {
-      "platform": "X",
-      "title": "X Business Blog",
-      "url": "https://business.x.com/en/blog",
-      "note": "Official source hub"
-    },
-    {
-      "platform": "YouTube / Google Ads",
-      "title": "Google Ads & Commerce Blog",
-      "url": "https://blog.google/products/ads-commerce/",
-      "note": "Official source hub"
-    }
+    { "platform": "Meta", "title": "Meta Business News", "url": "https://www.facebook.com/business/news", "note": "Official source hub" },
+    { "platform": "TikTok", "title": "TikTok Business Blog", "url": "https://ads.tiktok.com/business/en/blog", "note": "Official source hub" },
+    { "platform": "LinkedIn", "title": "LinkedIn Marketing Blog", "url": "https://www.linkedin.com/business/marketing/blog", "note": "Official source hub" },
+    { "platform": "Pinterest", "title": "Pinterest Business Blog", "url": "https://business.pinterest.com/blog/", "note": "Official source hub" },
+    { "platform": "Reddit", "title": "Reddit for Business Blog", "url": "https://www.business.reddit.com/blog", "note": "Official source hub" },
+    { "platform": "Snapchat", "title": "Snap for Business Blog", "url": "https://forbusiness.snapchat.com/blog", "note": "Official source hub" },
+    { "platform": "X", "title": "X Business Blog", "url": "https://business.x.com/en/blog", "note": "Official source hub" },
+    { "platform": "YouTube / Google Ads", "title": "Google Ads & Commerce Blog", "url": "https://blog.google/products/ads-commerce/", "note": "Official source hub" }
   ],
   "articles": [
     {
       "platform": "Meta",
       "section": "Lead story",
-      "headline": "Automation can publish on schedule \u2014 but only if it preserves the full homepage schema.",
+      "headline": "Automation can publish on schedule — but only if it preserves the full homepage schema.",
       "summary": "The scheduled run succeeded, but the first automated JSON was too minimal for the homepage renderer.",
       "impact": "Any workflow that overwrites latest.json must include stats, trend scores, feeds, and article arrays.",
       "action": "Keep a stable JSON contract for the site and only swap content values inside that contract.",
@@ -112,7 +57,7 @@
       "platform": "LinkedIn",
       "section": "Briefing",
       "headline": "Company-level attribution strengthens the B2B story.",
-      "summary": "LinkedIn\u2019s Company Intelligence API gives marketers a better way to discuss account-level influence and buying-group engagement.",
+      "summary": "LinkedIn’s Company Intelligence API gives marketers a better way to discuss account-level influence and buying-group engagement.",
       "impact": "This moves the conversation beyond lead counts and toward pipeline influence and revenue relevance.",
       "action": "Connect LinkedIn reporting to CRM, buying groups, and account-based measurement narratives.",
       "url": "https://www.linkedin.com/business/marketing/blog",
@@ -141,7 +86,7 @@
     {
       "platform": "X",
       "section": "Briefing",
-      "headline": "Vertical video continues to define X\u2019s ad story.",
+      "headline": "Vertical video continues to define X’s ad story.",
       "summary": "X is easier to position as a fast-moving contextual video extension, especially when creative can be reused from other vertical video ecosystems.",
       "impact": "Production friction is falling, which makes selective testing easier.",
       "action": "Use X selectively where speed, relevance, and portability create an advantage.",
@@ -152,7 +97,7 @@
       "platform": "Snapchat",
       "section": "Briefing",
       "headline": "Sponsored Snaps make Snap more defensible in performance planning.",
-      "summary": "Snap\u2019s more direct-response positioning means it belongs in more app and commerce testing plans than it did a few years ago.",
+      "summary": "Snap’s more direct-response positioning means it belongs in more app and commerce testing plans than it did a few years ago.",
       "impact": "The platform fits more performance conversations, especially with the right audience.",
       "action": "Test with sharper hooks and message discipline due to the personal placement environment.",
       "url": "https://forbusiness.snapchat.com/blog",
