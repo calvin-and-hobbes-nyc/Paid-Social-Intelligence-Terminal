@@ -13,15 +13,14 @@ def main():
     if not articles_in:
         raise ValueError("source_preview.json has no articles")
 
-    # Use first two as lead/front-page style stories, rest as briefings
-    lead_articles = articles_in[:2]
-    briefing_articles = articles_in[2:]
+    first_article = articles_in[0]
+    second_article = articles_in[1] if len(articles_in) > 1 else articles_in[0]
 
     edition = {
         "label": "March 17, 2026",
         "date_key": "2026-03-17",
-        "lead_title": "Daily paid social platform changes require stronger interpretation, clearer operator guidance, and tighter decision discipline.",
-        "lead_summary": "This edition is built from real source metadata and preserves the full homepage schema your site expects.",
+        "lead_title": first_article.get("headline", "Lead story"),
+        "lead_summary": first_article.get("summary", ""),
         "stats": {
             "platforms": len({a.get("platform", "") for a in articles_in}),
             "updates": len(articles_in),
