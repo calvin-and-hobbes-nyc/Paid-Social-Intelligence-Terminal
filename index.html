@@ -305,12 +305,20 @@ a.inline:hover,.brief a:hover,.feed a:hover{text-decoration:underline}
       <div class="carousel-wrap" id="feedCarouselWrap"><div class="carousel-viewport"><div class="carousel-track" id="feedList"></div></div><div class="carousel-arrows"><button class="carousel-arrow left" id="feedPrev" aria-label="Previous source">‹</button><button class="carousel-arrow right" id="feedNext" aria-label="Next source">›</button></div><div class="carousel-dots" id="feedDots"></div></div>
     </section>
 
-    <div class="footer-note">This build shows only the selected edition. Changing the date replaces the whole page content instead of stacking multiple days. It still does not auto-update daily on its own; true automation requires a data source or update workflow feeding new content into the file.</div>
+    <div class="footer-note">JSON-powered test homepage. If this page renders correctly, we can safely swap the same data-driven logic into the live homepage.</div>
   </div>
 </div>
 
 <script>
-const snapshots = {"2026-03-16": {"label": "March 16, 2026", "lead_title": "Automation is rewriting paid social operations \u2014 and creative plus signal quality are becoming the real levers.", "lead_summary": "Across Meta, TikTok, Reddit, Pinterest, Snap, X, and YouTube / Google Ads, the trend is clear: less manual campaign architecture, more model-led delivery, more blended commerce and creator workflows, and more pressure on leadership teams to explain measurement shifts clearly.", "stats": {"platforms": 8, "updates": 16, "highUrgency": 4, "sources": 8}, "vp_tells": ["Re-baseline Meta reporting before clients overreact to attribution-definition changes.", "Treat TikTok profile governance and creator coordination as media readiness, not side operations.", "Pull YouTube Demand Gen into social and visual-performance planning, not only Google silos.", "Coach operators toward signal quality, creative systems, experimentation, and executive storytelling."], "trend_scores": [{"name": "AI-led buying", "score": 92}, {"name": "Measurement changes", "score": 84}, {"name": "Creative importance", "score": 88}, {"name": "Commerce integration", "score": 76}, {"name": "UI / workflow change", "score": 61}], "feeds": [{"platform": "Meta", "title": "Meta Business News", "url": "https://www.facebook.com/business/news", "note": "Official source hub"}, {"platform": "TikTok", "title": "TikTok Business Blog", "url": "https://ads.tiktok.com/business/en/blog", "note": "Official source hub"}, {"platform": "LinkedIn", "title": "LinkedIn Marketing Blog", "url": "https://www.linkedin.com/business/marketing/blog", "note": "Official source hub"}, {"platform": "Pinterest", "title": "Pinterest Business Blog", "url": "https://business.pinterest.com/blog/", "note": "Official source hub"}, {"platform": "Reddit", "title": "Reddit for Business Blog", "url": "https://www.business.reddit.com/blog", "note": "Official source hub"}, {"platform": "Snapchat", "title": "Snap for Business Blog", "url": "https://forbusiness.snapchat.com/blog", "note": "Official source hub"}, {"platform": "X", "title": "X Business Blog", "url": "https://business.x.com/en/blog", "note": "Official source hub"}, {"platform": "YouTube / Google Ads", "title": "Google Ads & Commerce Blog", "url": "https://blog.google/products/ads-commerce/", "note": "Official source hub"}], "articles": [{"platform": "Meta", "section": "Lead story", "headline": "Meta narrows click-through attribution and forces teams to reset the story they tell.", "summary": "Meta is redefining click-through attribution for website and in-store conversions around actual link clicks, while moving social interactions like likes, shares, and saves into engage-through views.", "impact": "Historical comparisons may look weaker even when underlying performance is stable. This is a client-education and benchmark-management issue as much as a platform issue.", "action": "Re-baseline benchmarks, distinguish click and engagement narratives clearly, and pair platform reporting with stronger business framing when needed.", "url": "https://www.facebook.com/business/news/click-attribution", "image": "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80"}, {"platform": "TikTok", "section": "Lead story", "headline": "TikTok is becoming more operationally integrated across paid, creator, commerce, and profile governance.", "summary": "Recent product updates expand Smart+, Market Scope, and creator workflows, while profile-based identity changes make owned presence and verification more important to campaign readiness.", "impact": "Teams now need tighter alignment between paid social, organic social, creator management, and brand governance.", "action": "Keep an automation testing lane, but treat profile health, verification, and content operations as part of your media infrastructure.", "url": "https://ads.tiktok.com/business/en/blog/tiktok-product-preview", "image": "https://images.unsplash.com/photo-1611605698335-8b1569810432?auto=format&fit=crop&w=1200&q=80"}, {"platform": "LinkedIn", "section": "Briefing", "headline": "Company-level attribution strengthens the B2B story.", "summary": "LinkedIn\u2019s Company Intelligence API gives marketers a better way to discuss account-level influence and buying-group engagement.", "impact": "This moves the conversation beyond lead counts and toward pipeline influence and revenue relevance.", "action": "Connect LinkedIn reporting to CRM, buying groups, and account-based measurement narratives.", "url": "https://www.linkedin.com/business/marketing/blog/measurement/linkedin-introduces-b2b-attribution-and-analytics-with-marketing-partners", "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"}, {"platform": "Pinterest", "section": "Briefing", "headline": "Top of Search pushes Pinterest further into demand capture.", "summary": "Pinterest is getting more useful for lower-funnel, high-intent moments, especially when paired with clean shopping feeds.", "impact": "The platform should be planned more aggressively in the right retail and seasonal categories.", "action": "Pair premium search placements with stronger shopping-feed readiness and conversion pathways.", "url": "https://business.pinterest.com/blog/show-up-first-with-pinterest-top-of-search-ads/", "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"}, {"platform": "Reddit", "section": "Briefing", "headline": "Reddit automation expands, but community context still matters.", "summary": "Max campaigns make scaling easier, but operators should still test whether community-native planning outperforms automation in nuanced categories.", "impact": "Automation reduces setup friction, but strategic context remains a real edge.", "action": "Benchmark automated and manual approaches before standardizing.", "url": "https://www.business.reddit.com/blog/max-campaigns", "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"}, {"platform": "X", "section": "Briefing", "headline": "Vertical video continues to define X\u2019s ad story.", "summary": "X is easier to position as a fast-moving contextual video extension, especially when creative can be reused from other vertical video ecosystems.", "impact": "Production friction is falling, which makes selective testing easier.", "action": "Use X selectively where speed, relevance, and portability create an advantage.", "url": "https://business.x.com/en/blog/introducing-vertical-video-ads", "image": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80"}, {"platform": "Snapchat", "section": "Briefing", "headline": "Sponsored Snaps make Snap more defensible in performance planning.", "summary": "Snap\u2019s more direct-response positioning means it belongs in more app and commerce testing plans than it did a few years ago.", "impact": "The platform fits more performance conversations, especially with the right audience.", "action": "Test with sharper hooks and message discipline due to the personal placement environment.", "url": "https://forbusiness.snapchat.com/blog/snapchat-2025-performance-advertising", "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80"}, {"platform": "YouTube / Google Ads", "section": "Briefing", "headline": "Demand Gen and Shorts keep looking more like paid social.", "summary": "As the surfaces become more visual, native, and commerce-oriented, planning teams should integrate them more tightly with broader social and creator strategy.", "impact": "This belongs in social/video planning discussions, not only Google channel silos.", "action": "Define distinct roles for Shorts, YouTube, Discover, Gmail, and CTV inside one visual demand strategy.", "url": "https://blog.google/products/ads-commerce/demand-gen-drop-january-2026/", "image": "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?auto=format&fit=crop&w=1200&q=80"}]}, "2026-03-15": {"label": "March 15, 2026", "lead_title": "Measurement clarity is becoming a leadership function, not just an analyst task.", "lead_summary": "As platforms evolve attribution definitions and blend upper-funnel, creator, and commerce surfaces, senior paid social leaders increasingly need to interpret variance and guide clients before confusion spreads.", "stats": {"platforms": 8, "updates": 14, "highUrgency": 3, "sources": 8}, "vp_tells": ["Revisit KPI definitions across clients before comparing platform-reported trends year over year.", "Push media teams to explain what changed structurally versus what changed operationally.", "Tie creative systems more tightly to automation as manual controls continue shrinking.", "Use platform blogs as source-of-truth hubs and summarize only the changes that affect buying decisions."], "trend_scores": [{"name": "AI-led buying", "score": 89}, {"name": "Measurement changes", "score": 87}, {"name": "Creative importance", "score": 85}, {"name": "Commerce integration", "score": 72}, {"name": "UI / workflow change", "score": 59}], "feeds": [{"platform": "Meta", "title": "Meta Business News", "url": "https://www.facebook.com/business/news", "note": "Official source hub"}, {"platform": "TikTok", "title": "TikTok Business Blog", "url": "https://ads.tiktok.com/business/en/blog", "note": "Official source hub"}, {"platform": "LinkedIn", "title": "LinkedIn Marketing Blog", "url": "https://www.linkedin.com/business/marketing/blog", "note": "Official source hub"}, {"platform": "Pinterest", "title": "Pinterest Business Blog", "url": "https://business.pinterest.com/blog/", "note": "Official source hub"}, {"platform": "Reddit", "title": "Reddit for Business Blog", "url": "https://www.business.reddit.com/blog", "note": "Official source hub"}, {"platform": "Snapchat", "title": "Snap for Business Blog", "url": "https://forbusiness.snapchat.com/blog", "note": "Official source hub"}, {"platform": "X", "title": "X Business Blog", "url": "https://business.x.com/en/blog", "note": "Official source hub"}, {"platform": "YouTube / Google Ads", "title": "Google Ads & Commerce Blog", "url": "https://blog.google/products/ads-commerce/", "note": "Official source hub"}], "articles": [{"platform": "Meta", "section": "Lead story", "headline": "Measurement resets are now part of Meta leadership briefings.", "summary": "Attribution and reporting changes keep shifting the language teams use to evaluate performance.", "impact": "Executives need consistency in how variance is explained.", "action": "Standardize a KPI translation layer between platform reporting and client-facing dashboards.", "url": "https://www.facebook.com/business/news/click-attribution", "image": "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80"}, {"platform": "TikTok", "section": "Lead story", "headline": "TikTok\u2019s automation roadmap keeps expanding while identity and governance tighten.", "summary": "Automation and profile-readiness trends are converging into one operating model.", "impact": "Paid social teams cannot stay disconnected from profile and content operations.", "action": "Create a cross-functional owner map before launch bottlenecks emerge.", "url": "https://ads.tiktok.com/business/en/blog/tiktok-product-preview", "image": "https://images.unsplash.com/photo-1611605698335-8b1569810432?auto=format&fit=crop&w=1200&q=80"}, {"platform": "LinkedIn", "section": "Briefing", "headline": "LinkedIn keeps making account-level B2B planning easier to defend.", "summary": "Measurement improvements support a more strategic, less lead-form-only discussion.", "impact": "This strengthens LinkedIn in enterprise planning conversations.", "action": "Anchor reporting to account movement, not just form fill volume.", "url": "https://www.linkedin.com/business/marketing/blog/measurement/linkedin-introduces-b2b-attribution-and-analytics-with-marketing-partners", "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"}, {"platform": "Pinterest", "section": "Briefing", "headline": "Pinterest continues moving down-funnel.", "summary": "Search and shopping changes keep improving purchase-intent relevance.", "impact": "Retail media and paid social planning overlap more here.", "action": "Use Pinterest more intentionally in seasonal commerce strategies.", "url": "https://business.pinterest.com/blog/show-up-first-with-pinterest-top-of-search-ads/", "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"}, {"platform": "Reddit", "section": "Briefing", "headline": "Reddit\u2019s operator learning curve is shifting from setup to judgment.", "summary": "As workflows simplify, contextual planning and testing decisions matter more.", "impact": "Manual skill remains useful, but the edge is evolving.", "action": "Train teams on decisioning, not just mechanics.", "url": "https://www.business.reddit.com/blog/max-campaigns", "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"}, {"platform": "X", "section": "Briefing", "headline": "X remains a selective video and real-time relevance play.", "summary": "Creative portability lowers testing friction.", "impact": "A smaller but potentially useful role remains in the mix.", "action": "Apply only where contextual adjacency matters.", "url": "https://business.x.com/en/blog/introducing-vertical-video-ads", "image": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80"}, {"platform": "Snapchat", "section": "Briefing", "headline": "Snap continues reframing itself as performance-capable.", "summary": "Sponsored placements and measurement claims make the case easier.", "impact": "Snap is more likely to earn testing dollars than before.", "action": "Evaluate with incrementality framing, not just last-click bias.", "url": "https://forbusiness.snapchat.com/blog/snapchat-2025-performance-advertising", "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80"}, {"platform": "YouTube / Google Ads", "section": "Briefing", "headline": "Demand Gen keeps collapsing old channel boundaries.", "summary": "Visual demand capture increasingly overlaps with social video planning.", "impact": "Silos between social, video, and Google teams create blind spots.", "action": "Align planning language across teams before budget cycles.", "url": "https://blog.google/products/ads-commerce/demand-gen-drop-january-2026/", "image": "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?auto=format&fit=crop&w=1200&q=80"}]}};
+async function loadJSON(path) {
+  const res = await fetch(path, {cache:'no-store'});
+  if (!res.ok) throw new Error(`Failed to load ${path} (${res.status})`);
+  return await res.json();
+}
+
+let currentEdition = null;
+let archiveIndex = [];
+
 const logos = {
   "Meta": '<svg viewBox="0 0 64 64" fill="none"><path d="M14 43c0-12 4-22 10-22 5 0 9 8 13 17 3-7 7-17 13-17 6 0 10 10 10 22" stroke="#111111" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   "TikTok": '<svg viewBox="0 0 64 64" fill="none"><path d="M39 14v22.5a10.5 10.5 0 1 1-8-10.2" stroke="#111111" stroke-width="8" stroke-linecap="round"/><path d="M39 14c2 6 7 10 13 11" stroke="#111111" stroke-width="8" stroke-linecap="round"/></svg>',
@@ -327,19 +335,27 @@ const mobileDateSelect = document.getElementById('mobileDateSelect');
 const mobileSearchInput = document.getElementById('mobileSearchInput');
 
 const dateSelect = document.getElementById('dateSelect');
-Object.keys(snapshots).sort().reverse().forEach(key => {
-  const opt = document.createElement('option');
-  opt.value = key;
-  opt.textContent = snapshots[key].label;
-  dateSelect.appendChild(opt);
 
-  const opt2 = document.createElement('option');
-  opt2.value = key;
-  opt2.textContent = snapshots[key].label;
-  mobileDateSelect.appendChild(opt2);
-});
-dateSelect.value = Object.keys(snapshots).sort().reverse()[0];
-mobileDateSelect.value = dateSelect.value;
+async function populateArchive() {
+  archiveIndex = await loadJSON('data/archive.json');
+  dateSelect.innerHTML = '';
+  mobileDateSelect.innerHTML = '';
+  archiveIndex.forEach(item => {
+    const opt = document.createElement('option');
+    opt.value = item.file;
+    opt.textContent = item.label;
+    dateSelect.appendChild(opt);
+
+    const opt2 = document.createElement('option');
+    opt2.value = item.file;
+    opt2.textContent = item.label;
+    mobileDateSelect.appendChild(opt2);
+  });
+  if (archiveIndex.length) {
+    dateSelect.value = archiveIndex[0].file;
+    mobileDateSelect.value = archiveIndex[0].file;
+  }
+}
 
 function fill(id, html) { document.getElementById(id).innerHTML = html; }
 
@@ -425,10 +441,9 @@ function wireExpanders(){
   });
 }
 
-function render(selectedKey) {
-  const selected = snapshots[selectedKey];
+function render(selected) {
   const query = document.getElementById('searchInput').value.trim().toLowerCase();
-  mobileDateSelect.value = selectedKey;
+  mobileDateSelect.value = dateSelect.value;
   mobileSearchInput.value = document.getElementById('searchInput').value;
   document.getElementById('editionDate').textContent = selected.label;
   document.getElementById('leadTitle').textContent = selected.lead_title;
@@ -448,7 +463,7 @@ function render(selectedKey) {
   selected.vp_tells.forEach(item => {
     const div = document.createElement('div');
     div.className = 'brief';
-    div.innerHTML = `<h4>${item}</h4><p>Leadership guidance for the selected edition.</p>`;
+    div.innerHTML = `<h4>${item}</h4>`;
     vpRail.appendChild(div);
   });
 
@@ -589,23 +604,46 @@ if (window.innerWidth > 1200) {
   feedCarousel.rebuild();
 }
 
-dateSelect.addEventListener('change', e => {
+async function loadAndRender(fileName) {
+  currentEdition = await loadJSON('data/' + fileName);
+  render(currentEdition);
+}
+
+dateSelect.addEventListener('change', async e => {
   mobileDateSelect.value = e.target.value;
-  render(e.target.value);
+  await loadAndRender(e.target.value);
 });
-mobileDateSelect.addEventListener('change', e => {
+
+mobileDateSelect.addEventListener('change', async e => {
   dateSelect.value = e.target.value;
-  render(e.target.value);
+  await loadAndRender(e.target.value);
 });
+
 document.getElementById('searchInput').addEventListener('input', e => {
   mobileSearchInput.value = e.target.value;
-  render(dateSelect.value);
+  if (currentEdition) render(currentEdition);
 });
+
 mobileSearchInput.addEventListener('input', e => {
   document.getElementById('searchInput').value = e.target.value;
-  render(dateSelect.value);
+  if (currentEdition) render(currentEdition);
 });
-render(dateSelect.value);
+
+(async function initJSONHomepage(){
+  try {
+    await populateArchive();
+    if (dateSelect.value) {
+      await loadAndRender(dateSelect.value);
+    }
+  } catch (err) {
+    console.error('Failed to initialize JSON homepage', err);
+    const note = document.querySelector('.footer-note');
+    if (note) {
+      note.textContent = 'JSON test page error: ' + err.message;
+      note.style.color = '#8b1e1e';
+    }
+  }
+})();
 </script>
 </body>
 </html>
