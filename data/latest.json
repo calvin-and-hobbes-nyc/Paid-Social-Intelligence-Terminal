@@ -9,164 +9,37 @@
     "highUrgency": 4,
     "sources": 8
   },
-  "vp_tells": [
-    "Re-baseline Meta reporting before clients overreact to attribution-definition changes.",
-    "Treat TikTok profile governance and creator coordination as media readiness, not side operations.",
-    "Pull YouTube Demand Gen into social and visual-performance planning, not only Google silos.",
-    "Coach operators toward signal quality, creative systems, experimentation, and executive storytelling."
-  ],
-  "trend_scores": [
-    {
-      "name": "AI-led buying",
-      "score": 92
-    },
-    {
-      "name": "Measurement changes",
-      "score": 84
-    },
-    {
-      "name": "Creative importance",
-      "score": 88
-    },
-    {
-      "name": "Commerce integration",
-      "score": 76
-    },
-    {
-      "name": "UI / workflow change",
-      "score": 61
-    }
-  ],
-  "feeds": [
-    {
-      "platform": "Meta",
-      "title": "Meta Business News",
-      "url": "https://www.facebook.com/business/news",
-      "note": "Official source hub"
-    },
-    {
-      "platform": "TikTok",
-      "title": "TikTok Business Blog",
-      "url": "https://ads.tiktok.com/business/en/blog",
-      "note": "Official source hub"
-    },
-    {
-      "platform": "LinkedIn",
-      "title": "LinkedIn Marketing Blog",
-      "url": "https://www.linkedin.com/business/marketing/blog",
-      "note": "Official source hub"
-    },
-    {
-      "platform": "Pinterest",
-      "title": "Pinterest Business Blog",
-      "url": "https://business.pinterest.com/blog/",
-      "note": "Official source hub"
-    },
-    {
-      "platform": "Reddit",
-      "title": "Reddit for Business Blog",
-      "url": "https://www.business.reddit.com/blog",
-      "note": "Official source hub"
-    },
-    {
-      "platform": "Snapchat",
-      "title": "Snap for Business Blog",
-      "url": "https://forbusiness.snapchat.com/blog",
-      "note": "Official source hub"
-    },
-    {
-      "platform": "X",
-      "title": "X Business Blog",
-      "url": "https://business.x.com/en/blog",
-      "note": "Official source hub"
-    },
-    {
-      "platform": "YouTube / Google Ads",
-      "title": "Google Ads & Commerce Blog",
-      "url": "https://blog.google/products/ads-commerce/",
-      "note": "Official source hub"
-    }
-  ],
   "articles": [
     {
       "platform": "Meta",
-      "section": "Lead story",
       "headline": "Meta narrows click-through attribution and forces teams to reset the story they tell.",
-      "summary": "Meta is redefining click-through attribution for website and in-store conversions around actual link clicks, while moving social interactions like likes, shares, and saves into engage-through views.",
-      "impact": "Historical comparisons may look weaker even when underlying performance is stable. This is a client-education and benchmark-management issue as much as a platform issue.",
-      "action": "Re-baseline benchmarks, distinguish click and engagement narratives clearly, and pair platform reporting with stronger business framing when needed.",
+      "summary": "Meta is redefining click-through attribution for website and in-store conversions around actual link clicks, while moving social interactions into engage-through views.",
       "url": "https://www.facebook.com/business/news/click-attribution",
       "image": "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80"
     },
     {
       "platform": "TikTok",
-      "section": "Lead story",
       "headline": "TikTok is becoming more operationally integrated across paid, creator, commerce, and profile governance.",
-      "summary": "Recent product updates expand Smart+, Market Scope, and creator workflows, while profile-based identity changes make owned presence and verification more important to campaign readiness.",
-      "impact": "Teams now need tighter alignment between paid social, organic social, creator management, and brand governance.",
-      "action": "Keep an automation testing lane, but treat profile health, verification, and content operations as part of your media infrastructure.",
+      "summary": "Recent product updates expand Smart+, Market Scope, and creator workflows, while profile-based identity changes make owned presence more important.",
       "url": "https://ads.tiktok.com/business/en/blog/tiktok-product-preview",
       "image": "https://images.unsplash.com/photo-1611605698335-8b1569810432?auto=format&fit=crop&w=1200&q=80"
-    },
+    }
+  ],
+  "briefings": [
     {
       "platform": "LinkedIn",
-      "section": "Briefing",
       "headline": "Company-level attribution strengthens the B2B story.",
-      "summary": "LinkedIn\u2019s Company Intelligence API gives marketers a better way to discuss account-level influence and buying-group engagement.",
-      "impact": "This moves the conversation beyond lead counts and toward pipeline influence and revenue relevance.",
-      "action": "Connect LinkedIn reporting to CRM, buying groups, and account-based measurement narratives.",
-      "url": "https://www.linkedin.com/business/marketing/blog/measurement/linkedin-introduces-b2b-attribution-and-analytics-with-marketing-partners",
-      "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+      "summary": "LinkedIn\u2019s Company Intelligence API gives marketers a better way to discuss account-level influence and buying-group engagement."
     },
     {
       "platform": "Pinterest",
-      "section": "Briefing",
       "headline": "Top of Search pushes Pinterest further into demand capture.",
-      "summary": "Pinterest is getting more useful for lower-funnel, high-intent moments, especially when paired with clean shopping feeds.",
-      "impact": "The platform should be planned more aggressively in the right retail and seasonal categories.",
-      "action": "Pair premium search placements with stronger shopping-feed readiness and conversion pathways.",
-      "url": "https://business.pinterest.com/blog/show-up-first-with-pinterest-top-of-search-ads/",
-      "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
+      "summary": "Pinterest is getting more useful for lower-funnel, high-intent moments, especially when paired with clean shopping feeds."
     },
     {
       "platform": "Reddit",
-      "section": "Briefing",
       "headline": "Reddit automation expands, but community context still matters.",
-      "summary": "Max campaigns make scaling easier, but operators should still test whether community-native planning outperforms automation in nuanced categories.",
-      "impact": "Automation reduces setup friction, but strategic context remains a real edge.",
-      "action": "Benchmark automated and manual approaches before standardizing.",
-      "url": "https://www.business.reddit.com/blog/max-campaigns",
-      "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
-    },
-    {
-      "platform": "X",
-      "section": "Briefing",
-      "headline": "Vertical video continues to define X\u2019s ad story.",
-      "summary": "X is easier to position as a fast-moving contextual video extension, especially when creative can be reused from other vertical video ecosystems.",
-      "impact": "Production friction is falling, which makes selective testing easier.",
-      "action": "Use X selectively where speed, relevance, and portability create an advantage.",
-      "url": "https://business.x.com/en/blog/introducing-vertical-video-ads",
-      "image": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80"
-    },
-    {
-      "platform": "Snapchat",
-      "section": "Briefing",
-      "headline": "Sponsored Snaps make Snap more defensible in performance planning.",
-      "summary": "Snap\u2019s more direct-response positioning means it belongs in more app and commerce testing plans than it did a few years ago.",
-      "impact": "The platform fits more performance conversations, especially with the right audience.",
-      "action": "Test with sharper hooks and message discipline due to the personal placement environment.",
-      "url": "https://forbusiness.snapchat.com/blog/snapchat-2025-performance-advertising",
-      "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80"
-    },
-    {
-      "platform": "YouTube / Google Ads",
-      "section": "Briefing",
-      "headline": "Demand Gen and Shorts keep looking more like paid social.",
-      "summary": "As the surfaces become more visual, native, and commerce-oriented, planning teams should integrate them more tightly with broader social and creator strategy.",
-      "impact": "This belongs in social/video planning discussions, not only Google channel silos.",
-      "action": "Define distinct roles for Shorts, YouTube, Discover, Gmail, and CTV inside one visual demand strategy.",
-      "url": "https://blog.google/products/ads-commerce/demand-gen-drop-january-2026/",
-      "image": "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?auto=format&fit=crop&w=1200&q=80"
+      "summary": "Max campaigns make scaling easier, but operators should still test whether community-native planning outperforms automation."
     }
   ]
 }
