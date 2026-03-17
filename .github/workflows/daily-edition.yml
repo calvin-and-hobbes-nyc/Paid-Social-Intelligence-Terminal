@@ -14,9 +14,9 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Set today date
+      - name: Set today date in Eastern Time
         id: today
-        run: echo "today=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+        run: echo "today=$(TZ=America/New_York date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
 
       - name: Create dated edition file
         run: |
