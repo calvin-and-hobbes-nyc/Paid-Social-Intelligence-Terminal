@@ -305,7 +305,6 @@ a.inline:hover,.brief a:hover,.feed a:hover{text-decoration:underline}
       <div class="carousel-wrap" id="feedCarouselWrap"><div class="carousel-viewport"><div class="carousel-track" id="feedList"></div></div><div class="carousel-arrows"><button class="carousel-arrow left" id="feedPrev" aria-label="Previous source">‹</button><button class="carousel-arrow right" id="feedNext" aria-label="Next source">›</button></div><div class="carousel-dots" id="feedDots"></div></div>
     </section>
 
-    <div class="footer-note">JSON-powered test homepage. If this page renders correctly, we can safely swap the same data-driven logic into the live homepage.</div>
   </div>
 </div>
 
@@ -340,6 +339,7 @@ async function populateArchive() {
   archiveIndex = await loadJSON('data/archive.json');
   dateSelect.innerHTML = '';
   mobileDateSelect.innerHTML = '';
+
   archiveIndex.forEach(item => {
     const opt = document.createElement('option');
     opt.value = item.file;
@@ -351,9 +351,12 @@ async function populateArchive() {
     opt2.textContent = item.label;
     mobileDateSelect.appendChild(opt2);
   });
-  if (archiveIndex.length) {
-    dateSelect.value = archiveIndex[0].file;
-    mobileDateSelect.value = archiveIndex[0].file;
+
+  const latestItem = archiveIndex.find(item => item.file === 'latest.json') || archiveIndex[0];
+
+  if (latestItem) {
+    dateSelect.value = latestItem.file;
+    mobileDateSelect.value = latestItem.file;
   }
 }
 
@@ -609,12 +612,22 @@ async function loadAndRender(fileName) {
   render(currentEdition);
 }
 
-dateSelect.addEventListener('change', async e => {
+dateSelect.addEventListener('change', async (e) => {
+  const file = e.target.value;
+  currentEdition = await loadJSON(`data/${file}`);
+  renderEdition(currentEdition);
+  mobileDateSelect.value = file;
+});
   mobileDateSelect.value = e.target.value;
   await loadAndRender(e.target.value);
 });
 
-mobileDateSelect.addEventListener('change', async e => {
+mobileDateSelect.addEventListener('change', async (e) => {
+  const file = e.target.value;
+  currentEdition = await loadJSON(`data/${file}`);
+  renderEdition(currentEdition);
+  dateSelect.value = file;
+});
   dateSelect.value = e.target.value;
   await loadAndRender(e.target.value);
 });
@@ -632,16 +645,12 @@ mobileSearchInput.addEventListener('input', e => {
 (async function initJSONHomepage(){
   try {
     await populateArchive();
-    if (dateSelect.value) {
-      await loadAndRender(dateSelect.value);
-    }
+    currentEdition = await loadJSON('data/latest.json');
+    renderEdition(currentEdition);
+    dateSelect.value = 'latest.json';
+    mobileDateSelect.value = 'latest.json';
   } catch (err) {
     console.error('Failed to initialize JSON homepage', err);
-    const note = document.querySelector('.footer-note');
-    if (note) {
-      note.textContent = 'JSON test page error: ' + err.message;
-      note.style.color = '#8b1e1e';
-    }
   }
 })();
 </script>
