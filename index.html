@@ -26,6 +26,10 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,"Times N
 .brand{font-family:Arial,Helvetica,sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:700}
 .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 select,input{border:1px solid var(--rule);background:#fff;color:var(--ink);border-radius:10px;padding:10px 12px;font-size:14px;outline:none;font-family:Arial,Helvetica,sans-serif}
+#dateSelect,
+#mobileDateSelect{
+  min-width:170px;
+}
 input{min-width:260px}
 .navlinks{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .navlinks a{font-family:Arial,Helvetica,sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);text-decoration:none;padding:8px 0}
@@ -221,12 +225,12 @@ a.inline:hover,.brief a:hover,.feed a:hover{text-decoration:underline}
       </div>
     </div>
 
-    <div class="mobile-mini-bar"><div class="controls"><select id="mobileDateSelect"></select><input id="mobileSearchInput" type="text" placeholder="Search..." /></div></div>
+    <div class="mobile-mini-bar"><div class="controls"><input type="date" id="mobileDateSelect"><input id="mobileSearchInput" type="text" placeholder="Search..." /></div></div>
 
     <div class="topbar">
       <div class="brand">Hobbes' Paid Social Intelligence Terminal</div>
       <div class="controls">
-        <select id="dateSelect"></select>
+        <input type="date" id="dateSelect">
         <input id="searchInput" type="text" placeholder="Search platform, headline, impact, strategy..." />
       </div>
     </div>
@@ -337,26 +341,34 @@ const dateSelect = document.getElementById('dateSelect');
 
 async function populateArchive() {
   archiveIndex = await loadJSON('data/archive.json');
-  dateSelect.innerHTML = '';
-  mobileDateSelect.innerHTML = '';
+
+  const archiveByDate = {};
+  const validDates = [];
 
   archiveIndex.forEach(item => {
-    const opt = document.createElement('option');
-    opt.value = item.file;
-    opt.textContent = item.label;
-    dateSelect.appendChild(opt);
-
-    const opt2 = document.createElement('option');
-    opt2.value = item.file;
-    opt2.textContent = item.label;
-    mobileDateSelect.appendChild(opt2);
+    archiveByDate[item.date_key] = item.file;
+    validDates.push(item.date_key);
   });
 
-  const latestItem = archiveIndex.find(item => item.file === 'latest.json') || archiveIndex[0];
+  window.archiveByDate = archiveByDate;
 
-  if (latestItem) {
-    dateSelect.value = latestItem.file;
-    mobileDateSelect.value = latestItem.file;
+  validDates.sort();
+
+  if (validDates.length) {
+    const minDate = validDates[0];
+    const maxDate = validDates[validDates.length - 1];
+
+    dateSelect.min = minDate;
+    dateSelect.max = maxDate;
+    mobileDateSelect.min = minDate;
+    mobileDateSelect.max = maxDate;
+
+    const latestItem = archiveIndex.find(item => item.file === 'latest.json') || archiveIndex[0];
+
+    if (latestItem) {
+      dateSelect.value = latestItem.date_key;
+      mobileDateSelect.value = latestItem.date_key;
+    }
   }
 }
 
@@ -613,13 +625,19 @@ async function loadAndRender(fileName) {
 }
 
 dateSelect.addEventListener('change', async e => {
-  mobileDateSelect.value = e.target.value;
-  await loadAndRender(e.target.value);
+  const selectedDate = e.target.value;
+  const file = window.archiveByDate?.[selectedDate];
+  if (!file) return;
+  mobileDateSelect.value = selectedDate;
+  await loadAndRender(file);
 });
 
 mobileDateSelect.addEventListener('change', async e => {
-  dateSelect.value = e.target.value;
-  await loadAndRender(e.target.value);
+  const selectedDate = e.target.value;
+  const file = window.archiveByDate?.[selectedDate];
+  if (!file) return;
+  dateSelect.value = selectedDate;
+  await loadAndRender(file);
 });
 
 document.getElementById('searchInput').addEventListener('input', e => {
@@ -635,8 +653,11 @@ mobileSearchInput.addEventListener('input', e => {
 (async function initJSONHomepage(){
   try {
     await populateArchive();
-    if (dateSelect.value) {
-      await loadAndRender(dateSelect.value);
+    const latestItem = archiveIndex.find(item => item.file === 'latest.json') || archiveIndex[0];
+    if (latestItem) {
+      await loadAndRender(latestItem.file);
+      dateSelect.value = latestItem.date_key;
+      mobileDateSelect.value = latestItem.date_key;
     }
   } catch (err) {
     console.error('Failed to initialize JSON homepage', err);
