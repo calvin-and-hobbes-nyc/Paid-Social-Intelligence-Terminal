@@ -612,22 +612,12 @@ async function loadAndRender(fileName) {
   render(currentEdition);
 }
 
-dateSelect.addEventListener('change', async (e) => {
-  const file = e.target.value;
-  currentEdition = await loadJSON(`data/${file}`);
-  renderEdition(currentEdition);
-  mobileDateSelect.value = file;
-});
+dateSelect.addEventListener('change', async e => {
   mobileDateSelect.value = e.target.value;
   await loadAndRender(e.target.value);
 });
 
-mobileDateSelect.addEventListener('change', async (e) => {
-  const file = e.target.value;
-  currentEdition = await loadJSON(`data/${file}`);
-  renderEdition(currentEdition);
-  dateSelect.value = file;
-});
+mobileDateSelect.addEventListener('change', async e => {
   dateSelect.value = e.target.value;
   await loadAndRender(e.target.value);
 });
@@ -645,9 +635,9 @@ mobileSearchInput.addEventListener('input', e => {
 (async function initJSONHomepage(){
   try {
     await populateArchive();
-    await loadAndRender('latest.json');
-    dateSelect.value = 'latest.json';
-    mobileDateSelect.value = 'latest.json';
+    if (dateSelect.value) {
+      await loadAndRender(dateSelect.value);
+    }
   } catch (err) {
     console.error('Failed to initialize JSON homepage', err);
   }
