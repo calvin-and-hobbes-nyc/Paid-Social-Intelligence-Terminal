@@ -645,8 +645,7 @@ mobileSearchInput.addEventListener('input', e => {
 (async function initJSONHomepage(){
   try {
     await populateArchive();
-    currentEdition = await loadJSON('data/latest.json');
-    renderEdition(currentEdition);
+    await loadAndRender('latest.json');
     dateSelect.value = 'latest.json';
     mobileDateSelect.value = 'latest.json';
   } catch (err) {
