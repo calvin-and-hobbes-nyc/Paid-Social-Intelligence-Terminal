@@ -1,0 +1,205 @@
+name: Daily Edition Builder
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '5 12 * * *'
+    - cron: '5 13 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  build-edition:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set New York date and hour
+        id: now
+        run: |
+          echo "today=$(TZ=America/New_York date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+          echo "hour=$(TZ=America/New_York date +'%H')" >> $GITHUB_OUTPUT
+          echo "label=$(TZ=America/New_York date +'%B %d, %Y')" >> $GITHUB_OUTPUT
+
+      - name: Stop unless it is 8 AM New York time
+        if: github.event_name == 'schedule' && steps.now.outputs.hour != '08'
+        run: |
+          echo "Not 8 AM in New York. Exiting."
+          exit 0
+
+      - name: Create dated edition file with full homepage schema
+        run: |
+          cat > data/${{ steps.now.outputs.today }}.json <<EOF
+          {
+            "label": "${{ steps.now.outputs.label }}",
+            "date_key": "${{ steps.now.outputs.today }}",
+            "lead_title": "Daily paid social platform changes require stronger interpretation, clearer operator guidance, and tighter decision discipline.",
+            "lead_summary": "This automated edition preserves the full homepage schema so the site keeps rendering correctly while summarizing platform movement in a cleaner editorial format.",
+            "stats": {
+              "platforms": 8,
+              "updates": 12,
+              "highUrgency": 3,
+              "sources": 8
+            },
+            "vp_tells": [
+              "Translate platform updates into operator guidance quickly so teams know what actually changes workflow, buying, and reporting.",
+              "Separate real product shifts from marketing language and focus only on what changes performance decisions.",
+              "Keep source fidelity high: the headline, image, and link should always point to the same underlying platform story.",
+              "Use the daily brief as a management tool, not just a reading list, so teams know what to test, pause, or reframe."
+            ],
+            "trend_scores": [
+              { "name": "AI-led buying", "score": 90 },
+              { "name": "Measurement changes", "score": 86 },
+              { "name": "Creative importance", "score": 88 },
+              { "name": "Commerce integration", "score": 77 },
+              { "name": "UI / workflow change", "score": 64 }
+            ],
+            "feeds": [
+              { "platform": "Meta", "title": "Meta Business News", "url": "https://www.facebook.com/business/news", "note": "Official source hub" },
+              { "platform": "TikTok", "title": "TikTok Business Blog", "url": "https://ads.tiktok.com/business/en/blog", "note": "Official source hub" },
+              { "platform": "LinkedIn", "title": "LinkedIn Marketing Blog", "url": "https://www.linkedin.com/business/marketing/blog", "note": "Official source hub" },
+              { "platform": "Pinterest", "title": "Pinterest Business Blog", "url": "https://business.pinterest.com/blog/", "note": "Official source hub" },
+              { "platform": "Reddit", "title": "Reddit for Business Blog", "url": "https://www.business.reddit.com/blog", "note": "Official source hub" },
+              { "platform": "Snapchat", "title": "Snap for Business Blog", "url": "https://forbusiness.snapchat.com/blog", "note": "Official source hub" },
+              { "platform": "X", "title": "X Business Blog", "url": "https://business.x.com/en/blog", "note": "Official source hub" },
+              { "platform": "YouTube / Google Ads", "title": "Google Ads & Commerce Blog", "url": "https://blog.google/products/ads-commerce/", "note": "Official source hub" }
+            ],
+            "articles": [
+              {
+                "platform": "Meta",
+                "section": "Lead story",
+                "headline": "Meta reporting changes keep raising the bar for interpretation, not just optimization.",
+                "summary": "More teams are finding that platform-reported movement and true business movement do not always move in lockstep, especially as attribution definitions evolve.",
+                "impact": "This increases the need for benchmark resets, stronger readouts, and better communication between operators and senior stakeholders.",
+                "action": "Reframe reporting decks around business context and explain methodology changes before they distort decision-making.",
+                "url": "https://www.facebook.com/business/news",
+                "image": "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80"
+              },
+              {
+                "platform": "TikTok",
+                "section": "Lead story",
+                "headline": "TikTok remains one of the clearest examples of paid, creator, commerce, and identity systems converging.",
+                "summary": "Its latest product direction continues to blur the boundaries between media buying, creator activation, profile governance, and commerce readiness.",
+                "impact": "Operators need more cross-functional coordination because platform readiness now extends beyond campaign settings.",
+                "action": "Audit how paid social, organic social, creators, and commerce teams share ownership of TikTok execution.",
+                "url": "https://ads.tiktok.com/business/en/blog/tiktok-product-preview",
+                "image": "https://images.unsplash.com/photo-1611605698335-8b1569810432?auto=format&fit=crop&w=1200&q=80"
+              },
+              {
+                "platform": "LinkedIn",
+                "section": "Briefing",
+                "headline": "Company-level attribution keeps strengthening LinkedIn’s enterprise value proposition.",
+                "summary": "The platform is increasingly useful when teams want to discuss account-level influence instead of only lead volume.",
+                "impact": "That makes LinkedIn easier to defend in B2B planning conversations tied to buying groups and sales alignment.",
+                "action": "Tie LinkedIn outputs more directly to CRM narratives, pipeline stages, and account-based reporting.",
+                "url": "https://www.linkedin.com/business/marketing/blog",
+                "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+              },
+              {
+                "platform": "Pinterest",
+                "section": "Briefing",
+                "headline": "Pinterest keeps becoming more useful when intent and discovery happen in the same journey.",
+                "summary": "Its shopping and search surfaces continue to make the platform more relevant in categories where inspiration leads quickly to action.",
+                "impact": "Pinterest deserves more consideration in lower-funnel planning than many teams still give it.",
+                "action": "Pair premium placements with stronger feed health and more intentional conversion pathways.",
+                "url": "https://business.pinterest.com/blog/",
+                "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
+              },
+              {
+                "platform": "Reddit",
+                "section": "Briefing",
+                "headline": "Reddit remains strongest when automation is balanced with actual community context.",
+                "summary": "Automation can simplify scaling, but relevance still depends heavily on where and how the message shows up.",
+                "impact": "Category nuance and community fit remain competitive advantages, even as tools become more automated.",
+                "action": "Benchmark community-native planning against automated setups before standardizing one approach.",
+                "url": "https://www.business.reddit.com/blog",
+                "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+              },
+              {
+                "platform": "X",
+                "section": "Briefing",
+                "headline": "X continues to make the most sense as a selective contextual and video extension layer.",
+                "summary": "It is easiest to use when creative portability, speed, and relevance matter more than deep channel complexity.",
+                "impact": "This can still be useful, but only in narrower roles than broader paid social platforms.",
+                "action": "Use X where fast-turn content and context are strategic strengths rather than treating it as a default line item.",
+                "url": "https://business.x.com/en/blog",
+                "image": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80"
+              },
+              {
+                "platform": "Snapchat",
+                "section": "Briefing",
+                "headline": "Snap’s performance story is stronger when messaging and environment are tightly matched.",
+                "summary": "The platform is increasingly viable in more direct-response conversations, especially for the right audiences and offers.",
+                "impact": "That gives teams another testing lane in app, commerce, and younger-audience planning.",
+                "action": "Use sharper hooks and a clearer message hierarchy to fit the more personal placement experience.",
+                "url": "https://forbusiness.snapchat.com/blog",
+                "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80"
+              },
+              {
+                "platform": "YouTube / Google Ads",
+                "section": "Briefing",
+                "headline": "Demand Gen and Shorts still look more like social placements than traditional search-era media constructs.",
+                "summary": "Their visual, native, and creator-adjacent behavior means they should often be planned alongside paid social and creator work.",
+                "impact": "This changes who should be in the room when strategy and measurement decisions are made.",
+                "action": "Plan YouTube, Shorts, Discover, and adjacent surfaces inside one broader visual demand framework.",
+                "url": "https://blog.google/products/ads-commerce/",
+                "image": "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?auto=format&fit=crop&w=1200&q=80"
+              }
+            ]
+          }
+          EOF
+
+      - name: Update latest.json
+        run: |
+          cp data/${{ steps.now.outputs.today }}.json data/latest.json
+
+      - name: Rebuild archive.json
+        run: |
+          python <<'PY'
+          import json
+          import os
+          from glob import glob
+
+          archive = []
+          today = os.environ["TODAY"]
+          label = os.environ["LABEL"]
+
+          archive.append({
+              "date_key": today,
+              "label": label,
+              "file": "latest.json"
+          })
+
+          seen = {today}
+          for path in sorted(glob("data/*.json"), reverse=True):
+              name = os.path.basename(path)
+              if name in ("latest.json", "archive.json"):
+                  continue
+              with open(path, "r") as f:
+                  data = json.load(f)
+              if data["date_key"] in seen:
+                  continue
+              seen.add(data["date_key"])
+              archive.append({
+                  "date_key": data["date_key"],
+                  "label": data["label"],
+                  "file": name
+              })
+
+          with open("data/archive.json", "w") as f:
+              json.dump(archive, f, indent=2)
+          PY
+        env:
+          TODAY: ${{ steps.now.outputs.today }}
+          LABEL: ${{ steps.now.outputs.label }}
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/latest.json data/archive.json data/${{ steps.now.outputs.today }}.json
+          git commit -m "Build daily edition" || echo "No changes to commit"
+          git push
