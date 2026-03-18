@@ -1,6 +1,122 @@
 {
   "label": "March 18, 2026",
   "date_key": "2026-03-18",
-  "lead_title": "Automated test edition for 2026-03-18",
-  "lead_summary": "This is a test daily edition created by GitHub Actions."
+  "lead_title": "What's New On TikTok For Brands: Q1 2026 Product Preview | TikTok For Business Blog",
+  "lead_summary": "Check out our quarterly look at the latest product innovations designed to help brands and agencies drive business impact on TikTok.",
+  "stats": {
+    "platforms": 3,
+    "updates": 3,
+    "highUrgency": 3,
+    "sources": 3
+  },
+  "vp_tells": [
+    "Translate platform updates into operator guidance quickly so teams know what actually changes workflow, buying, and reporting.",
+    "Separate real product shifts from marketing language and focus only on what changes performance decisions.",
+    "Keep source fidelity high: the headline, image, and link should always point to the same underlying platform story.",
+    "Use the daily brief as a management tool so teams know what to test, pause, or reframe."
+  ],
+  "trend_scores": [
+    {
+      "name": "AI-led buying",
+      "score": 90
+    },
+    {
+      "name": "Measurement changes",
+      "score": 86
+    },
+    {
+      "name": "Creative importance",
+      "score": 88
+    },
+    {
+      "name": "Commerce integration",
+      "score": 77
+    },
+    {
+      "name": "UI / workflow change",
+      "score": 64
+    }
+  ],
+  "feeds": [
+    {
+      "platform": "Meta",
+      "title": "Meta Business News",
+      "url": "https://www.facebook.com/business/news",
+      "note": "Official source hub"
+    },
+    {
+      "platform": "TikTok",
+      "title": "TikTok Business Blog",
+      "url": "https://ads.tiktok.com/business/en/blog",
+      "note": "Official source hub"
+    },
+    {
+      "platform": "LinkedIn",
+      "title": "LinkedIn Marketing Blog",
+      "url": "https://www.linkedin.com/business/marketing/blog",
+      "note": "Official source hub"
+    },
+    {
+      "platform": "Pinterest",
+      "title": "Pinterest Business Blog",
+      "url": "https://business.pinterest.com/blog/",
+      "note": "Official source hub"
+    },
+    {
+      "platform": "Reddit",
+      "title": "Reddit for Business Blog",
+      "url": "https://www.business.reddit.com/blog",
+      "note": "Official source hub"
+    },
+    {
+      "platform": "Snapchat",
+      "title": "Snap for Business Blog",
+      "url": "https://forbusiness.snapchat.com/blog",
+      "note": "Official source hub"
+    },
+    {
+      "platform": "X",
+      "title": "X Business Blog",
+      "url": "https://business.x.com/en/blog",
+      "note": "Official source hub"
+    },
+    {
+      "platform": "YouTube / Google Ads",
+      "title": "Google Ads & Commerce Blog",
+      "url": "https://blog.google/products/ads-commerce/",
+      "note": "Official source hub"
+    }
+  ],
+  "articles": [
+    {
+      "platform": "TikTok",
+      "section": "Lead story",
+      "headline": "What's New On TikTok For Brands: Q1 2026 Product Preview | TikTok For Business Blog",
+      "summary": "Check out our quarterly look at the latest product innovations designed to help brands and agencies drive business impact on TikTok.",
+      "impact": "TikTok has a live source update worth reviewing for operators and planners.",
+      "action": "Review the latest TikTok source update and decide whether it changes workflow, reporting, or testing priorities.",
+      "url": "https://ads.tiktok.com/business/en/blog/tiktok-product-preview",
+      "image": "https://lf-tt4b.tiktokcdn.com/obj/i18nblog/tt4b_cms/en-US/tipdilz7wysq-63reVQqHHHiOCcKFWtVWbC.png"
+    },
+    {
+      "platform": "Meta",
+      "section": "Lead story",
+      "headline": "Business News from Facebook, Instagram and Messenger",
+      "summary": "Get the latest updates, marketing trends and advertising tips in your inbox.",
+      "impact": "Meta has a live source update worth reviewing for operators and planners.",
+      "action": "Review the latest Meta source update and decide whether it changes workflow, reporting, or testing priorities.",
+      "url": "https://www.facebook.com/business/news",
+      "image": "https://static.xx.fbcdn.net/mci_ab/public/cms/?ab_b=e&ab_page=CMS&ab_entry=797459857892055&version=1773680588&transcode_extension=webp"
+    },
+    {
+      "platform": "LinkedIn",
+      "section": "Briefing",
+      "headline": "Data-driven insights for the B2B marketer",
+      "summary": "Get the latest tips and best practices right in your inbox. Learn more >",
+      "impact": "LinkedIn has a live source update worth reviewing for operators and planners.",
+      "action": "Review the latest LinkedIn source update and decide whether it changes workflow, reporting, or testing priorities.",
+      "url": "https://www.linkedin.com/business/marketing/blog",
+      "image": "https://media.licdn.com/dms/image/v2/D4D08AQHvd0T61n0CdQ/croft-frontend-shrinkToFit1024/croft-frontend-shrinkToFit1024/0/1631557065472?e=2147483647&v=beta&t=AZMM9f_OM7eJLmse-v4Iruu6vAJDf-_POFggxuKQm_A"
+    }
+  ]
 }
