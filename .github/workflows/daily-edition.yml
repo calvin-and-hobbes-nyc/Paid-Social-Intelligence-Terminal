@@ -4,7 +4,6 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '5 12 * * *'
-    - cron: '5 13 * * *'
 
 permissions:
   contents: write
@@ -17,17 +16,10 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Set New York date and hour
+      - name: Set New York date
         id: now
         run: |
           echo "today=$(TZ=America/New_York date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
-          echo "hour=$(TZ=America/New_York date +'%H')" >> $GITHUB_OUTPUT
-
-      - name: Stop unless it is 8 AM New York time
-        if: github.event_name == 'schedule' && steps.now.outputs.hour != '08'
-        run: |
-          echo "Not 8 AM in New York. Exiting."
-          exit 0
 
       - name: Build full-schema dated edition from latest.json
         env:
@@ -77,11 +69,10 @@ jobs:
           except FileNotFoundError:
               archive = []
 
-          # Remove any existing entries for today or latest.json
+          # Remove any existing entries for this day and remove latest.json entry
           archive = [
               item for item in archive
-              if item.get("file") not in ("latest.json", f"{today}.json")
-              and item.get("date_key") != today
+              if item.get("date_key") != today and item.get("file") != "latest.json"
           ]
 
           new_items = [
