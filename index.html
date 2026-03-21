@@ -529,9 +529,20 @@ if (window.innerWidth > 1200) {
   }
   trendCarousel.rebuild();
 
-  const articles = selected.articles.filter(a => !query || JSON.stringify(a).toLowerCase().includes(query));
-  const front = articles.filter(a => a.section === 'Lead story').slice(0,2);
-  const briefings = articles.filter(a => a.section !== 'Lead story');
+  consconst sourceArticles = (selected.rollingArticles && selected.rollingArticles.length)
+  ? selected.rollingArticles
+  : selected.articles;
+
+const seen = new Set();
+const articles = sourceArticles.filter(a => {
+  const key = `${a.url || ''}|${a.headline || ''}`;
+  if (seen.has(key)) return false;
+  seen.add(key);
+  return !query || JSON.stringify(a).toLowerCase().includes(query);
+});
+
+const front = articles.filter(a => a.section === 'Lead story').slice(0, 8);
+const briefings = articles.filter(a => a.section !== 'Lead story');
 
   const frontPageGrid = document.getElementById('frontPageGrid');
   frontPageGrid.innerHTML = '';
