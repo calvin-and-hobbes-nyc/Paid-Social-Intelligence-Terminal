@@ -619,25 +619,27 @@ if (window.innerWidth > 1200) {
   feedCarousel.rebuild();
 }
 
-async function loadAndRender(fileName) {
+function resolveEditionFile(value) {
+  if (window.archiveByDate && window.archiveByDate[value]) {
+    return window.archiveByDate[value];
+  }
+  return value;
+}
+
+async function loadAndRender(fileOrDateKey) {
+  const fileName = resolveEditionFile(fileOrDateKey);
   currentEdition = await loadJSON('data/' + fileName);
   render(currentEdition);
 }
 
 dateSelect.addEventListener('change', async e => {
-  const selectedDate = e.target.value;
-  const file = window.archiveByDate?.[selectedDate];
-  if (!file) return;
-  mobileDateSelect.value = selectedDate;
-  await loadAndRender(file);
+  mobileDateSelect.value = e.target.value;
+  await loadAndRender(e.target.value);
 });
 
 mobileDateSelect.addEventListener('change', async e => {
-  const selectedDate = e.target.value;
-  const file = window.archiveByDate?.[selectedDate];
-  if (!file) return;
-  dateSelect.value = selectedDate;
-  await loadAndRender(file);
+  dateSelect.value = e.target.value;
+  await loadAndRender(e.target.value);
 });
 
 document.getElementById('searchInput').addEventListener('input', e => {
@@ -653,14 +655,16 @@ mobileSearchInput.addEventListener('input', e => {
 (async function initJSONHomepage(){
   try {
     await populateArchive();
-    const latestItem = archiveIndex.find(item => item.file === 'latest.json') || archiveIndex[0];
-    if (latestItem) {
-      await loadAndRender(latestItem.file);
-      dateSelect.value = latestItem.date_key;
-      mobileDateSelect.value = latestItem.date_key;
+    if (dateSelect.value) {
+      await loadAndRender(dateSelect.value);
     }
   } catch (err) {
     console.error('Failed to initialize JSON homepage', err);
+    const note = document.querySelector('.footer-note');
+    if (note) {
+      note.textContent = 'JSON test page error: ' + err.message;
+      note.style.color = '#8b1e1e';
+    }
   }
 })();
 </script>
