@@ -626,6 +626,36 @@ function resolveEditionFile(value) {
   return value;
 }
 
+async function loadRollingArticles(selectedDateKey, daysBack = 14) {
+  if (!archiveIndex || !archiveIndex.length) return [];
+
+  const selectedDate = new Date(selectedDateKey + 'T00:00:00');
+  const msPerDay = 24 * 60 * 60 * 1000;
+
+  const candidateFiles = archiveIndex
+    .filter(item => item.file !== 'latest.json')
+    .filter(item => {
+      const itemDate = new Date(item.date_key + 'T00:00:00');
+      const diffDays = Math.floor((selectedDate - itemDate) / msPerDay);
+      return diffDays >= 0 && diffDays < daysBack;
+    })
+    .sort((a, b) => b.date_key.localeCompare(a.date_key));
+
+  const editions = await Promise.all(
+    candidateFiles.map(item => loadJSON('data/' + item.file).catch(() => null))
+  );
+
+  return editions
+    .filter(Boolean)
+    .flatMap(edition =>
+      (edition.articles || []).map(article => ({
+        ...article,
+        _editionDate: edition.date_key,
+        _editionLabel: edition.label
+      }))
+    );
+}
+  
 async function loadAndRender(fileOrDateKey) {
   const fileName = resolveEditionFile(fileOrDateKey);
   currentEdition = await loadJSON('data/' + fileName);
