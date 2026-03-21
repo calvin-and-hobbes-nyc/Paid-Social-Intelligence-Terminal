@@ -659,6 +659,7 @@ async function loadRollingArticles(selectedDateKey, daysBack = 14) {
 async function loadAndRender(fileOrDateKey) {
   const fileName = resolveEditionFile(fileOrDateKey);
   currentEdition = await loadJSON('data/' + fileName);
+  currentEdition.rollingArticles = await loadRollingArticles(currentEdition.date_key, 14);
   render(currentEdition);
 }
 
