@@ -1,9 +1,10 @@
 name: Daily Edition Builder
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: '5 12 * * *'
+    - cron: "5 8 * * *"
+    - cron: "35 8 * * *"
+  workflow_dispatch:
 
 permissions:
   contents: write
