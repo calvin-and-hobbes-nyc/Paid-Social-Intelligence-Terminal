@@ -6,14 +6,126 @@
       "url": "https://ads.tiktok.com/business/en/blog/tiktok-product-preview"
     },
     {
+      "platform": "TikTok",
+      "section": "Briefing",
+      "url": "https://newsroom.tiktok.com/en-us/"
+    },
+    {
+      "platform": "TikTok",
+      "section": "Briefing",
+      "url": "https://www.socialmediatoday.com/topic/tiktok/"
+    },
+
+    {
       "platform": "Meta",
       "section": "Lead story",
       "url": "https://www.facebook.com/business/news"
     },
     {
+      "platform": "Meta",
+      "section": "Briefing",
+      "url": "https://engineering.fb.com/"
+    },
+    {
+      "platform": "Meta",
+      "section": "Briefing",
+      "url": "https://www.adweek.com/tag/meta/"
+    },
+
+    {
       "platform": "LinkedIn",
       "section": "Briefing",
       "url": "https://www.linkedin.com/business/marketing/blog"
+    },
+    {
+      "platform": "LinkedIn",
+      "section": "Briefing",
+      "url": "https://engineering.linkedin.com/blog/"
+    },
+    {
+      "platform": "LinkedIn",
+      "section": "Briefing",
+      "url": "https://www.socialmediatoday.com/topic/linkedin/"
+    },
+
+    {
+      "platform": "Pinterest",
+      "section": "Briefing",
+      "url": "https://business.pinterest.com/blog/"
+    },
+    {
+      "platform": "Pinterest",
+      "section": "Briefing",
+      "url": "https://www.socialmediatoday.com/topic/pinterest/"
+    },
+    {
+      "platform": "Pinterest",
+      "section": "Briefing",
+      "url": "https://www.adweek.com/tag/pinterest/"
+    },
+
+    {
+      "platform": "Reddit",
+      "section": "Briefing",
+      "url": "https://www.redditinc.com/blog"
+    },
+    {
+      "platform": "Reddit",
+      "section": "Briefing",
+      "url": "https://www.socialmediatoday.com/topic/reddit/"
+    },
+    {
+      "platform": "Reddit",
+      "section": "Briefing",
+      "url": "https://www.adweek.com/tag/reddit/"
+    },
+
+    {
+      "platform": "Snapchat",
+      "section": "Briefing",
+      "url": "https://forbusiness.snapchat.com/blog"
+    },
+    {
+      "platform": "Snapchat",
+      "section": "Briefing",
+      "url": "https://investor.snap.com/news/default.aspx"
+    },
+    {
+      "platform": "Snapchat",
+      "section": "Briefing",
+      "url": "https://www.socialmediatoday.com/topic/snapchat/"
+    },
+
+    {
+      "platform": "YouTube / Google Ads",
+      "section": "Briefing",
+      "url": "https://blog.google/products/ads-commerce/"
+    },
+    {
+      "platform": "YouTube / Google Ads",
+      "section": "Briefing",
+      "url": "https://blog.youtube/news-and-events/"
+    },
+    {
+      "platform": "YouTube / Google Ads",
+      "section": "Briefing",
+      "url": "https://www.thinkwithgoogle.com/marketing-strategies/"
+    },
+
+    {
+      "platform": "X",
+      "section": "Briefing",
+      "url": "https://business.x.com/en/blog"
+    },
+    {
+      "platform": "X",
+      "section": "Briefing",
+      "url": "https://blog.x.com/"
+    },
+    {
+      "platform": "X",
+      "section": "Briefing",
+      "url": "https://www.socialmediatoday.com/topic/twitter/"
     }
   ]
 }
