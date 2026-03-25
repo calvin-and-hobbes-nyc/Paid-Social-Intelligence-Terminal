@@ -10,12 +10,48 @@
       "status": "ok"
     },
     {
+      "platform": "TikTok",
+      "section": "Briefing",
+      "url": "https://newsroom.tiktok.com/en-us/",
+      "headline": "Newsroom | TikTok",
+      "summary": "TikTok is the world's leading destination for short-form mobile videos. Our mission is to capture and present the world's creativity, knowledge, and moments that matter in everyday life. TikTok empowers everyone to be a creator directly from their smartphones, and is committed to building a community by encouraging users to share their passion and creative expression through their videos.",
+      "image": "",
+      "status": "ok"
+    },
+    {
+      "platform": "TikTok",
+      "section": "Briefing",
+      "url": "https://www.socialmediatoday.com/topic/tiktok/",
+      "headline": "",
+      "summary": "",
+      "image": "",
+      "status": "error: 403 Client Error: Forbidden for url: https://www.socialmediatoday.com/topic/tiktok/"
+    },
+    {
       "platform": "Meta",
       "section": "Lead story",
       "url": "https://www.facebook.com/business/news",
       "headline": "Business News from Facebook, Instagram and Messenger",
       "summary": "Get the latest updates, marketing trends and advertising tips in your inbox.",
-      "image": "https://static.xx.fbcdn.net/mci_ab/public/cms/?ab_b=e&ab_page=CMS&ab_entry=797459857892055&version=1773680588&transcode_extension=webp",
+      "image": "https://static.xx.fbcdn.net/mci_ab/public/cms/?ab_b=e&ab_page=CMS&ab_entry=797459857892055&version=1774408208&transcode_extension=webp",
+      "status": "ok"
+    },
+    {
+      "platform": "Meta",
+      "section": "Briefing",
+      "url": "https://engineering.fb.com/",
+      "headline": "Engineering at Meta",
+      "summary": "Engineering at Meta Blog",
+      "image": "https://s0.wp.com/_si/?t=eyJpbWciOiJodHRwczpcL1wvZW5naW5lZXJpbmcuZmIuY29tXC93cC1jb250ZW50XC90aGVtZXNcL2NvZGUtZmItY29tXC9pbWdcL2RlZmF1bHRfZmVhdHVyZS5qcGciLCJ0eHQiOiJFbmdpbmVlcmluZyBhdCBNZXRhIiwidGVtcGxhdGUiOiJoaWdod2F5IiwiZm9udCI6IiIsImJsb2dfaWQiOjE0Nzk0NTEwOH0.Siqpm3aY6q_ItVXrL7vpSF62370k6aJXvfuBUHR8J_cMQ",
+      "status": "ok"
+    },
+    {
+      "platform": "Meta",
+      "section": "Briefing",
+      "url": "https://www.adweek.com/tag/meta/",
+      "headline": "Meta",
+      "summary": "Breaking News in Advertising, Media and Technology",
+      "image": "https://static-www.adweek.com/wp-content/themes/adweek-next/assets/images/adweek-placeholder.png",
       "status": "ok"
     },
     {
@@ -26,6 +62,159 @@
       "summary": "Get the latest tips and best practices right in your inbox. Learn more >",
       "image": "https://media.licdn.com/dms/image/v2/D4D08AQHvd0T61n0CdQ/croft-frontend-shrinkToFit1024/croft-frontend-shrinkToFit1024/0/1631557065472?e=2147483647&v=beta&t=AZMM9f_OM7eJLmse-v4Iruu6vAJDf-_POFggxuKQm_A",
       "status": "ok"
+    },
+    {
+      "platform": "LinkedIn",
+      "section": "Briefing",
+      "url": "https://engineering.linkedin.com/blog/",
+      "headline": "Engineering Blog",
+      "summary": "",
+      "image": "https://media.licdn.com/dms/image/v2/D4D08AQGsfaWW6y7bmA/croft-frontend-shrinkToFit1024/croft-frontend-shrinkToFit1024/0/1709141970939?e=2147483647&v=beta&t=IEterisj-wsSdD57jq1U6KkWak-x_pja2ZfBmJEsiZE",
+      "status": "ok"
+    },
+    {
+      "platform": "LinkedIn",
+      "section": "Briefing",
+      "url": "https://www.socialmediatoday.com/topic/linkedin/",
+      "headline": "",
+      "summary": "",
+      "image": "",
+      "status": "error: 403 Client Error: Forbidden for url: https://www.socialmediatoday.com/topic/linkedin/"
+    },
+    {
+      "platform": "Pinterest",
+      "section": "Briefing",
+      "url": "https://business.pinterest.com/blog/",
+      "headline": "See what\u2019s new on the Pinterest Business blog",
+      "summary": "Explore the latest insights, product news and marketing best practices.",
+      "image": "https://images.ctfassets.net/h67z7i6sbjau/429YQtnJMFlFkx8xxCnog5/88bcece154b652b6bd3a223aace63ce2/edhub-og-image__1_.png?fm=webp&q=85",
+      "status": "ok"
+    },
+    {
+      "platform": "Pinterest",
+      "section": "Briefing",
+      "url": "https://www.socialmediatoday.com/topic/pinterest/",
+      "headline": "",
+      "summary": "",
+      "image": "",
+      "status": "error: 403 Client Error: Forbidden for url: https://www.socialmediatoday.com/topic/pinterest/"
+    },
+    {
+      "platform": "Pinterest",
+      "section": "Briefing",
+      "url": "https://www.adweek.com/tag/pinterest/",
+      "headline": "Pinterest",
+      "summary": "Breaking News in Advertising, Media and Technology",
+      "image": "https://static-www.adweek.com/wp-content/themes/adweek-next/assets/images/adweek-placeholder.png",
+      "status": "ok"
+    },
+    {
+      "platform": "Reddit",
+      "section": "Briefing",
+      "url": "https://www.redditinc.com/blog",
+      "headline": "Reddit Inc Blog Homepage",
+      "summary": "Get the latest product news, company announcements, and user insights from the official Reddit blog.",
+      "image": "",
+      "status": "ok"
+    },
+    {
+      "platform": "Reddit",
+      "section": "Briefing",
+      "url": "https://www.socialmediatoday.com/topic/reddit/",
+      "headline": "",
+      "summary": "",
+      "image": "",
+      "status": "error: 403 Client Error: Forbidden for url: https://www.socialmediatoday.com/topic/reddit/"
+    },
+    {
+      "platform": "Reddit",
+      "section": "Briefing",
+      "url": "https://www.adweek.com/tag/reddit/",
+      "headline": "Reddit",
+      "summary": "Breaking News in Advertising, Media and Technology",
+      "image": "https://static-www.adweek.com/wp-content/themes/adweek-next/assets/images/adweek-placeholder.png",
+      "status": "ok"
+    },
+    {
+      "platform": "Snapchat",
+      "section": "Briefing",
+      "url": "https://forbusiness.snapchat.com/blog",
+      "headline": "Snapchat Advertising Blog | Snapchat for Business",
+      "summary": "Stay up to date with the latest Snapchat advertising news and trends. Our blog features insights, tips, and success stories from industry experts.",
+      "image": "https://images.ctfassets.net/inb32lme5009/eW1Nxd8ufAP6MJUPhY7fH/5ca9fcb597f98be7c43400a83531a59e/Snapchat_Logo_Ghost_Yellow.jpg?q=40&h=512",
+      "status": "ok"
+    },
+    {
+      "platform": "Snapchat",
+      "section": "Briefing",
+      "url": "https://investor.snap.com/news/default.aspx",
+      "headline": "Snap Inc. - News",
+      "summary": "",
+      "image": "",
+      "status": "ok"
+    },
+    {
+      "platform": "Snapchat",
+      "section": "Briefing",
+      "url": "https://www.socialmediatoday.com/topic/snapchat/",
+      "headline": "",
+      "summary": "",
+      "image": "",
+      "status": "error: 403 Client Error: Forbidden for url: https://www.socialmediatoday.com/topic/snapchat/"
+    },
+    {
+      "platform": "YouTube / Google Ads",
+      "section": "Briefing",
+      "url": "https://blog.google/products/ads-commerce/",
+      "headline": "Google Ads & Commerce",
+      "summary": "Read the latest news, tips and information about Google Ads & Commerce products.",
+      "image": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Logo.max-1440x810.png",
+      "status": "ok"
+    },
+    {
+      "platform": "YouTube / Google Ads",
+      "section": "Briefing",
+      "url": "https://blog.youtube/news-and-events/",
+      "headline": "News and Events",
+      "summary": "Discover everything that is happening at YouTube, from the latest news and events, to the most recent announcements and platform updates.",
+      "image": "https://blog.youtube/static/blog_youtube/images/youtube_social_1200x630.png?version=pr20260319-1641",
+      "status": "ok"
+    },
+    {
+      "platform": "YouTube / Google Ads",
+      "section": "Briefing",
+      "url": "https://www.thinkwithgoogle.com/marketing-strategies/",
+      "headline": "Search and Video Marketing Trends - Think with Google",
+      "summary": "Explore search and video marketing insights and trends so you can meet customer needs where they\u2019re searching, streaming, scrolling, and shopping.",
+      "image": "",
+      "status": "ok"
+    },
+    {
+      "platform": "X",
+      "section": "Briefing",
+      "url": "https://business.x.com/en/blog",
+      "headline": "X Business Outlook",
+      "summary": "X Business blog is your go-to source for articles, how-tos, and best practices around X Ads campaigns and all things social media marketing.",
+      "image": "https://business.x.com/content/dam/business-twitter/sharing-card.png.twimg.768.png",
+      "status": "ok"
+    },
+    {
+      "platform": "X",
+      "section": "Briefing",
+      "url": "https://blog.x.com/",
+      "headline": "",
+      "summary": "",
+      "image": "",
+      "status": "error: 403 Client Error: Forbidden for url: https://blog.x.com/"
+    },
+    {
+      "platform": "X",
+      "section": "Briefing",
+      "url": "https://www.socialmediatoday.com/topic/twitter/",
+      "headline": "",
+      "summary": "",
+      "image": "",
+      "status": "error: 403 Client Error: Forbidden for url: https://www.socialmediatoday.com/topic/twitter/"
     }
   ]
 }
