@@ -1,0 +1,42 @@
+name: Source Preview Extractor
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install packages
+        run: pip install requests openai
+
+      - name: Show build_edition import line
+        run: grep -n "from openai import OpenAI" scripts/build_edition.py
+
+      - name: Run source extractor
+        run: python scripts/extract_sources.py
+
+      - name: Build homepage edition from preview with AI editorial layer
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python scripts/build_edition.py
+
+      - name: Commit preview output
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/source_preview.json data/latest.json data/archive.json data/*.json
+          git commit -m "Generate source preview and AI edition" || echo "No changes to commit"
+          git push
