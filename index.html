@@ -541,8 +541,8 @@ const articles = sourceArticles.filter(a => {
   return !query || JSON.stringify(a).toLowerCase().includes(query);
 });
 
-const front = articles.filter(a => a.section === 'Lead story').slice(0, 8);
-const briefings = articles.filter(a => a.section !== 'Lead story');
+const front = articles.slice(0, 8);
+const briefings = articles.slice(8);
 
   const frontPageGrid = document.getElementById('frontPageGrid');
   frontPageGrid.innerHTML = '';
