@@ -22,9 +22,6 @@ jobs:
       - name: Install packages
         run: pip install requests openai
 
-      - name: Show build_edition import line
-        run: grep -n "from openai import OpenAI" scripts/build_edition.py
-
       - name: Run source extractor
         run: python scripts/extract_sources.py
 
