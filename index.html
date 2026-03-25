@@ -529,9 +529,9 @@ if (window.innerWidth > 1200) {
   }
   trendCarousel.rebuild();
 
-  const sourceArticles = (selected.rollingArticles && selected.rollingArticles.length)
-  ? selected.rollingArticles
-  : selected.articles;
+ const baseArticles = Array.isArray(selected.articles) ? selected.articles : [];
+const rollingArticles = Array.isArray(selected.rollingArticles) ? selected.rollingArticles : [];
+const sourceArticles = [...baseArticles, ...rollingArticles];
 
 const seen = new Set();
 const articles = sourceArticles.filter(a => {
