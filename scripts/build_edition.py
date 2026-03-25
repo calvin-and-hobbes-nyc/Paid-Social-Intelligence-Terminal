@@ -1,9 +1,6 @@
 import json
-import os
 from pathlib import Path
 from datetime import datetime
-
-from openai import OpenAI
 
 
 DEFAULT_IMAGES = {
@@ -19,6 +16,18 @@ DEFAULT_IMAGES = {
 }
 
 
+FEEDS = [
+    {"platform": "Meta", "title": "Meta Business News", "url": "https://www.facebook.com/business/news", "note": "Official source hub"},
+    {"platform": "TikTok", "title": "TikTok Business Blog", "url": "https://ads.tiktok.com/business/en/blog", "note": "Official source hub"},
+    {"platform": "LinkedIn", "title": "LinkedIn Marketing Blog", "url": "https://www.linkedin.com/business/marketing/blog", "note": "Official source hub"},
+    {"platform": "Pinterest", "title": "Pinterest Business Blog", "url": "https://business.pinterest.com/blog/", "note": "Official source hub"},
+    {"platform": "Reddit", "title": "Reddit Inc. Blog", "url": "https://www.redditinc.com/blog", "note": "Official source hub"},
+    {"platform": "Snapchat", "title": "Snap for Business Blog", "url": "https://forbusiness.snapchat.com/blog", "note": "Official source hub"},
+    {"platform": "X", "title": "X Business Blog", "url": "https://business.x.com/en/blog", "note": "Official source hub"},
+    {"platform": "YouTube / Google Ads", "title": "Google Ads & Commerce Blog", "url": "https://blog.google/products/ads-commerce/", "note": "Official source hub"},
+]
+
+
 def safe_image(platform: str, image: str) -> str:
     if not image or not image.strip():
         return DEFAULT_IMAGES.get(platform, DEFAULT_IMAGES["default"])
@@ -30,75 +39,100 @@ def safe_image(platform: str, image: str) -> str:
     return image
 
 
-def call_editorial_model(articles_in: list[dict]) -> dict:
-    api_key = os.environ.get("OPENAI_API_KEY")
-    if not api_key:
-        raise ValueError("OPENAI_API_KEY is missing")
+def status_ok(item: dict) -> bool:
+    status = (item.get("status") or "").lower()
+    return status == "ok"
 
-    client = OpenAI(api_key=api_key)
 
-    compact_articles = []
-    for item in articles_in:
-        compact_articles.append({
-            "platform": item.get("platform", ""),
-            "headline": item.get("headline", ""),
-            "summary": item.get("summary", ""),
-            "url": item.get("url", ""),
-            "section": item.get("section", ""),
+def normalize_articles(raw_articles: list[dict]) -> list[dict]:
+    cleaned = []
+    seen = set()
+
+    for item in raw_articles:
+        if not status_ok(item):
+            continue
+
+        platform = item.get("platform", "Unknown").strip() or "Unknown"
+        url = (item.get("url") or "").strip()
+        headline = (item.get("headline") or "").strip()
+        summary = (item.get("summary") or "").strip()
+        section = (item.get("section") or "Briefing").strip() or "Briefing"
+        image = safe_image(platform, item.get("image", ""))
+
+        if not headline and not summary:
+            continue
+
+        key = f"{url}|{headline}".lower()
+        if key in seen:
+            continue
+        seen.add(key)
+
+        cleaned.append({
+            "platform": platform,
+            "section": section,
+            "headline": headline or f"{platform} update",
+            "summary": summary,
+            "impact": f"{platform} has a live source update worth reviewing for operators and planners.",
+            "action": f"Review the latest {platform} source update and decide whether it changes workflow, reporting, or testing priorities.",
+            "url": url,
+            "image": image,
         })
 
-    prompt = f"""
-You are writing a paid social intelligence briefing for senior media operators and VP-level leaders.
+    return cleaned
 
-Take the source metadata below and turn it into an editorial briefing.
-Be concise, strategic, and specific.
-Do not sound generic or promotional.
-Focus on what changes workflow, buying, reporting, or cross-functional coordination.
 
-Return STRICT JSON only with this exact structure:
-{{
-  "lead_title": "string",
-  "lead_summary": "string",
-  "vp_tells": ["string", "string", "string", "string"],
-  "trend_scores": [
-    {{"name": "AI-led buying", "score": 0}},
-    {{"name": "Measurement changes", "score": 0}},
-    {{"name": "Creative importance", "score": 0}},
-    {{"name": "Commerce integration", "score": 0}},
-    {{"name": "UI / workflow change", "score": 0}}
-  ],
-  "articles": [
-    {{
-      "platform": "string",
-      "headline": "rewritten editorial headline",
-      "summary": "rewritten editorial summary",
-      "impact": "why this matters operationally",
-      "action": "clear recommended action"
-    }}
-  ]
-}}
+def build_vp_tells(articles: list[dict]) -> list[str]:
+    platforms = sorted({a.get("platform", "") for a in articles if a.get("platform")})
 
-Rules:
-- Keep exactly 4 vp_tells.
-- Keep exactly 5 trend_scores with the same names shown above.
-- Return one article object per source article in the same order.
-- The lead_title should sound like a real daily publication headline, not like a scraped blog post title.
-- The lead_summary should synthesize the overall theme across the sources.
-- Use plain language, but sound sharp and credible.
-- No markdown.
-- No explanation outside JSON.
+    base = [
+        "Translate platform updates into operator guidance quickly so teams know what actually changes workflow, buying, and reporting.",
+        "Separate real product shifts from marketing language and focus only on what changes performance decisions.",
+        "Keep source fidelity high: the headline, image, and link should always point to the same underlying platform story.",
+        "Use the daily brief as a management tool so teams know what to test, pause, or reframe.",
+    ]
 
-Source metadata:
-{json.dumps(compact_articles, indent=2)}
-"""
+    if len(platforms) >= 5:
+        base[3] = "Use this broader cross-platform readout to identify where automation, creator workflows, and measurement expectations are converging."
 
-    response = client.responses.create(
-        model="gpt-5",
-        input=prompt,
-    )
+    return base
 
-    text = response.output_text.strip()
-    return json.loads(text)
+
+def build_trend_scores(articles: list[dict]) -> list[dict]:
+    platforms = {a.get("platform", "") for a in articles}
+    platform_count = len(platforms)
+    article_count = len(articles)
+
+    ai_score = min(95, 70 + platform_count * 3)
+    measurement_score = min(95, 68 + article_count * 2)
+    creative_score = min(95, 72 + platform_count * 2)
+    commerce_score = min(95, 60 + platform_count * 2)
+    workflow_score = min(95, 58 + article_count * 2)
+
+    return [
+        {"name": "AI-led buying", "score": ai_score},
+        {"name": "Measurement changes", "score": measurement_score},
+        {"name": "Creative importance", "score": creative_score},
+        {"name": "Commerce integration", "score": commerce_score},
+        {"name": "UI / workflow change", "score": workflow_score},
+    ]
+
+
+def build_lead_title(articles: list[dict]) -> str:
+    if not articles:
+        return "Daily platform intelligence briefing"
+
+    return articles[0].get("headline", "Daily platform intelligence briefing")
+
+
+def build_lead_summary(articles: list[dict]) -> str:
+    if not articles:
+        return ""
+
+    summaries = [a.get("summary", "").strip() for a in articles[:3] if a.get("summary", "").strip()]
+    if summaries:
+        return summaries[0]
+
+    return "Key platform developments worth reviewing across paid social planning, buying, and measurement."
 
 
 def main():
@@ -108,73 +142,47 @@ def main():
     archive_path = root / "data" / "archive.json"
 
     preview = json.loads(preview_path.read_text(encoding="utf-8"))
-    articles_in = preview.get("articles", [])
+    raw_articles = preview.get("articles", [])
+    articles_in = normalize_articles(raw_articles)
 
     if not articles_in:
-        raise ValueError("source_preview.json has no articles")
+        raise ValueError("source_preview.json has no usable articles")
 
     today_key = datetime.now().strftime("%Y-%m-%d")
     today_label = datetime.now().strftime("%B %d, %Y")
     dated_path = root / "data" / f"{today_key}.json"
 
-    editorial = call_editorial_model(articles_in)
+    # Keep top 2 as lead-story candidates, rest as briefings
+    edition_articles = []
+    for i, item in enumerate(articles_in):
+        section = "Lead story" if i < 2 else "Briefing"
+        edition_articles.append({
+            "platform": item["platform"],
+            "section": section,
+            "headline": item["headline"],
+            "summary": item["summary"],
+            "impact": item["impact"],
+            "action": item["action"],
+            "url": item["url"],
+            "image": item["image"],
+        })
 
     edition = {
         "label": today_label,
         "date_key": today_key,
-        "lead_title": editorial.get("lead_title", articles_in[0].get("headline", "Lead story")),
-        "lead_summary": editorial.get("lead_summary", articles_in[0].get("summary", "")),
+        "lead_title": build_lead_title(edition_articles),
+        "lead_summary": build_lead_summary(edition_articles),
         "stats": {
-            "platforms": len({a.get("platform", "") for a in articles_in}),
-            "updates": len(articles_in),
-            "highUrgency": min(3, len(articles_in)),
-            "sources": len(articles_in),
+            "platforms": len({a.get("platform", "") for a in edition_articles}),
+            "updates": len(edition_articles),
+            "highUrgency": min(3, len(edition_articles)),
+            "sources": len(edition_articles),
         },
-        "vp_tells": editorial.get("vp_tells", [
-            "Translate platform updates into operator guidance quickly so teams know what actually changes workflow, buying, and reporting.",
-            "Separate real product shifts from marketing language and focus only on what changes performance decisions.",
-            "Keep source fidelity high: the headline, image, and link should always point to the same underlying platform story.",
-            "Use the daily brief as a management tool so teams know what to test, pause, or reframe."
-        ]),
-        "trend_scores": editorial.get("trend_scores", [
-            {"name": "AI-led buying", "score": 90},
-            {"name": "Measurement changes", "score": 86},
-            {"name": "Creative importance", "score": 88},
-            {"name": "Commerce integration", "score": 77},
-            {"name": "UI / workflow change", "score": 64}
-        ]),
-        "feeds": [
-            {"platform": "Meta", "title": "Meta Business News", "url": "https://www.facebook.com/business/news", "note": "Official source hub"},
-            {"platform": "TikTok", "title": "TikTok Business Blog", "url": "https://ads.tiktok.com/business/en/blog", "note": "Official source hub"},
-            {"platform": "LinkedIn", "title": "LinkedIn Marketing Blog", "url": "https://www.linkedin.com/business/marketing/blog", "note": "Official source hub"},
-            {"platform": "Pinterest", "title": "Pinterest Business Blog", "url": "https://business.pinterest.com/blog/", "note": "Official source hub"},
-            {"platform": "Reddit", "title": "Reddit for Business Blog", "url": "https://www.business.reddit.com/blog", "note": "Official source hub"},
-            {"platform": "Snapchat", "title": "Snap for Business Blog", "url": "https://forbusiness.snapchat.com/blog", "note": "Official source hub"},
-            {"platform": "X", "title": "X Business Blog", "url": "https://business.x.com/en/blog", "note": "Official source hub"},
-            {"platform": "YouTube / Google Ads", "title": "Google Ads & Commerce Blog", "url": "https://blog.google/products/ads-commerce/", "note": "Official source hub"}
-        ],
-        "articles": []
+        "vp_tells": build_vp_tells(edition_articles),
+        "trend_scores": build_trend_scores(edition_articles),
+        "feeds": FEEDS,
+        "articles": edition_articles,
     }
-
-    editorial_articles = editorial.get("articles", [])
-
-    for i, item in enumerate(articles_in):
-        platform = item.get("platform", "Unknown")
-        image = safe_image(platform, item.get("image", ""))
-        ai_item = editorial_articles[i] if i < len(editorial_articles) else {}
-
-        section = "Lead story" if i < 2 else "Briefing"
-
-        edition["articles"].append({
-            "platform": platform,
-            "section": section,
-            "headline": ai_item.get("headline", item.get("headline", "Untitled source")),
-            "summary": ai_item.get("summary", item.get("summary", "")),
-            "impact": ai_item.get("impact", f"{platform} has a live source update worth reviewing for operators and planners."),
-            "action": ai_item.get("action", f"Review the latest {platform} source update and decide whether it changes workflow, reporting, or testing priorities."),
-            "url": item.get("url", ""),
-            "image": image
-        })
 
     latest_path.write_text(json.dumps(edition, indent=2), encoding="utf-8")
     dated_path.write_text(json.dumps(edition, indent=2), encoding="utf-8")
@@ -210,7 +218,7 @@ def main():
 
     archive_path.write_text(json.dumps(archive, indent=2), encoding="utf-8")
 
-    print("AI editorial layer ran successfully.")
+    print("No-AI editorial layer ran successfully.")
     print(f"Wrote {latest_path}")
     print(f"Wrote {dated_path}")
     print(f"Wrote {archive_path}")
