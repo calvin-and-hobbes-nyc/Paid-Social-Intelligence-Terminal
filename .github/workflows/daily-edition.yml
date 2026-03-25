@@ -17,90 +17,18 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Set New York date
-        id: now
-        run: |
-          echo "today=$(TZ=America/New_York date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
-      - name: Build full-schema dated edition from latest.json
-        env:
-          TODAY: ${{ steps.now.outputs.today }}
-        run: |
-          python - <<'PY'
-          import json
-          import os
-          from datetime import datetime
-
-          today = os.environ["TODAY"]
-          dt = datetime.strptime(today, "%Y-%m-%d")
-          label = dt.strftime("%B %d, %Y")
-
-          with open("data/latest.json", "r", encoding="utf-8") as f:
-              edition = json.load(f)
-
-          edition["label"] = label
-          edition["date_key"] = today
-
-          with open(f"data/{today}.json", "w", encoding="utf-8") as f:
-              json.dump(edition, f, ensure_ascii=False, indent=2)
-          PY
-
-      - name: Update latest.json from dated edition
-        env:
-          TODAY: ${{ steps.now.outputs.today }}
-        run: |
-          cp "data/${TODAY}.json" data/latest.json
-
-      - name: Update archive.json
-        env:
-          TODAY: ${{ steps.now.outputs.today }}
-        run: |
-          python - <<'PY'
-          import json
-          import os
-          from datetime import datetime
-
-          today = os.environ["TODAY"]
-          dt = datetime.strptime(today, "%Y-%m-%d")
-          label = dt.strftime("%B %d, %Y")
-
-          try:
-              with open("data/archive.json", "r", encoding="utf-8") as f:
-                  archive = json.load(f)
-          except FileNotFoundError:
-              archive = []
-
-          # Remove any existing entries for this day and remove latest.json entry
-          archive = [
-              item for item in archive
-              if item.get("date_key") != today and item.get("file") != "latest.json"
-          ]
-
-          new_items = [
-              {
-                  "date_key": today,
-                  "label": label,
-                  "file": "latest.json"
-              },
-              {
-                  "date_key": today,
-                  "label": label,
-                  "file": f"{today}.json"
-              }
-          ]
-
-          archive = new_items + archive
-
-          with open("data/archive.json", "w", encoding="utf-8") as f:
-              json.dump(archive, f, ensure_ascii=False, indent=2)
-          PY
+      - name: Run no-AI edition builder
+        run: python scripts/build_edition.py
 
       - name: Commit changes
-        env:
-          TODAY: ${{ steps.now.outputs.today }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/latest.json data/archive.json "data/${TODAY}.json"
+          git add data/latest.json data/archive.json data/*.json
           git commit -m "Build daily edition" || echo "No changes to commit"
           git push
