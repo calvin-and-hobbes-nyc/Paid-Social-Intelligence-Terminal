@@ -28,15 +28,10 @@ jobs:
       - name: Run source extractor
         run: python scripts/extract_sources.py
 
-      - name: Build homepage edition from preview with AI editorial layer
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python scripts/build_edition.py
-
       - name: Commit preview output
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/source_preview.json data/latest.json data/archive.json data/*.json
-          git commit -m "Generate source preview and AI edition" || echo "No changes to commit"
+          git add data/source_preview.json
+          git commit -m "Generate source preview" || echo "No changes to commit"
           git push
