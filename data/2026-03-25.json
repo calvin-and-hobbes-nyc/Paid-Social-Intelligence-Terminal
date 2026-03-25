@@ -4,25 +4,25 @@
   "lead_title": "What's New On TikTok For Brands: Q1 2026 Product Preview | TikTok For Business Blog",
   "lead_summary": "Check out our quarterly look at the latest product innovations designed to help brands and agencies drive business impact on TikTok.",
   "stats": {
-    "platforms": 3,
-    "updates": 3,
+    "platforms": 8,
+    "updates": 17,
     "highUrgency": 3,
-    "sources": 3
+    "sources": 17
   },
   "vp_tells": [
     "Translate platform updates into operator guidance quickly so teams know what actually changes workflow, buying, and reporting.",
     "Separate real product shifts from marketing language and focus only on what changes performance decisions.",
     "Keep source fidelity high: the headline, image, and link should always point to the same underlying platform story.",
-    "Use the daily brief as a management tool so teams know what to test, pause, or reframe."
+    "Use this broader cross-platform readout to identify where automation, creator workflows, and measurement expectations are converging."
   ],
   "trend_scores": [
     {
       "name": "AI-led buying",
-      "score": 90
+      "score": 94
     },
     {
       "name": "Measurement changes",
-      "score": 86
+      "score": 95
     },
     {
       "name": "Creative importance",
@@ -30,11 +30,11 @@
     },
     {
       "name": "Commerce integration",
-      "score": 77
+      "score": 76
     },
     {
       "name": "UI / workflow change",
-      "score": 64
+      "score": 92
     }
   ],
   "feeds": [
@@ -64,8 +64,8 @@
     },
     {
       "platform": "Reddit",
-      "title": "Reddit for Business Blog",
-      "url": "https://www.business.reddit.com/blog",
+      "title": "Reddit Inc. Blog",
+      "url": "https://www.redditinc.com/blog",
       "note": "Official source hub"
     },
     {
@@ -99,14 +99,44 @@
       "image": "https://lf-tt4b.tiktokcdn.com/obj/i18nblog/tt4b_cms/en-US/tipdilz7wysq-63reVQqHHHiOCcKFWtVWbC.png"
     },
     {
-      "platform": "Meta",
+      "platform": "TikTok",
       "section": "Lead story",
+      "headline": "Newsroom | TikTok",
+      "summary": "TikTok is the world's leading destination for short-form mobile videos. Our mission is to capture and present the world's creativity, knowledge, and moments that matter in everyday life. TikTok empowers everyone to be a creator directly from their smartphones, and is committed to building a community by encouraging users to share their passion and creative expression through their videos.",
+      "impact": "TikTok has a live source update worth reviewing for operators and planners.",
+      "action": "Review the latest TikTok source update and decide whether it changes workflow, reporting, or testing priorities.",
+      "url": "https://newsroom.tiktok.com/en-us/",
+      "image": "https://lf-tt4b.tiktokcdn.com/obj/i18nblog/tt4b_cms/en-US/tipdilz7wysq-63reVQqHHHiOCcKFWtVWbC.png"
+    },
+    {
+      "platform": "Meta",
+      "section": "Briefing",
       "headline": "Business News from Facebook, Instagram and Messenger",
       "summary": "Get the latest updates, marketing trends and advertising tips in your inbox.",
       "impact": "Meta has a live source update worth reviewing for operators and planners.",
       "action": "Review the latest Meta source update and decide whether it changes workflow, reporting, or testing priorities.",
       "url": "https://www.facebook.com/business/news",
-      "image": "https://static.xx.fbcdn.net/mci_ab/public/cms/?ab_b=e&ab_page=CMS&ab_entry=797459857892055&version=1773680588&transcode_extension=webp"
+      "image": "https://static.xx.fbcdn.net/mci_ab/public/cms/?ab_b=e&ab_page=CMS&ab_entry=797459857892055&version=1774408208&transcode_extension=webp"
+    },
+    {
+      "platform": "Meta",
+      "section": "Briefing",
+      "headline": "Engineering at Meta",
+      "summary": "Engineering at Meta Blog",
+      "impact": "Meta has a live source update worth reviewing for operators and planners.",
+      "action": "Review the latest Meta source update and decide whether it changes workflow, reporting, or testing priorities.",
+      "url": "https://engineering.fb.com/",
+      "image": "https://s0.wp.com/_si/?t=eyJpbWciOiJodHRwczpcL1wvZW5naW5lZXJpbmcuZmIuY29tXC93cC1jb250ZW50XC90aGVtZXNcL2NvZGUtZmItY29tXC9pbWdcL2RlZmF1bHRfZmVhdHVyZS5qcGciLCJ0eHQiOiJFbmdpbmVlcmluZyBhdCBNZXRhIiwidGVtcGxhdGUiOiJoaWdod2F5IiwiZm9udCI6IiIsImJsb2dfaWQiOjE0Nzk0NTEwOH0.Siqpm3aY6q_ItVXrL7vpSF62370k6aJXvfuBUHR8J_cMQ"
+    },
+    {
+      "platform": "Meta",
+      "section": "Briefing",
+      "headline": "Meta",
+      "summary": "Breaking News in Advertising, Media and Technology",
+      "impact": "Meta has a live source update worth reviewing for operators and planners.",
+      "action": "Review the latest Meta source update and decide whether it changes workflow, reporting, or testing priorities.",
+      "url": "https://www.adweek.com/tag/meta/",
+      "image": "https://static-www.adweek.com/wp-content/themes/adweek-next/assets/images/adweek-placeholder.png"
     },
     {
       "platform": "LinkedIn",
@@ -117,6 +147,116 @@
       "action": "Review the latest LinkedIn source update and decide whether it changes workflow, reporting, or testing priorities.",
       "url": "https://www.linkedin.com/business/marketing/blog",
       "image": "https://media.licdn.com/dms/image/v2/D4D08AQHvd0T61n0CdQ/croft-frontend-shrinkToFit1024/croft-frontend-shrinkToFit1024/0/1631557065472?e=2147483647&v=beta&t=AZMM9f_OM7eJLmse-v4Iruu6vAJDf-_POFggxuKQm_A"
+    },
+    {
+      "platform": "LinkedIn",
+      "section": "Briefing",
+      "headline": "Engineering Blog",
+      "summary": "",
+      "impact": "LinkedIn has a live source update worth reviewing for operators and planners.",
+      "action": "Review the latest LinkedIn source update and decide whether it changes workflow, reporting, or testing priorities.",
+      "url": "https://engineering.linkedin.com/blog/",
+      "image": "https://media.licdn.com/dms/image/v2/D4D08AQGsfaWW6y7bmA/croft-frontend-shrinkToFit1024/croft-frontend-shrinkToFit1024/0/1709141970939?e=2147483647&v=beta&t=IEterisj-wsSdD57jq1U6KkWak-x_pja2ZfBmJEsiZE"
+    },
+    {
+      "platform": "Pinterest",
+      "section": "Briefing",
+      "headline": "See what\u2019s new on the Pinterest Business blog",
+      "summary": "Explore the latest insights, product news and marketing best practices.",
+      "impact": "Pinterest has a live source update worth reviewing for operators and planners.",
+      "action": "Review the latest Pinterest source update and decide whether it changes workflow, reporting, or testing priorities.",
+      "url": "https://business.pinterest.com/blog/",
+      "image": "https://images.ctfassets.net/h67z7i6sbjau/429YQtnJMFlFkx8xxCnog5/88bcece154b652b6bd3a223aace63ce2/edhub-og-image__1_.png?fm=webp&q=85"
+    },
+    {
+      "platform": "Pinterest",
+      "section": "Briefing",
+      "headline": "Pinterest",
+      "summary": "Breaking News in Advertising, Media and Technology",
+      "impact": "Pinterest has a live source update worth reviewing for operators and planners.",
+      "action": "Review the latest Pinterest source update and decide whether it changes workflow, reporting, or testing priorities.",
+      "url": "https://www.adweek.com/tag/pinterest/",
+      "image": "https://static-www.adweek.com/wp-content/themes/adweek-next/assets/images/adweek-placeholder.png"
+    },
+    {
+      "platform": "Reddit",
+      "section": "Briefing",
+      "headline": "Reddit Inc Blog Homepage",
+      "summary": "Get the latest product news, company announcements, and user insights from the official Reddit blog.",
+      "impact": "Reddit has a live source update worth reviewing for operators and planners.",
+      "action": "Review the latest Reddit source update and decide whether it changes workflow, reporting, or testing priorities.",
+      "url": "https://www.redditinc.com/blog",
+      "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "platform": "Reddit",
+      "section": "Briefing",
+      "headline": "Reddit",
+      "summary": "Breaking News in Advertising, Media and Technology",
+      "impact": "Reddit has a live source update worth reviewing for operators and planners.",
+      "action": "Review the latest Reddit source update and decide whether it changes workflow, reporting, or testing priorities.",
+      "url": "https://www.adweek.com/tag/reddit/",
+      "image": "https://static-www.adweek.com/wp-content/themes/adweek-next/assets/images/adweek-placeholder.png"
+    },
+    {
+      "platform": "Snapchat",
+      "section": "Briefing",
+      "headline": "Snapchat Advertising Blog | Snapchat for Business",
+      "summary": "Stay up to date with the latest Snapchat advertising news and trends. Our blog features insights, tips, and success stories from industry experts.",
+      "impact": "Snapchat has a live source update worth reviewing for operators and planners.",
+      "action": "Review the latest Snapchat source update and decide whether it changes workflow, reporting, or testing priorities.",
+      "url": "https://forbusiness.snapchat.com/blog",
+      "image": "https://images.ctfassets.net/inb32lme5009/eW1Nxd8ufAP6MJUPhY7fH/5ca9fcb597f98be7c43400a83531a59e/Snapchat_Logo_Ghost_Yellow.jpg?q=40&h=512"
+    },
+    {
+      "platform": "Snapchat",
+      "section": "Briefing",
+      "headline": "Snap Inc. - News",
+      "summary": "",
+      "impact": "Snapchat has a live source update worth reviewing for operators and planners.",
+      "action": "Review the latest Snapchat source update and decide whether it changes workflow, reporting, or testing priorities.",
+      "url": "https://investor.snap.com/news/default.aspx",
+      "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "platform": "YouTube / Google Ads",
+      "section": "Briefing",
+      "headline": "Google Ads & Commerce",
+      "summary": "Read the latest news, tips and information about Google Ads & Commerce products.",
+      "impact": "YouTube / Google Ads has a live source update worth reviewing for operators and planners.",
+      "action": "Review the latest YouTube / Google Ads source update and decide whether it changes workflow, reporting, or testing priorities.",
+      "url": "https://blog.google/products/ads-commerce/",
+      "image": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Logo.max-1440x810.png"
+    },
+    {
+      "platform": "YouTube / Google Ads",
+      "section": "Briefing",
+      "headline": "News and Events",
+      "summary": "Discover everything that is happening at YouTube, from the latest news and events, to the most recent announcements and platform updates.",
+      "impact": "YouTube / Google Ads has a live source update worth reviewing for operators and planners.",
+      "action": "Review the latest YouTube / Google Ads source update and decide whether it changes workflow, reporting, or testing priorities.",
+      "url": "https://blog.youtube/news-and-events/",
+      "image": "https://blog.youtube/static/blog_youtube/images/youtube_social_1200x630.png?version=pr20260319-1641"
+    },
+    {
+      "platform": "YouTube / Google Ads",
+      "section": "Briefing",
+      "headline": "Search and Video Marketing Trends - Think with Google",
+      "summary": "Explore search and video marketing insights and trends so you can meet customer needs where they\u2019re searching, streaming, scrolling, and shopping.",
+      "impact": "YouTube / Google Ads has a live source update worth reviewing for operators and planners.",
+      "action": "Review the latest YouTube / Google Ads source update and decide whether it changes workflow, reporting, or testing priorities.",
+      "url": "https://www.thinkwithgoogle.com/marketing-strategies/",
+      "image": "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "platform": "X",
+      "section": "Briefing",
+      "headline": "X Business Outlook",
+      "summary": "X Business blog is your go-to source for articles, how-tos, and best practices around X Ads campaigns and all things social media marketing.",
+      "impact": "X has a live source update worth reviewing for operators and planners.",
+      "action": "Review the latest X source update and decide whether it changes workflow, reporting, or testing priorities.",
+      "url": "https://business.x.com/en/blog",
+      "image": "https://business.x.com/content/dam/business-twitter/sharing-card.png.twimg.768.png"
     }
   ]
 }
