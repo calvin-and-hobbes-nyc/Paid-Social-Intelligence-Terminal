@@ -529,7 +529,7 @@ if (window.innerWidth > 1200) {
   }
   trendCarousel.rebuild();
 
- const baseArticles = Array.isArray(selected.articles) ? selected.articles : [];
+const baseArticles = Array.isArray(selected.articles) ? selected.articles : [];
 const rollingArticles = Array.isArray(selected.rollingArticles) ? selected.rollingArticles : [];
 const sourceArticles = [...baseArticles, ...rollingArticles];
 
@@ -541,9 +541,15 @@ const articles = sourceArticles.filter(a => {
   return !query || JSON.stringify(a).toLowerCase().includes(query);
 });
 
-const front = articles.slice(0, 8);
-const briefings = articles.slice(8);
+const sorted = [...articles].sort((a, b) => {
+  const dateA = new Date(a.date || a._editionDate || 0);
+  const dateB = new Date(b.date || b._editionDate || 0);
+  return dateB - dateA;
+});
 
+const front = sorted.slice(0, 8);
+const briefings = sorted.slice(8);
+  
   const frontPageGrid = document.getElementById('frontPageGrid');
   frontPageGrid.innerHTML = '';
   front.forEach(a => {
