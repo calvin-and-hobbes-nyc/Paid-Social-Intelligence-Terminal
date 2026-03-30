@@ -154,7 +154,7 @@ def main():
 
     # Keep top 2 as lead-story candidates, rest as briefings
     edition_articles = []
-    for i, item in enumerate(articles_in):
+        for i, item in enumerate(articles_in):
         section = "Lead story" if i < 2 else "Briefing"
         edition_articles.append({
             "platform": item["platform"],
@@ -165,6 +165,7 @@ def main():
             "action": item["action"],
             "url": item["url"],
             "image": item["image"],
+            "date": today_key
         })
 
     edition = {
