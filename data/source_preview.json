@@ -58,19 +58,19 @@
       "platform": "LinkedIn",
       "section": "Briefing",
       "url": "https://www.linkedin.com/business/marketing/blog",
-      "headline": "Data-driven insights for the B2B marketer",
-      "summary": "Get the latest tips and best practices right in your inbox. Learn more >",
-      "image": "https://media.licdn.com/dms/image/v2/D4D08AQHvd0T61n0CdQ/croft-frontend-shrinkToFit1024/croft-frontend-shrinkToFit1024/0/1631557065472?e=2147483647&v=beta&t=AZMM9f_OM7eJLmse-v4Iruu6vAJDf-_POFggxuKQm_A",
-      "status": "ok"
+      "headline": "",
+      "summary": "",
+      "image": "",
+      "status": "error: 429 Client Error: Request denied for url: https://www.linkedin.com/business/marketing/blog"
     },
     {
       "platform": "LinkedIn",
       "section": "Briefing",
       "url": "https://engineering.linkedin.com/blog/",
-      "headline": "Engineering Blog",
+      "headline": "",
       "summary": "",
-      "image": "https://media.licdn.com/dms/image/v2/D4D08AQGsfaWW6y7bmA/croft-frontend-shrinkToFit1024/croft-frontend-shrinkToFit1024/0/1709141970939?e=2147483647&v=beta&t=IEterisj-wsSdD57jq1U6KkWak-x_pja2ZfBmJEsiZE",
-      "status": "ok"
+      "image": "",
+      "status": "error: 429 Client Error: Request denied for url: https://engineering.linkedin.com/blog/"
     },
     {
       "platform": "LinkedIn",
