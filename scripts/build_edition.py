@@ -153,21 +153,21 @@ def main():
     dated_path = root / "data" / f"{today_key}.json"
 
     # Keep top 2 as lead-story candidates, rest as briefings
-edition_articles = []
-for i, item in enumerate(articles_in):
-    section = "Lead story" if i < 2 else "Briefing"
-    edition_articles.append({
-        "platform": item["platform"],
-        "section": section,
-        "headline": item["headline"],
-        "summary": item["summary"],
-        "impact": item["impact"],
-        "action": item["action"],
-        "url": item["url"],
-        "image": item["image"],
-        "date": today_key
-    })
-    
+    edition_articles = []
+    for i, item in enumerate(articles_in):
+        section = "Lead story" if i < 2 else "Briefing"
+        edition_articles.append({
+            "platform": item["platform"],
+            "section": section,
+            "headline": item["headline"],
+            "summary": item["summary"],
+            "impact": item["impact"],
+            "action": item["action"],
+            "url": item["url"],
+            "image": item["image"],
+            "date": today_key
+        })
+
     edition = {
         "label": today_label,
         "date_key": today_key,
@@ -223,7 +223,6 @@ for i, item in enumerate(articles_in):
     print(f"Wrote {latest_path}")
     print(f"Wrote {dated_path}")
     print(f"Wrote {archive_path}")
-
 
 if __name__ == "__main__":
     main()
