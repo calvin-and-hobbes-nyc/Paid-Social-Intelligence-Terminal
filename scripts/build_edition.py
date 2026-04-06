@@ -117,20 +117,33 @@ def build_trend_scores(articles: list[dict]) -> list[dict]:
     ]
 
 
+def choose_lead_article(articles: list[dict]) -> dict:
+    if not articles:
+        return {}
+
+    non_tiktok = [a for a in articles if a.get("platform") != "TikTok"]
+    if non_tiktok:
+        return non_tiktok[0]
+
+    return articles[0]
+
+
 def build_lead_title(articles: list[dict]) -> str:
     if not articles:
         return "Daily platform intelligence briefing"
 
-    return articles[0].get("headline", "Daily platform intelligence briefing")
+    lead = choose_lead_article(articles)
+    return lead.get("headline", "Daily platform intelligence briefing")
 
 
 def build_lead_summary(articles: list[dict]) -> str:
     if not articles:
         return ""
 
-    summaries = [a.get("summary", "").strip() for a in articles[:3] if a.get("summary", "").strip()]
-    if summaries:
-        return summaries[0]
+    lead = choose_lead_article(articles)
+    summary = (lead.get("summary") or "").strip()
+    if summary:
+        return summary
 
     return "Key platform developments worth reviewing across paid social planning, buying, and measurement."
 
@@ -152,7 +165,6 @@ def main():
     today_label = datetime.now().strftime("%B %d, %Y")
     dated_path = root / "data" / f"{today_key}.json"
 
-    # Keep top 2 as lead-story candidates, rest as briefings
     edition_articles = []
     for i, item in enumerate(articles_in):
         section = "Lead story" if i < 2 else "Briefing"
@@ -223,6 +235,7 @@ def main():
     print(f"Wrote {latest_path}")
     print(f"Wrote {dated_path}")
     print(f"Wrote {archive_path}")
+
 
 if __name__ == "__main__":
     main()
