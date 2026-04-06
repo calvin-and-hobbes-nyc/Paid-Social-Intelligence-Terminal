@@ -22,10 +22,10 @@
       "platform": "TikTok",
       "section": "Briefing",
       "url": "https://www.socialmediatoday.com/topic/tiktok/",
-      "headline": "",
-      "summary": "",
-      "image": "",
-      "status": "error: 403 Client Error: Forbidden for url: https://www.socialmediatoday.com/topic/tiktok/"
+      "headline": "TikTok News | Social Media Today",
+      "summary": "The latest TikTok news and updates for social media professionals",
+      "image": "https://d12v9rtnomnebu.cloudfront.net/divesite/header_image_logos/socialmediatoday_dive_feed_header.jpg",
+      "status": "ok"
     },
     {
       "platform": "Meta",
@@ -33,7 +33,7 @@
       "url": "https://www.facebook.com/business/news",
       "headline": "Business News from Facebook, Instagram and Messenger",
       "summary": "Get the latest updates, marketing trends and advertising tips in your inbox.",
-      "image": "https://static.xx.fbcdn.net/mci_ab/public/cms/?ab_b=e&ab_page=CMS&ab_entry=797459857892055&version=1774792531&transcode_extension=webp",
+      "image": "https://static.xx.fbcdn.net/mci_ab/public/cms/?ab_b=e&ab_page=CMS&ab_entry=797459857892055&version=1775131782&transcode_extension=webp",
       "status": "ok"
     },
     {
@@ -76,10 +76,10 @@
       "platform": "LinkedIn",
       "section": "Briefing",
       "url": "https://www.socialmediatoday.com/topic/linkedin/",
-      "headline": "",
-      "summary": "",
-      "image": "",
-      "status": "error: 403 Client Error: Forbidden for url: https://www.socialmediatoday.com/topic/linkedin/"
+      "headline": "LinkedIn News | Social Media Today",
+      "summary": "The latest LinkedIn news and updates for social media professionals",
+      "image": "https://d12v9rtnomnebu.cloudfront.net/divesite/header_image_logos/socialmediatoday_dive_feed_header.jpg",
+      "status": "ok"
     },
     {
       "platform": "Pinterest",
@@ -94,10 +94,10 @@
       "platform": "Pinterest",
       "section": "Briefing",
       "url": "https://www.socialmediatoday.com/topic/pinterest/",
-      "headline": "",
-      "summary": "",
-      "image": "",
-      "status": "error: 403 Client Error: Forbidden for url: https://www.socialmediatoday.com/topic/pinterest/"
+      "headline": "Pinterest News | Social Media Today",
+      "summary": "The latest Pinterest news and updates for social media professionals",
+      "image": "https://d12v9rtnomnebu.cloudfront.net/divesite/header_image_logos/socialmediatoday_dive_feed_header.jpg",
+      "status": "ok"
     },
     {
       "platform": "Pinterest",
@@ -124,7 +124,7 @@
       "headline": "",
       "summary": "",
       "image": "",
-      "status": "error: 403 Client Error: Forbidden for url: https://www.socialmediatoday.com/topic/reddit/"
+      "status": "error: 404 Client Error: Not Found for url: https://www.socialmediatoday.com/topic/reddit/"
     },
     {
       "platform": "Reddit",
@@ -157,10 +157,10 @@
       "platform": "Snapchat",
       "section": "Briefing",
       "url": "https://www.socialmediatoday.com/topic/snapchat/",
-      "headline": "",
-      "summary": "",
-      "image": "",
-      "status": "error: 403 Client Error: Forbidden for url: https://www.socialmediatoday.com/topic/snapchat/"
+      "headline": "Snapchat News | Social Media Today",
+      "summary": "The latest Snapchat news and updates for social media professionals",
+      "image": "https://d12v9rtnomnebu.cloudfront.net/divesite/header_image_logos/socialmediatoday_dive_feed_header.jpg",
+      "status": "ok"
     },
     {
       "platform": "YouTube / Google Ads",
@@ -211,10 +211,10 @@
       "platform": "X",
       "section": "Briefing",
       "url": "https://www.socialmediatoday.com/topic/twitter/",
-      "headline": "",
-      "summary": "",
-      "image": "",
-      "status": "error: 403 Client Error: Forbidden for url: https://www.socialmediatoday.com/topic/twitter/"
+      "headline": "X (Twitter) News | Social Media Today",
+      "summary": "The latest X and Twitter news and updates for social media professionals",
+      "image": "https://d12v9rtnomnebu.cloudfront.net/divesite/header_image_logos/socialmediatoday_dive_feed_header.jpg",
+      "status": "ok"
     }
   ]
 }
