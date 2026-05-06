@@ -1,8 +1,13 @@
 [
   {
+    "date_key": "2026-05-06",
+    "label": "May 06, 2026",
+    "file": "latest.json"
+  },
+  {
     "date_key": "2026-05-05",
     "label": "May 05, 2026",
-    "file": "latest.json"
+    "file": "2026-05-05.json"
   },
   {
     "date_key": "2026-05-04",
